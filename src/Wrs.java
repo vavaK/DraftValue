@@ -105,15 +105,15 @@ public class Wrs {
         this.value = value;
     }
 
-    public ArrayList<Wrs> werteGewichten(ArrayList<Wrs> wr, double tierOne, double tierTwo, double tierThree, double tierFour, double tierFive) {
+    public ArrayList<Wrs> werteGewichten(ArrayList<Wrs> wr, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < wr.size(); i++) {
-            wr.get(i).setReceptions(wr.get(i).getReceptions() * tierThree);
-            wr.get(i).setReceivingYards(wr.get(i).getReceivingYards() * tierTwo);
-            wr.get(i).setTds(wr.get(i).getTds() * tierTwo);
-            wr.get(i).setFfppg(wr.get(i).getFfppg() * tierOne);
-            wr.get(i).setTotalFFP(wr.get(i).getTotalFFP() * tierOne);
-            wr.get(i).setQbs(wr.get(i).getQbs() * tierFour);
-            wr.get(i).setDraftorder(wr.get(i).getDraftorder() * tierOne);
+            wr.get(i).setReceptions(wr.get(i).getReceptions() * tierC);
+            wr.get(i).setReceivingYards(wr.get(i).getReceivingYards() * tierB);
+            wr.get(i).setTds(wr.get(i).getTds() * tierB);
+            wr.get(i).setFfppg(wr.get(i).getFfppg() * tierA);
+            wr.get(i).setTotalFFP(wr.get(i).getTotalFFP() * tierA);
+            wr.get(i).setQbs(wr.get(i).getQbs() * tierE);
+            wr.get(i).setDraftorder(wr.get(i).getDraftorder() * tierS);
         }
         return wr;
     }

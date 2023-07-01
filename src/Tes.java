@@ -105,15 +105,15 @@ public class Tes {
         this.value = value;
     }
 
-    public ArrayList<Tes> werteGewichten(ArrayList<Tes> te, double tierOne, double tierTwo, double tierThree, double tierFour, double tierFive) {
+    public ArrayList<Tes> werteGewichten(ArrayList<Tes> te, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < te.size(); i++) {
-            te.get(i).setReceptions(te.get(i).getReceptions() * tierThree);
-            te.get(i).setReceivingYards(te.get(i).getReceivingYards() * tierTwo);
-            te.get(i).setTds(te.get(i).getTds() * tierTwo);
-            te.get(i).setFfppg(te.get(i).getFfppg() * tierOne);
-            te.get(i).setTotalFFP(te.get(i).getTotalFFP() * tierOne);
-            te.get(i).setQbs(te.get(i).getQbs() * tierFour);
-            te.get(i).setDraftorder(te.get(i).getDraftorder() * tierOne);
+            te.get(i).setReceptions(te.get(i).getReceptions() * tierC);
+            te.get(i).setReceivingYards(te.get(i).getReceivingYards() * tierB);
+            te.get(i).setTds(te.get(i).getTds() * tierB);
+            te.get(i).setFfppg(te.get(i).getFfppg() * tierA);
+            te.get(i).setTotalFFP(te.get(i).getTotalFFP() * tierA);
+            te.get(i).setQbs(te.get(i).getQbs() * tierE);
+            te.get(i).setDraftorder(te.get(i).getDraftorder() * tierS);
         }
         return te;
     }

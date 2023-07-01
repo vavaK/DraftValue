@@ -200,8 +200,15 @@ public class Qbs {
             }
         }
         for(int i = 0; i < sortedQBs.size(); i ++) {
-            sortedQBs.get(i).setPosition(i);
+            sortedQBs.get(i).setPosition(i + 1);
         }
         return sortedQBs;
+    }
+
+    public static void printQBs(ArrayList<Qbs> qb) {
+        System.out.println("QB-List:");
+        for(int i = 0; i < qb.size(); i++) {
+            System.out.println(qb.get(i).getPosition() + ", " + qb.get(i).getName() + " (" + qb.get(i).getTeam() + ")" + ", " + qb.get(i).getValue());
+        }
     }
 }

@@ -115,16 +115,16 @@ public class Rbs {
         this.value = value;
     }
 
-    public ArrayList<Rbs> werteGewichten(ArrayList<Rbs> rb, double tierOne, double tierTwo, double tierThree, double tierFour, double tierFive) {
+    public ArrayList<Rbs> werteGewichten(ArrayList<Rbs> rb, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < rb.size(); i++) {
-            rb.get(i).setReceptions(rb.get(i).getReceptions() * tierFour);
-            rb.get(i).setReceivingYards(rb.get(i).getReceivingYards() * tierFive);
-            rb.get(i).setRushingYards(rb.get(i).getRushingYards() * tierThree);
-            rb.get(i).setTds(rb.get(i).getTds() * tierTwo);
-            rb.get(i).setFfppg(rb.get(i).getFfppg() * tierOne);
-            rb.get(i).setTotalFFP(rb.get(i).getTotalFFP() * tierOne);
-            rb.get(i).setoLine(rb.get(i).getoLine() * tierThree);
-            rb.get(i).setDraftorder(rb.get(i).getDraftorder() * tierOne);
+            rb.get(i).setReceptions(rb.get(i).getReceptions() * tierC);
+            rb.get(i).setReceivingYards(rb.get(i).getReceivingYards() * tierC);
+            rb.get(i).setRushingYards(rb.get(i).getRushingYards() * tierB);
+            rb.get(i).setTds(rb.get(i).getTds() * tierB);
+            rb.get(i).setFfppg(rb.get(i).getFfppg() * tierA);
+            rb.get(i).setTotalFFP(rb.get(i).getTotalFFP() * tierA);
+            rb.get(i).setoLine(rb.get(i).getoLine() * tierE);
+            rb.get(i).setDraftorder(rb.get(i).getDraftorder() * tierS);
         }
         return rb;
     }

@@ -95,22 +95,59 @@ public class Defense {
         this.value = value;
     }
 
-    public ArrayList<Defense> werteGewichten(ArrayList<Defense> defense, double tierOne, double tierTwo, double tierThree, double tierFour, double tierFive) {
+    public static ArrayList<Defense> werteGewichten(ArrayList<Defense> defense, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < defense.size(); i++) {
-            defense.get(i).setSacks(defense.get(i).getSacks() * tierFour);
-            defense.get(i).setInts(defense.get(i).getInts() * tierTwo);
-            defense.get(i).setFumbleRecoveries(defense.get(i).getFumbleRecoveries() * tierThree);
-            defense.get(i).setSafeties(defense.get(i).getSafeties() * tierFour);
-            defense.get(i).setTds(defense.get(i).getTds() * tierFive);
-            defense.get(i).setOrder(defense.get(i).getOrder() * tierOne);
+            defense.get(i).setSacks((33 - defense.get(i).getSacks()) * tierC);
+            defense.get(i).setInts((33 - defense.get(i).getInts()) * tierB);
+            defense.get(i).setFumbleRecoveries((33 - defense.get(i).getFumbleRecoveries()) * tierD);
+            defense.get(i).setSafeties((33 - defense.get(i).getSafeties()) * tierD);
+            defense.get(i).setTds((33 - defense.get(i).getTds()) * tierE);
+            defense.get(i).setOrder((33 - defense.get(i).getOrder()) * tierS);
         }
         return defense;
     }
 
-    public ArrayList<Defense> wertBerechnen(ArrayList<Defense> defense) {
+    public static ArrayList<Defense> wertBerechnen(ArrayList<Defense> defense) {
         for(int i = 0; i < defense.size(); i++) {
             defense.get(i).setValue(defense.get(i).getSacks() + defense.get(i).getInts() + defense.get(i).getFumbleRecoveries() + defense.get(i).getSafeties() + defense.get(i).getTds() + defense.get(i).getOrder());
         }
         return defense;
+    }
+
+    public static ArrayList<Defense> sortAfterValue(ArrayList<Defense> defense) {
+        Defense pivot = new Defense("pivot", 0, 0, 0, 0, 0, 0, 0, 0);
+        int pivotNumber;
+        ArrayList<Defense> sortedDefense = new ArrayList<Defense>();
+        while(!defense.isEmpty()) {
+            pivot = defense.get(defense.size() - 1);
+            pivotNumber = defense.size() - 1;
+            for(int j = 0; j < defense.size() - 1; j++) {
+                if(defense.get(j).getValue() >= pivot.getValue()) {
+                    if(defense.get(j).getValue() > pivot.getValue() || (defense.get(j).getValue() == pivot.getValue() && defense.get(j).getOrder() > pivot.getOrder())) {
+                        pivot = defense.get(j);
+                        pivotNumber = j;
+                    }
+                }
+            }
+            if(defense.size() > 1) {
+                sortedDefense.add(pivot);
+                defense.remove(pivotNumber);
+            } else {
+                sortedDefense.add(pivot);
+                defense.remove(defense.size() - 1);
+            }
+
+        }
+        for(int i = 0; i < sortedDefense.size(); i ++) {
+            sortedDefense.get(i).setPosition(i + 1);
+        }
+        return sortedDefense;
+    }
+
+    public static void printDefense(ArrayList<Defense> defense) {
+        System.out.println("Defense List:");
+        for(int i = 0; i < defense.size(); i++) {
+            System.out.println(defense.get(i).getPosition() + ", " + defense.get(i).getName() + ", " + defense.get(i).getValue());
+        }
     }
 }

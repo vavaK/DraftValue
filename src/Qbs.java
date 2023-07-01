@@ -14,9 +14,11 @@ public class Qbs {
     private double scheduleD;
     private boolean rookie;
     private double value;
+    private String team;
 
-    public Qbs(String name, int position, double passingYards, double rushingYards, double ffppg, double totalFFP, double draftOrder, double tdInt, double cmpPct, double wrRoom, double scheduleD, boolean rookie, double value) {
+    public Qbs(String name, String team, int position, double passingYards, double rushingYards, double ffppg, double totalFFP, double draftOrder, double tdInt, double cmpPct, double wrRoom, double scheduleD, boolean rookie, double value) {
         this.name = name;
+        this.team = team;
         this.position = position;
         this.passingYards = passingYards;
         this.ffppg = ffppg;
@@ -32,6 +34,10 @@ public class Qbs {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setTeam(String teamName) {
+        this.team = teamName;
     }
 
     public void setPosition(int position) {
@@ -84,6 +90,10 @@ public class Qbs {
 
     public String getName() {
         return name;
+    }
+
+    public String getTeam() {
+        return team;
     }
 
     public int getPosition() {
@@ -157,7 +167,7 @@ public class Qbs {
     }
 
     public static ArrayList<Qbs> sortAfterValue(ArrayList<Qbs> qb, int amountRookies) {
-        Qbs pivot = new Qbs("pivot", 0,0, 0, 0, 0, 0, 0, 0, 0, 0, false, 0);
+        Qbs pivot = new Qbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, 0, false, 0);
         int pivotNumber;
         ArrayList<Qbs> sortedQBs = new ArrayList<Qbs>();
         while(!qb.isEmpty()) {

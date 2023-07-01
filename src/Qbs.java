@@ -11,12 +11,11 @@ public class Qbs {
     private double tdInt;
     private double cmpPct;
     private double wrRoom;
-    private double scheduleD;
     private boolean rookie;
     private double value;
     private String team;
 
-    public Qbs(String name, String team, int position, double passingYards, double rushingYards, double ffppg, double totalFFP, double draftOrder, double tdInt, double cmpPct, double wrRoom, double scheduleD, boolean rookie, double value) {
+    public Qbs(String name, String team, int position, double passingYards, double rushingYards, double ffppg, double totalFFP, double draftOrder, double tdInt, double cmpPct, double wrRoom, boolean rookie, double value) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -27,7 +26,6 @@ public class Qbs {
         this.tdInt = tdInt;
         this.cmpPct = cmpPct;
         this.wrRoom = wrRoom;
-        this.scheduleD = scheduleD;
         this.rookie = rookie;
         this.value = value;
     }
@@ -74,10 +72,6 @@ public class Qbs {
 
     public void setWrRoom(double wrRoom) {
         this.wrRoom = wrRoom;
-    }
-
-    public void setScheduleD(double scheduleD) {
-        this.scheduleD = scheduleD;
     }
 
     public void setRookie(boolean rookie) {
@@ -132,10 +126,6 @@ public class Qbs {
         return wrRoom;
     }
 
-    public double getScheduleD() {
-        return scheduleD;
-    }
-
     public boolean getRookie() {
         return rookie;
     }
@@ -154,20 +144,19 @@ public class Qbs {
             qb.get(i).setTdInt((33 - qb.get(i).getTdInt()) * tierB);
             qb.get(i).setCmpPct((33 - qb.get(i).getCmpPct()) * tierE);
             qb.get(i).setWrRoom((33 - qb.get(i).getWrRoom()) * tierD);
-            qb.get(i).setScheduleD(33 - qb.get(i).getScheduleD() * tierD);
         }
         return qb;
     }
 
     public static ArrayList<Qbs> valueBerechnen(ArrayList<Qbs> qb) {
         for(int i = 0; i < qb.size(); i++) {
-            qb.get(i).setValue(qb.get(i).getPassingYards() + qb.get(i).getRushingYards() + qb.get(i).getFfppg() + qb.get(i).getTotalFFP() + qb.get(i).getDraftOrder() + qb.get(i).getTdInt() + qb.get(i).getCmpPct() + qb.get(i).getWrRoom() + qb.get(i).getScheduleD());
+            qb.get(i).setValue(qb.get(i).getPassingYards() + qb.get(i).getRushingYards() + qb.get(i).getFfppg() + qb.get(i).getTotalFFP() + qb.get(i).getDraftOrder() + qb.get(i).getTdInt() + qb.get(i).getCmpPct() + qb.get(i).getWrRoom());
         }
         return qb;
     }
 
     public static ArrayList<Qbs> sortAfterValue(ArrayList<Qbs> qb, int amountRookies) {
-        Qbs pivot = new Qbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, 0, false, 0);
+        Qbs pivot = new Qbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, false, 0);
         int pivotNumber;
         ArrayList<Qbs> sortedQBs = new ArrayList<Qbs>();
         while(!qb.isEmpty()) {

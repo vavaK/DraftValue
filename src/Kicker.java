@@ -5,23 +5,27 @@ public class Kicker{
     private int position;
     private double attempts;
     private double made;
+    private double fiftyPlus;
     private double pct;
     private double xp;
     private double ffppg;
     private double totalFFP;
-    private double draftorder;
+    private double draftOrder;
     private double value;
+    private String team;
 
-    public Kicker(String name, int position, double attempts, double made, double pct, double xp, double ffppg, double totalFFP, double draftorder, double value) {
+    public Kicker(String name, String team, int position, double attempts, double made, double fiftyPlus, double pct, double xp, double ffppg, double totalFFP, double draftOrder, double value) {
         this.name = name;
+        this.team = team;
         this.position = position;
         this.attempts = attempts;
         this.made = made;
+        this.fiftyPlus = fiftyPlus;
         this.pct = pct;
         this.xp = xp;
         this.ffppg = ffppg;
         this.totalFFP = totalFFP;
-        this.draftorder = draftorder;
+        this.draftOrder = draftOrder;
         this.value = value;
     }
 
@@ -31,6 +35,14 @@ public class Kicker{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTeam() {
+        return team;
+    }
+
+    public void setTeam(String teamName) {
+        this.team = teamName;
     }
 
     public int getPosition() {
@@ -55,6 +67,14 @@ public class Kicker{
 
     public void setMade(double made) {
         this.made = made;
+    }
+
+    public double getFiftyPlus() {
+        return fiftyPlus;
+    }
+
+    public void setFiftyPlus(double fiftyPlus) {
+        this.fiftyPlus = fiftyPlus;
     }
 
     public double getPct() {
@@ -89,12 +109,12 @@ public class Kicker{
         this.totalFFP = totalFFP;
     }
 
-    public double getDraftorder() {
-        return draftorder;
+    public double getDraftOrder() {
+        return draftOrder;
     }
 
-    public void setDraftorder(double draftorder) {
-        this.draftorder = draftorder;
+    public void setDraftOrder(double draftOrder) {
+        this.draftOrder = draftOrder;
     }
 
     public double getValue() {
@@ -105,23 +125,62 @@ public class Kicker{
         this.value = value;
     }
 
-    public ArrayList<Kicker> werteGewichten(ArrayList<Kicker> kicker, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+    public static ArrayList<Kicker> werteGewichten(ArrayList<Kicker> kicker, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < kicker.size(); i++) {
-            kicker.get(i).setAttempts(kicker.get(i).getAttempts() * tierD);
-            kicker.get(i).setMade(kicker.get(i).getMade() * tierB);
-            kicker.get(i).setPct(kicker.get(i).getPct() * tierE);
-            kicker.get(i).setXp(kicker.get(i).getXp() * tierC);
-            kicker.get(i).setFfppg(kicker.get(i).getFfppg() * tierA);
-            kicker.get(i).setTotalFFP(kicker.get(i).getTotalFFP() * tierA);
-            kicker.get(i).setDraftorder(kicker.get(i).getDraftorder() * tierS);
+            kicker.get(i).setAttempts((33 - kicker.get(i).getAttempts()) * tierD);
+            kicker.get(i).setMade((33 - kicker.get(i).getMade()) * tierB);
+            kicker.get(i).setFiftyPlus((33 - kicker.get(i).getFiftyPlus()) * tierC);
+            kicker.get(i).setPct((33 - kicker.get(i).getPct()) * tierD);
+            kicker.get(i).setXp((33 - kicker.get(i).getXp()) * tierC);
+            kicker.get(i).setFfppg((33 - kicker.get(i).getFfppg()) * tierA);
+            kicker.get(i).setTotalFFP((33 - kicker.get(i).getTotalFFP()) * tierA);
+            kicker.get(i).setDraftOrder((33 - kicker.get(i).getDraftOrder()) * tierS);
         }
         return kicker;
     }
 
-    public ArrayList<Kicker> wertBerechnen(ArrayList<Kicker> kicker) {
+    public static ArrayList<Kicker> wertBerechnen(ArrayList<Kicker> kicker) {
         for(int i = 0; i < kicker.size(); i++) {
-            kicker.get(i).setValue(kicker.get(i).getAttempts() + kicker.get(i).getMade() + kicker.get(i).getPct() + kicker.get(i).getXp() + kicker.get(i).getFfppg() + kicker.get(i).getFfppg() + kicker.get(i).getDraftorder());
+            kicker.get(i).setValue(kicker.get(i).getAttempts() + kicker.get(i).getMade() + kicker.get(i).getFiftyPlus() + kicker.get(i).getPct() + kicker.get(i).getXp() + kicker.get(i).getFfppg() + kicker.get(i).getFfppg() + kicker.get(i).getDraftOrder());
         }
         return kicker;
+    }
+
+    public static ArrayList<Kicker> sortAfterValue(ArrayList<Kicker> kicker) {
+        Kicker pivot = new Kicker("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, 0);
+        int pivotNumber;
+        ArrayList<Kicker> sortedKickers = new ArrayList<Kicker>();
+        while(!kicker.isEmpty()) {
+            pivot = kicker.get(kicker.size() - 1);
+            pivotNumber = kicker.size() - 1;
+            for(int j = 0; j < kicker.size() - 1; j++) {
+                if(kicker.get(j).getValue() >= pivot.getValue()) {
+                    if(kicker.get(j).getValue() > pivot.getValue() || (kicker.get(j).getValue() == pivot.getValue() && kicker.get(j).getDraftOrder() > pivot.getDraftOrder())) {
+                        pivot = kicker.get(j);
+                        pivotNumber = j;
+                    }
+                }
+            }
+            if(kicker.size() > 1) {
+                sortedKickers.add(pivot);
+                kicker.remove(pivotNumber);
+            } else {
+                sortedKickers.add(pivot);
+                kicker.remove(kicker.size() - 1);
+            }
+
+        }
+
+        for(int i = 0; i < sortedKickers.size(); i ++) {
+            sortedKickers.get(i).setPosition(i + 1);
+        }
+        return sortedKickers;
+    }
+
+    public static void printKickers(ArrayList<Kicker> kicker) {
+        System.out.println("Kicker-List:");
+        for(int i = 0; i < kicker.size(); i++) {
+            System.out.println(kicker.get(i).getPosition() + ", " + kicker.get(i).getName() + " (" + kicker.get(i).getTeam() + ")" + ", " + kicker.get(i).getValue());
+        }
     }
 }

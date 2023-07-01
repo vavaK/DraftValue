@@ -24,11 +24,19 @@ public class Main {
         defenseList = Defense.werteGewichten(defenseList, tierS, tierA, tierB, tierC, tierD, tierE);
         defenseList = Defense.wertBerechnen(defenseList);
         defenseList = Defense.sortAfterValue(defenseList);
+        addKickerToList();
+        kickerList = Kicker.werteGewichten(kickerList, tierS, tierA, tierB, tierC, tierD, tierE);
+        kickerList = Kicker.wertBerechnen(kickerList);
+        kickerList = Kicker.sortAfterValue(kickerList);
+    }
+
+    private static void printRanking() {
         Qbs.printQBs(qbList);
         System.out.println();
         Defense.printDefense(defenseList);
+        System.out.println();
+        Kicker.printKickers(kickerList);
     }
-
 
     private static void addQbToList() {
         Qbs kylerMurray = new Qbs("Kyler Murray", "Arizona Cardinals", 0, 19, 6, 8, 18, 22, 17, 11, 28,  false, 0);
@@ -164,5 +172,73 @@ public class Main {
         defenseList.add(houstonTexans);
         defenseList.add(tennesseeTitans);
         defenseList.add(minnesotaVikings);
+    }
+
+    private static void addKickerToList() {
+        Kicker justinTucker = new Kicker("Justin Tucker", "Baltimore Ravens", 0, 1, 1, 2, 13, 10, 2, 1, 1, 0);
+        Kicker danielCarlson = new Kicker("Daniel Carlson", "Las Vegas Raiders", 0, 3, 3, 1, 6, 7, 3, 2, 2, 0);
+        Kicker jasonMyers = new Kicker("Jason Myer", "Seattle Seahawks", 0, 2, 2, 5, 6, 3, 4, 3, 7, 0);
+        Kicker younghoeKoo = new Kicker("Younghoe Koo", "Atlanta Falcons", 0, 4, 5, 4, 12, 8, 5, 4, 4, 0);
+        Kicker tylerBass = new Kicker("Tyler Bass", "Buffalo Bills", 0, 13, 12, 9, 10, 2, 6, 6, 5, 0);
+        Kicker nickFolk = new Kicker("Nick Folk", "New England Patriots", 0, 5, 6,7, 12, 9, 6, 7, 11, 0);
+        Kicker eddyPineiro = new Kicker("EddyPineiro", "Carolina Panthers", 0, 9, 4, 9, 3, 11, 6, 5, 15, 0);
+        Kicker grahamGano = new Kicker("Graham Gano", "New York Giants", 0, 12, 11, 3, 8, 9, 7, 8, 6, 0);
+        Kicker rileyPatterson = new Kicker("Riley Patterson", "Detroit Lions", 0, 10, 7, 9, 14, 6, 12, 9, 19, 0);
+        Kicker gregZwerlin = new Kicker("Greg Zwerlin", "New York Jets", 0, 6, 9, 5, 20, 12, 13, 10, 13, 0);
+        Kicker chaseMcLaughlin = new Kicker("Chase McLaughlin", "Tampa Bay Buccaneers", 0, 7, 8, 2, 15, 16, 8, 11, 28, 0);
+        Kicker jasonSanders = new Kicker("Jason Sanders", "Miami Dolphins", 0, 14, 15, 9, 19, 3, 11, 12, 17, 0);
+        Kicker brandonMcManas = new Kicker("Brandon McManas", "Jacksonville Jaguars", 0, 8, 14, 3, 21, 14, 11, 13, 10, 0);
+        Kicker mattGay = new Kicker("Matt Gay", "Indianapolis Colts", 0, 18, 13, 4, 5, 10, 12, 14, 8, 0);
+        Kicker gregJoseph = new Kicker("Greg Joseph", "Minnesota Vikings", 0, 11, 16, 7, 18, 4, 12, 15, 20, 0);
+        Kicker evanMcPherson = new Kicker("Evan McPherson", "Cincinnati Bengals", 0, 20, 28, 6, 17, 3, 13, 17, 3, 0);
+        Kicker kaimiFairbairn = new Kicker("Ka'imi Fairbairn", "Houston Texans", 0, 16, 10, 5, 4, 15, 13, 16, 16, 0);
+        Kicker jakeElliott = new Kicker("Jake Elliott", "Philadelphia Eagles", 0, 25, 24, 6, 11, 1, 15, 18, 9, 0);
+        Kicker cadeYork = new Kicker("Cade York", "Cleveland Browns", 0, 15, 19, 7, 22, 7, 17, 19, 27, 0);
+        Kicker joeySlye = new Kicker("Joey Slye", "Washington Commanders", 0, 19, 17, 7, 16, 15, 18, 20, 24, 0);
+        Kicker wilLutz = new Kicker("Wil Lutz", "New Orleans Saints", 0, 17, 20, 7, 25, 8, 19, 21, 23, 0);
+        Kicker cairoSantos = new Kicker("Cairo Santos", "Chicago Bears", 0, 24, 23, 7, 7, 13, 20, 22, 12, 0);
+        Kicker harrisonButker = new Kicker("Harrison Butker", "Kansas City Chiefs", 0, 23, 26, 8, 23, 5, 14, 23, 4, 0);
+        Kicker mattPrater = new Kicker("Matt Prater", "Arizona Cardinals", 0, 22, 21, 6, 9, 18, 16, 24, 18, 0);
+        Kicker chrisBoswell = new Kicker("Chris Boswell", "Pittsburgh Steelers", 0, 21, 25, 4, 26, 17, 10, 25, 22, 0);
+        Kicker cameronDicker = new Kicker("Cameron Dicker", "Los Angeles Chargers", 0, 26, 22, 10, 2, 15, 9, 26, 14, 0);
+        Kicker calebShudak = new Kicker("Caleb Shudak", "Tennessee Titans", 0, 27, 27, 10, 24, 20, 1, 27, 26, 0);
+        Kicker tristanVizcaino = new Kicker("Tristan Vizcaino", "Dallas Cowboys", 0, 28, 28, 10, 1, 19, 21, 28, 21, 0);
+        Kicker elliottFry = new Kicker("Elliott Fry", "Denver Broncos", 0, 29, 29, 10, 27, 21, 22, 29, 25, 0);
+        Kicker tannerBrown = new Kicker("Tanner Brown", "Los Angeles Rams", 0, 29, 29, 10, 27, 21, 22, 29, 30, 0);
+        Kicker jakeMoody = new Kicker("Jake Moody", "San Francisco 49ers", 0, 29, 29, 10, 27, 21, 22, 29, 29, 0);
+        Kicker andersCarlson = new Kicker("Anders Carlson", "Green Bay Packers", 0, 29, 29, 10, 27, 21, 22, 29, 31, 0);
+
+        kickerList.add(justinTucker);
+        kickerList.add(danielCarlson);
+        kickerList.add(jasonMyers);
+        kickerList.add(younghoeKoo);
+        kickerList.add(tylerBass);
+        kickerList.add(nickFolk);
+        kickerList.add(eddyPineiro);
+        kickerList.add(grahamGano);
+        kickerList.add(rileyPatterson);
+        kickerList.add(gregZwerlin);
+        kickerList.add(chaseMcLaughlin);
+        kickerList.add(jasonSanders);
+        kickerList.add(brandonMcManas);
+        kickerList.add(mattGay);
+        kickerList.add(gregJoseph);
+        kickerList.add(evanMcPherson);
+        kickerList.add(kaimiFairbairn);
+        kickerList.add(jakeElliott);
+        kickerList.add(cadeYork);
+        kickerList.add(joeySlye);
+        kickerList.add(wilLutz);
+        kickerList.add(cairoSantos);
+        kickerList.add(harrisonButker);
+        kickerList.add(mattPrater);
+        kickerList.add(chrisBoswell);
+        kickerList.add(cameronDicker);
+        kickerList.add(calebShudak);
+        kickerList.add(tristanVizcaino);
+        kickerList.add(elliottFry);
+        kickerList.add(tannerBrown);
+        kickerList.add(jakeMoody);
+        kickerList.add(andersCarlson);
     }
 }

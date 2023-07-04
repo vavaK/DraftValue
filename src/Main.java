@@ -28,6 +28,7 @@ public class Main {
         kickerList = Kicker.werteGewichten(kickerList, tierS, tierA, tierB, tierC, tierD, tierE);
         kickerList = Kicker.wertBerechnen(kickerList);
         kickerList = Kicker.sortAfterValue(kickerList);
+        printRanking();
     }
 
     private static void printRanking() {

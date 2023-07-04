@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Rbs {
     private String name;
+    private String team;
     private int position;
     private double receptions;
     private double receivingYards;
@@ -12,9 +13,11 @@ public class Rbs {
     private double oLine;
     private double draftorder;
     private double value;
+    private Boolean rookie;
 
-    public Rbs(String name, int position, double receptions, double  receivingYards, double rushingYards, double tds, double ffppg, double totalFFP, double oLine, double draftorder, double value) {
+    public Rbs(String name, String team, int position, double receptions, double  receivingYards, double rushingYards, double tds, double ffppg, double totalFFP, double oLine, double draftorder, Boolean rookie, double value) {
         this.name = name;
+        this.team = team;
         this.position = position;
         this.receptions = receptions;
         this.receivingYards = receivingYards;
@@ -24,6 +27,7 @@ public class Rbs {
         this.totalFFP = totalFFP;
         this.oLine = oLine;
         this.draftorder = draftorder;
+        this.rookie = rookie;
         this.value = value;
     }
 
@@ -33,6 +37,14 @@ public class Rbs {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTeam() {
+        return team;
+    }
+
+    public void setTeam(String team) {
+        this.team = team;
     }
 
     public int getPosition() {
@@ -107,6 +119,14 @@ public class Rbs {
         this.draftorder = draftorder;
     }
 
+    public Boolean getRookie() {
+        return rookie;
+    }
+
+    public void setRookie(Boolean rookie) {
+        this.rookie = rookie;
+    }
+
     public double getValue() {
         return value;
     }
@@ -134,5 +154,51 @@ public class Rbs {
             rb.get(i).setValue(rb.get(i).getReceptions() + rb.get(i).getReceivingYards() + rb.get(i).getRushingYards() + rb.get(i).getTds() + rb.get(i).getFfppg() + rb.get(i).getTotalFFP() + rb.get(i).getoLine() + rb.get(i).getDraftorder());
         }
         return rb;
+    }
+
+    public static ArrayList<Rbs> sortAfterValue(ArrayList<Rbs> rb, int amountRookies) {
+        Rbs pivot = new Rbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, false, 0);
+        int pivotNumber;
+        ArrayList<Rbs> sortedRBs = new ArrayList<Rbs>();
+        while(!rb.isEmpty()) {
+            pivot = rb.get(rb.size() - 1);
+            pivotNumber = rb.size() - 1;
+            for(int j = 0; j < rb.size() - 1; j++) {
+                if(rb.get(j).getValue() >= pivot.getValue()) {
+                    if(rb.get(j).getValue() > pivot.getValue() || (rb.get(j).getValue() == pivot.getValue() && rb.get(j).getDraftorder() > pivot.getDraftorder())) {
+                        pivot = rb.get(j);
+                        pivotNumber = j;
+                    }
+                }
+            }
+            if(rb.size() > 1) {
+                sortedRBs.add(pivot);
+                rb.remove(pivotNumber);
+            } else {
+                sortedRBs.add(pivot);
+                rb.remove(rb.size() - 1);
+            }
+
+        }
+
+        for(int i = 0; i < sortedRBs.size() - amountRookies; i++) {
+            if(sortedRBs.get(i).getRookie()) {
+                pivot = sortedRBs.get(i);
+                sortedRBs.remove(i);
+                sortedRBs.add(pivot);
+                i -= 1;
+            }
+        }
+        for(int i = 0; i < sortedRBs.size(); i ++) {
+            sortedRBs.get(i).setPosition(i + 1);
+        }
+        return sortedRBs;
+    }
+
+    public static void printRBs(ArrayList<Rbs> rb) {
+        System.out.println("RB-List:");
+        for(int i = 0; i < rb.size(); i++) {
+            System.out.println(rb.get(i).getPosition() + ", " + rb.get(i).getName() + " (" + rb.get(i).getTeam() + ")" + ", " + rb.get(i).getValue());
+        }
     }
 }

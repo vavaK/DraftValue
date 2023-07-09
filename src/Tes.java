@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Tes {
     private String name;
+    private String team;
     private int position;
     private double receptions;
     private double receivingYards;
@@ -10,10 +11,12 @@ public class Tes {
     private double totalFFP;
     private double qbs;
     private double draftorder;
+    private Boolean rookie;
     private double value;
 
-    public Tes(String name, int position, double receptions, double receivingYards, double tds, double ffppg, double totalFFP, double qbs, double draftOrder, double value) {
+    public Tes(String name, String team, int position, double receptions, double receivingYards, double tds, double ffppg, double totalFFP, double qbs, double draftOrder, Boolean rookie, double value) {
         this.name = name;
+        this.team = team;
         this.position = position;
         this.receptions = receptions;
         this.receivingYards = receivingYards;
@@ -22,6 +25,7 @@ public class Tes {
         this.totalFFP = totalFFP;
         this.qbs = qbs;
         this.draftorder = draftOrder;
+        this.rookie = rookie;
         this.value = value;
     }
 
@@ -31,6 +35,14 @@ public class Tes {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTeam() {
+        return team;
+    }
+
+    public void setTeam(String team) {
+        this.team = team;
     }
 
     public int getPosition() {
@@ -97,6 +109,14 @@ public class Tes {
         this.draftorder = draftorder;
     }
 
+    public Boolean getRookie() {
+        return rookie;
+    }
+
+    public void setRookie(Boolean rookie) {
+        this.rookie = rookie;
+    }
+
     public double getValue() {
         return value;
     }
@@ -107,13 +127,13 @@ public class Tes {
 
     public ArrayList<Tes> werteGewichten(ArrayList<Tes> te, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < te.size(); i++) {
-            te.get(i).setReceptions(te.get(i).getReceptions() * tierC);
-            te.get(i).setReceivingYards(te.get(i).getReceivingYards() * tierB);
-            te.get(i).setTds(te.get(i).getTds() * tierB);
-            te.get(i).setFfppg(te.get(i).getFfppg() * tierA);
-            te.get(i).setTotalFFP(te.get(i).getTotalFFP() * tierA);
-            te.get(i).setQbs(te.get(i).getQbs() * tierE);
-            te.get(i).setDraftorder(te.get(i).getDraftorder() * tierS);
+            te.get(i).setReceptions((36 - te.get(i).getReceptions()) * tierC);
+            te.get(i).setReceivingYards((36 - te.get(i).getReceivingYards()) * tierB);
+            te.get(i).setTds((36 - te.get(i).getTds()) * tierB);
+            te.get(i).setFfppg((36 - te.get(i).getFfppg()) * tierA);
+            te.get(i).setTotalFFP((36 - te.get(i).getTotalFFP()) * tierA);
+            te.get(i).setQbs((36 - te.get(i).getQbs()) * tierE);
+            te.get(i).setDraftorder((36 - te.get(i).getDraftorder()) * tierS);
         }
         return te;
     }
@@ -123,5 +143,56 @@ public class Tes {
             te.get(i).setValue(te.get(i).getReceptions() + te.get(i).getReceivingYards() + te.get(i).getTds() + te.get(i).getFfppg() + te.get(i).getTotalFFP() + te.get(i).getQbs() + te.get(i).getDraftorder());
         }
         return te;
+    }
+
+    public static ArrayList<Tes> sortAfterValue(ArrayList<Tes> te, int amountRookies) {
+        Tes pivot = new Tes("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, false, 0);
+        int rookiesSorted = 0;
+        int pivotNumber;
+        ArrayList<Tes> sortedTEs = new ArrayList<Tes>();
+        while(!te.isEmpty()) {
+            pivot = te.get(te.size() - 1);
+            pivotNumber = te.size() - 1;
+            for(int j = 0; j < te.size() - 1; j++) {
+                if(te.get(j).getValue() >= pivot.getValue()) {
+                    if(te.get(j).getValue() > pivot.getValue() || (te.get(j).getValue() == pivot.getValue() && te.get(j).getDraftorder() > pivot.getDraftorder())) {
+                        pivot = te.get(j);
+                        pivotNumber = j;
+                    }
+                }
+            }
+            if(te.size() > 1) {
+                sortedTEs.add(pivot);
+                te.remove(pivotNumber);
+            } else {
+                sortedTEs.add(pivot);
+                te.remove(te.size() - 1);
+            }
+
+        }
+
+        for(int i = 0; rookiesSorted < amountRookies; i++) {
+            if (sortedTEs.get(i).getRookie()) {
+                pivot = sortedTEs.get(i);
+                sortedTEs.remove(i);
+                sortedTEs.add(pivot);
+                rookiesSorted += 1;
+                if(rookiesSorted < amountRookies) {
+                    i -= 1;
+                }
+
+            }
+        }
+        for(int i = 0; i < sortedTEs.size(); i ++) {
+            sortedTEs.get(i).setPosition(i + 1);
+        }
+        return sortedTEs;
+    }
+
+    public static void printTes(ArrayList<Tes> te) {
+        System.out.println("TE-List:");
+        for(int i = 0; i < te.size(); i++) {
+            System.out.println(te.get(i).getPosition() + ", " + te.get(i).getName() + " (" + te.get(i).getTeam() + ")" + ", " + te.get(i).getValue());
+        }
     }
 }

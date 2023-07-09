@@ -157,6 +157,7 @@ public class Qbs {
 
     public static ArrayList<Qbs> sortAfterValue(ArrayList<Qbs> qb, int amountRookies) {
         Qbs pivot = new Qbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, false, 0);
+        int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Qbs> sortedQBs = new ArrayList<Qbs>();
         while(!qb.isEmpty()) {
@@ -180,12 +181,15 @@ public class Qbs {
 
         }
 
-        for(int i = 0; i < sortedQBs.size() - amountRookies; i++) {
+        for(int i = 0; rookiesSorted < amountRookies; i++) {
             if(sortedQBs.get(i).getRookie()) {
                 pivot = sortedQBs.get(i);
                 sortedQBs.remove(i);
                 sortedQBs.add(pivot);
-                i -= 1;
+                rookiesSorted += 1;
+                if(rookiesSorted < amountRookies) {
+                    i -= 1;
+                }
             }
         }
         for(int i = 0; i < sortedQBs.size(); i ++) {

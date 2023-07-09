@@ -139,7 +139,7 @@ public class Kicker{
         return kicker;
     }
 
-    public static ArrayList<Kicker> wertBerechnen(ArrayList<Kicker> kicker) {
+    public static ArrayList<Kicker> valueBerechnen(ArrayList<Kicker> kicker) {
         for(int i = 0; i < kicker.size(); i++) {
             kicker.get(i).setValue(kicker.get(i).getAttempts() + kicker.get(i).getMade() + kicker.get(i).getFiftyPlus() + kicker.get(i).getPct() + kicker.get(i).getXp() + kicker.get(i).getFfppg() + kicker.get(i).getFfppg() + kicker.get(i).getDraftOrder());
         }

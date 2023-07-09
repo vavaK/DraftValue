@@ -22,12 +22,16 @@ public class Main {
         qbList = Qbs.sortAfterValue(qbList, 3);
         addDefenseToList();
         defenseList = Defense.werteGewichten(defenseList, tierS, tierA, tierB, tierC, tierD, tierE);
-        defenseList = Defense.wertBerechnen(defenseList);
+        defenseList = Defense.valueBerechnen(defenseList);
         defenseList = Defense.sortAfterValue(defenseList);
         addKickerToList();
         kickerList = Kicker.werteGewichten(kickerList, tierS, tierA, tierB, tierC, tierD, tierE);
-        kickerList = Kicker.wertBerechnen(kickerList);
+        kickerList = Kicker.valueBerechnen(kickerList);
         kickerList = Kicker.sortAfterValue(kickerList);
+        addRunningbackToList();
+        rbsList = Rbs.werteGewichten(rbsList, tierS, tierA, tierB, tierC, tierD, tierE);
+        rbsList = Rbs.valueBerechnen(rbsList);
+        rbsList = Rbs.sortAfterValue(rbsList, 3);
         printRanking();
     }
 
@@ -37,6 +41,9 @@ public class Main {
         Defense.printDefense(defenseList);
         System.out.println();
         Kicker.printKickers(kickerList);
+        System.out.println();
+        Rbs.printRBs(rbsList);
+        System.out.println();
     }
 
     private static void addQbToList() {
@@ -241,5 +248,91 @@ public class Main {
         kickerList.add(tannerBrown);
         kickerList.add(jakeMoody);
         kickerList.add(andersCarlson);
+    }
+
+    private static void addRunningbackToList() {
+        Rbs joshJacobs = new Rbs("Josh Jacobs", "Las Vegas Raiders", 0, 8, 7, 1, 2, 4, 2, 1, 19, 10, false, 0);
+        Rbs christianMcCaffrey = new Rbs("Christian McCaffrey", "San Francisco 49ers", 0, 2, 1, 6, 8, 3, 3, 2, 18, 1, false, 0);
+        Rbs derrickHenry = new Rbs("Derrick Henry", "Tennessee Titans", 0, 10, 8, 2, 1, 3, 1, 3, 32, 8, false, 0);
+        Rbs austinEkeler = new Rbs("Austin Ekeler", "Los Angeles Chargers", 0, 1, 2, 16, 16, 1, 4, 4, 9, 2, false, 0);
+        Rbs nickChubb = new Rbs("Nick Chubb", "Cleveland Browns", 0, 25, 21, 3, 3, 3, 5, 5, 2, 5, false, 0);
+        Rbs saquonBarkley = new Rbs("SaquonBarkley", "New York Giants", 0, 6, 13, 4, 4, 6, 6, 6, 29, 6, false, 0);
+        Rbs jamaalWilliams = new Rbs("Jamaal Williams", "New Orleans Saints", 0, 35, 36, 9, 6, 2, 9, 7, 24, 35, false, 0);
+        Rbs tonyPollard = new Rbs("Tony Pollard", "Dallas Cowboys", 0, 15, 11, 14, 19, 4, 8, 8, 6, 7, false, 0);
+        Rbs milesSanders = new Rbs("Miles Sanders", "Carolina Panthers", 0, 28, 34, 5, 7, 5, 13, 9, 16, 20, false, 0);
+        Rbs aaronJones = new Rbs("Aaron Jones", "Green Bay Packers", 0, 5, 9, 8, 12, 9, 14, 10, 8, 17, false, 0);
+        Rbs najeeHarris = new Rbs("Najee Harris", "Pittsburgh Steelers", 0, 14, 22, 13, 5, 6, 15, 11, 12, 12, false, 0);
+        Rbs joeMixon = new Rbs("Joe Mixon", "Cinncinnati Bengals", 0, 4, 5, 22, 13, 7, 10, 12, 17, 15, false, 0);
+        Rbs rhamondreStevenson = new Rbs("Rhamondre Stevenson", "New England Patriots", 0, 3, 6, 11, 14, 10, 16, 13, 13, 9, false, 0);
+        Rbs kennethWalker3 = new Rbs("Kenneth Walker III", "Seattle Seahawks", 0, 26, 27, 10, 8, 7, 12, 14, 40, 16, false, 0);
+        Rbs travisEtienneJr = new Rbs("Travis Etienne Jr.", "Jacksonville Jaguars", 0, 18, 14, 7, 10, 11, 19, 15, 26, 13, false, 0);
+        Rbs jamesConner = new Rbs("James Conner", "Arizona Cardinals", 0, 12, 16, 26, 23, 8, 11, 17, 31, 27, false, 0);
+        Rbs davidMontgomery = new Rbs("David Montgomery", "Detroit Lions", 0, 19, 15, 24, 18, 10, 23, 18, 5, 25, false, 0);
+        Rbs dAndreSwift = new Rbs("D'Andre Swift", "Philadelphia Eagles", 0, 10, 10, 30, 31, 8, 18, 20, 1, 23, false, 0);
+        Rbs jerickMcKinnon = new Rbs("Jerick McKinnon", "Kansas City Chiefs", 0, 7, 3, 37, 36, 6, 27, 21, 3, 36, false, 0);
+        Rbs alvinKamara = new Rbs("Alvin Kamara", "New Orleans Saints", 0, 5, 4, 18, 9, 12, 17, 16, 24, 30, false, 0);
+        Rbs tylerAllgeier = new Rbs("Tyler Allgeier", "Atlanta Falcons", 0, 30, 29, 12, 15, 12, 24, 19, 7, 37, false, 0);
+        Rbs devinSingletary = new Rbs("Devin Singletary", "Houston Texans", 0, 16, 20, 23, 25, 20, 28, 22, 25, 38, false, 0);
+        Rbs ajDillon = new Rbs("Aj Dillon", "Green Bay Packers", 0, 23, 24, 27, 22, 9, 29, 23, 8, 32, false, 0);
+        Rbs raheemMostert = new Rbs("Raheem Mostert", "Miami Dolphins", 0, 21, 25, 19, 24, 11, 25, 24, 20, 30, false, 0);
+        Rbs camAkers = new Rbs("Cam Akers", "Los Angeles Rams", 0, 34, 32, 25, 21, 7, 26, 26, 28, 22, false, 0);
+        Rbs lataviusMerray = new Rbs("Latavius Merray", "Buffalo Bills", 0, 27, 30, 28, 26, 20, 22, 27, 22, 29, false, 0);
+        Rbs dOntaForeman = new Rbs("D'Onta Foreman", "Chicago Bears", 0, 37, 38, 17, 27, 11, 30, 28, 21, 40, false, 0);
+        Rbs isiahPacheco = new Rbs("Isiah Pacheco", "Kansas City Chiefs", 0, 33, 31, 21, 27, 11, 31, 29, 3, 24, false, 0);
+        Rbs antonioGibson = new Rbs("Antonio Gibson", "Washington Commanders", 0, 11, 12, 29, 28, 11, 29, 30, 27, 3, false, 0);
+        Rbs jonathanTaylor = new Rbs("Jonathan Taylor", "Indianapolis Colts", 0, 24, 28, 20, 20, 12, 20, 31, 11, 34, false, 0);
+        Rbs samajePerine = new Rbs("Samaje Perine", "Denver Broncos", 0, 17, 19, 35, 32, 10, 32, 32, 11, 34, false, 0);
+        Rbs rachaadWhite = new Rbs("Rachaad White", "Tampa Bay Buccaneers", 0, 9, 17, 32, 29, 13, 36, 34, 14, 26, false, 0);
+        Rbs michaelCarter = new Rbs("Michael Carter", "New York Jets", 0, 13, 18, 34, 30, 13, 35, 35, 23, 41, false, 0);
+        Rbs jkDobbins = new Rbs("Jk Dobbins", "Baltimore Ravens", 0, 36, 37, 31, 33, 13, 21, 36, 4, 18, false, 0);
+        Rbs alexanderMattison = new Rbs("Alexander Mattison", "Minnesota Vikings", 0, 32, 33, 37, 35, 10, 37, 37, 15, 29, false, 0);
+        Rbs jahmyrGibbs = new Rbs("Jahmyr Gibbs", "Detroit Lions", 0, 38, 38, 39, 38, 12, 38, 38, 5, 14, true, 0);
+        Rbs bijanRobinson = new Rbs("Bijan Robbinson", "Atlanta Falcons", 0, 38, 38, 39, 38, 12, 38, 38, 7, 3, true, 0);
+        Rbs zachCharbonnet = new Rbs("Zach Charbonnet", "Seattle Seahawks", 0, 38, 38, 39, 38, 12, 38, 38, 30, 31, true, 0);
+        Rbs breeceHall = new Rbs("Breece Hall", "New York Jets", 0, 29, 23, 33, 34, 11, 7, 33, 23, 11, false, 0);
+        Rbs deamonPierce = new Rbs("Deamon Pierce", "Houston Texans", 0, 22, 26, 15, 11, 11, 33, 25, 25, 21, false, 0);
+        Rbs javonteWiliams = new Rbs("Javonte Wiliams", "Denver Broncos", 0, 31, 35, 38, 37, 12, 34, 37, 11, 28, false, 0);
+
+        rbsList.add(joshJacobs);
+        rbsList.add(christianMcCaffrey);
+        rbsList.add(derrickHenry);
+        rbsList.add(austinEkeler);
+        rbsList.add(nickChubb);
+        rbsList.add(saquonBarkley);
+        rbsList.add(jamaalWilliams);
+        rbsList.add(tonyPollard);
+        rbsList.add(milesSanders);
+        rbsList.add(aaronJones);
+        rbsList.add(najeeHarris);
+        rbsList.add(joeMixon);
+        rbsList.add(rhamondreStevenson);
+        rbsList.add(kennethWalker3);
+        rbsList.add(travisEtienneJr);
+        rbsList.add(jamesConner);
+        rbsList.add(davidMontgomery);
+        rbsList.add(dAndreSwift);
+        rbsList.add(jerickMcKinnon);
+        rbsList.add(alvinKamara);
+        rbsList.add(tylerAllgeier);
+        rbsList.add(devinSingletary);
+        rbsList.add(ajDillon);
+        rbsList.add(raheemMostert);
+        rbsList.add(camAkers);
+        rbsList.add(lataviusMerray);
+        rbsList.add(dOntaForeman);
+        rbsList.add(isiahPacheco);
+        rbsList.add(antonioGibson);
+        rbsList.add(jonathanTaylor);
+        rbsList.add(samajePerine);
+        rbsList.add(rachaadWhite);
+        rbsList.add(michaelCarter);
+        rbsList.add(jkDobbins);
+        rbsList.add(alexanderMattison);
+        rbsList.add(jahmyrGibbs);
+        rbsList.add(bijanRobinson);
+        rbsList.add(zachCharbonnet);
+        rbsList.add(breeceHall);
+        rbsList.add(deamonPierce);
+        rbsList.add(javonteWiliams);
     }
 }

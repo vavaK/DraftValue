@@ -107,7 +107,7 @@ public class Defense {
         return defense;
     }
 
-    public static ArrayList<Defense> wertBerechnen(ArrayList<Defense> defense) {
+    public static ArrayList<Defense> valueBerechnen(ArrayList<Defense> defense) {
         for(int i = 0; i < defense.size(); i++) {
             defense.get(i).setValue(defense.get(i).getSacks() + defense.get(i).getInts() + defense.get(i).getFumbleRecoveries() + defense.get(i).getSafeties() + defense.get(i).getTds() + defense.get(i).getOrder());
         }

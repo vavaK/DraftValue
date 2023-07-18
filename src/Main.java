@@ -1,3 +1,5 @@
+import groovy.swing.factory.TextArgWidgetFactory;
+
 import java.util.ArrayList;
 
 public class Main {
@@ -32,6 +34,14 @@ public class Main {
         rbsList = Rbs.werteGewichten(rbsList, tierS, tierA, tierB, tierC, tierD, tierE);
         rbsList = Rbs.valueBerechnen(rbsList);
         rbsList = Rbs.sortAfterValue(rbsList, 3);
+        addTightEndToList();
+        teList = Tes.werteGewichten(teList, tierS, tierA, tierB, tierC, tierD, tierE);
+        teList = Tes.valueBerechnen(teList);
+        teList = Tes.sortAfterValue(teList, 6);
+        addWideReceiverToList();
+        wrList = Wrs.werteGewichten(wrList, tierS, tierA, tierB, tierC, tierD, tierE);
+        wrList = Wrs.valueBerechnen(wrList);
+        wrList = Wrs.sortAfterValue(wrList, 0);
         printRanking();
     }
 
@@ -44,6 +54,9 @@ public class Main {
         System.out.println();
         Rbs.printRBs(rbsList);
         System.out.println();
+        Tes.printTes(teList);
+        System.out.println();
+        Wrs.printWrs(wrList);
     }
 
     private static void addQbToList() {
@@ -334,5 +347,91 @@ public class Main {
         rbsList.add(breeceHall);
         rbsList.add(deamonPierce);
         rbsList.add(javonteWiliams);
+    }
+
+    private static void addTightEndToList() {
+        Tes travisKelce = new Tes("Travis Kelce", "Kansas City Ciefs", 0, 1, 1, 1, 1, 1, 2, 1, false, 0);
+        Tes georgeKittle = new Tes("George Kittle", "San Francisco 49ers", 0, 7, 5, 2, 2, 2, 21, 4, false, 0);
+        Tes taysomHill = new Tes("Taysom Hill", "New Orleans Saints", 0, 34, 8, 3, 3, 3, 17, 19, false, 0);
+        Tes tjHockenson = new Tes("T. J. Hockenson", "Minnesota Vikings", 0, 2, 2, 5, 5, 4, 8, 3, false, 0);
+        Tes markAndrews = new Tes("Mark Andrews", "Baltimore Ravens", 0, 3, 3, 6, 4, 5, 11, 2, false, 0);
+        Tes evanEngram = new Tes("Evan Engram", "Jacksonville Jaguars", 0, 4, 4, 7, 9, 6, 7, 8, false, 0);
+        Tes coleKmet = new Tes("Cole Kmet", "Chicago Bears", 0, 14, 14, 4, 13, 7, 9, 16, false, 0);
+        Tes juwanJohnson = new Tes("Juwan Johnson", "New Orleans Saints", 0, 18, 16, 4, 11, 8, 17, 21, false, 0);
+        Tes dawsonKnox = new Tes("Dawson Knox", "Buffalo Bills", 0, 16, 15, 5, 12, 9, 4, 22, false, 0);
+        Tes dallasGoedert = new Tes("Dallas Goedert", "Philadelphia Eagles", 0, 12, 7, 8, 6, 10, 1, 6, false, 0);
+        Tes daltonSchultz = new Tes("Dalton Schultz", "Houston Texans", 0, 11, 11, 6, 14, 11, 32, 14, false, 14);
+        Tes patFreiermuth = new Tes("Pat Freiermuth", "Pittsburgh Steelers", 0, 6, 6, 9, 15, 12, 24, 10, false, 0);
+        Tes davidNjoku = new Tes("David Njoku", "Cleveland Browns", 0, 8, 9, 7, 10, 13, 19, 9, false, 0);
+        Tes geraldEverett = new Tes("Gerald Everett", "Los Angeles Chargers", 0, 9, 12, 7, 16, 14, 5, 18, false, 0);
+        Tes tylerHigbee = new Tes("Tyler Higbee", "Los Angeles Rams", 0, 5, 10, 8, 19, 15, 22, 15, false, 0);
+        Tes jordanAkins = new Tes("Jordan Akins", "Cleveland Browns", 0, 22, 16, 6, 17, 16, 19, 36, false, 0);
+        Tes tylerConklin = new Tes("Tyler Conklin", "New York Jets", 0, 10, 13, 8, 21, 17, 15, 24, false, 0);
+        Tes noahFant = new Tes("Noah Fant", "Seattle Seahawks", 0, 15, 18, 7, 22, 18, 6, 29 , false, 0);
+        Tes zachErtz = new Tes("Zach Ertz", "Arizona Cardinals", 0, 17, 23, 7, 7, 19, 18, 33, false, 0);
+        Tes mikeGesicki = new Tes("Mike Gesicki", "New England Patriots", 0, 25, 26, 6, 26, 20, 23, 23, false, 0);
+        Tes chigoziemOkonkwo = new Tes("Chigoziem Okonkwo", "Tennessee Titans", 0,24, 19, 8, 23, 21, 26, 11, false, 0);
+        Tes darrenWaller = new Tes("Darren Waller", "New York Giants", 0, 26, 25, 8, 8, 22, 12, 7, false, 0);
+        Tes austinHooper = new Tes("Austin Hooper", "Las Vegas Raiders", 0, 20, 20, 9, 28, 23, 20, 38, false, 0);
+        Tes haydenHurst = new Tes("Hayden Hurst", "Carolina Panthers", 0, 13, 21, 9, 25, 24, 31, 25, false, 0);
+        Tes gregDulcich = new Tes("Greg Dulcich", "Denver Broncos", 0, 23, 22, 9, 18, 25, 16, 13, false, 0);
+        Tes cadeOtton = new Tes("Cade Otton", "Tampa Bay Buccaneers", 0, 19, 24, 9, 30, 26, 28, 32, false, 0);
+        Tes jelaniWoods = new Tes("Jelani Woods", "Indianapolis Colts", 0, 28, 29, 8, 24, 27, 30, 30, false, 0);
+        Tes kylePitts = new Tes("Kyle Pitts", "Atlanta Falcons", 0, 27, 27, 9, 20, 28, 29, 5, false, 0);
+        Tes loganThomas = new Tes("Logan Thomas", "Washington Commanders", 0, 21, 28, 10, 31, 30, 25, 31, false, 0);
+        Tes irvSmithJr = new Tes("Irv Smith Jr.", "Cincinnati Bengals", 0, 29, 31, 11, 27, 31, 3, 17, false, 0);
+        Tes jakeFerguson = new Tes("Jake Ferguson", "Dallas Cowboys", 0, 30, 32, 9, 32, 32, 14, 27, false, 0);
+        Tes darhamSmythe = new Tes("Darham Smythe", "Miami Dolphins", 0, 32, 33, 10, 33, 33, 10, 34, false, 0);
+        Tes josiahDeguard = new Tes("Josiah Deguard", "Green Bay Packers", 0, 33, 34, 11, 34, 34, 27, 40, false, 0);
+        Tes daltonKincaid = new Tes("Dalton Kincaid", "Buffalo Bills", 0, 35, 35, 11, 35, 35, 4, 12, true, 0);
+        Tes samLaPorta = new Tes("Sam LaPorta", "Detroit Lions", 0, 35, 35, 11, 35, 35, 13, 20, true, 0);
+        Tes michaelMeyer = new Tes("Michael Meyer", "Las Vegas Raiders", 0, 35, 35, 11, 35, 35, 20, 28, true, 0);
+        Tes lukeMusgrave = new Tes("Lukas Musgrave", "Green Bay Packers", 0, 35, 35, 11, 35, 35, 27, 26, true, 0);
+        Tes lukeSchoonmaker = new Tes("Luke Schoonmaker", "Dallas Cowboys", 0, 35, 35, 11, 35, 35, 14, 35, true, 0);
+        Tes brentonStrange = new Tes("Brenton Strange", "Jacksonville Jaguars", 0, 35, 35, 11, 35, 35, 7, 39, true, 0);
+
+        teList.add(travisKelce);
+        teList.add(georgeKittle);
+        teList.add(taysomHill);
+        teList.add(tjHockenson);
+        teList.add(markAndrews);
+        teList.add(evanEngram);
+        teList.add(coleKmet);
+        teList.add(juwanJohnson);
+        teList.add(dawsonKnox);
+        teList.add(dallasGoedert);
+        teList.add(daltonSchultz);
+        teList.add(patFreiermuth);
+        teList.add(davidNjoku);
+        teList.add(geraldEverett);
+        teList.add(tylerHigbee);
+        teList.add(jordanAkins);
+        teList.add(tylerConklin);
+        teList.add(noahFant);
+        teList.add(zachErtz);
+        teList.add(mikeGesicki);
+        teList.add(chigoziemOkonkwo);
+        teList.add(darrenWaller);
+        teList.add(austinHooper);
+        teList.add(haydenHurst);
+        teList.add(gregDulcich);
+        teList.add(cadeOtton);
+        teList.add(jelaniWoods);
+        teList.add(kylePitts);
+        teList.add(loganThomas);
+        teList.add(irvSmithJr);
+        teList.add(jakeFerguson);
+        teList.add(darhamSmythe);
+        teList.add(josiahDeguard);
+        teList.add(daltonKincaid);
+        teList.add(samLaPorta);
+        teList.add(michaelMeyer);
+        teList.add(lukeMusgrave);
+        teList.add(lukeSchoonmaker);
+        teList.add(brentonStrange);
+    }
+
+    private static void addWideReceiverToList() {
+
     }
 }

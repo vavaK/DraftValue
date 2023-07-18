@@ -125,7 +125,7 @@ public class Tes {
         this.value = value;
     }
 
-    public ArrayList<Tes> werteGewichten(ArrayList<Tes> te, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+    public static ArrayList<Tes> werteGewichten(ArrayList<Tes> te, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < te.size(); i++) {
             te.get(i).setReceptions((36 - te.get(i).getReceptions()) * tierC);
             te.get(i).setReceivingYards((36 - te.get(i).getReceivingYards()) * tierB);
@@ -138,7 +138,7 @@ public class Tes {
         return te;
     }
 
-    public ArrayList<Tes> wertBerechnen(ArrayList<Tes> te) {
+    public static ArrayList<Tes> valueBerechnen(ArrayList<Tes> te) {
         for(int i = 0; i < te.size(); i++) {
             te.get(i).setValue(te.get(i).getReceptions() + te.get(i).getReceivingYards() + te.get(i).getTds() + te.get(i).getFfppg() + te.get(i).getTotalFFP() + te.get(i).getQbs() + te.get(i).getDraftorder());
         }

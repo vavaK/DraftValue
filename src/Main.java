@@ -2,6 +2,7 @@ import java.io.*;
 import java.io.File;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 
@@ -130,18 +131,18 @@ public class Main {
                 wideReceiverSheet.getRow(j + 1).createCell(11).setCellValue(wrList.get(j).getRookie());
                 if(j < teList.size()) {
                     tightEndSheet.createRow(j + 1);
-                    tightEndSheet.getRow(j + 1).createCell(0).setCellValue(wrList.get(j).getPosition());
-                    tightEndSheet.getRow(j + 1).createCell(1).setCellValue(wrList.get(j).getValue());
-                    tightEndSheet.getRow(j + 1).createCell(2).setCellValue(wrList.get(j).getName());
-                    tightEndSheet.getRow(j + 1).createCell(3).setCellValue(wrList.get(j).getTeam());
-                    tightEndSheet.getRow(j + 1).createCell(4).setCellValue(wrList.get(j).getDraftorder());
-                    tightEndSheet.getRow(j + 1).createCell(5).setCellValue(wrList.get(j).getReceptions());
-                    tightEndSheet.getRow(j + 1).createCell(6).setCellValue(wrList.get(j).getReceivingYards());
-                    tightEndSheet.getRow(j + 1).createCell(7).setCellValue(wrList.get(j).getTds());
-                    tightEndSheet.getRow(j + 1).createCell(8).setCellValue(wrList.get(j).getFfppg());
-                    tightEndSheet.getRow(j + 1).createCell(9).setCellValue(wrList.get(j).getTotalFFP());
-                    tightEndSheet.getRow(j + 1).createCell(10).setCellValue(wrList.get(j).getQbs());
-                    tightEndSheet.getRow(j + 1).createCell(11).setCellValue(wrList.get(j).getRookie());
+                    tightEndSheet.getRow(j + 1).createCell(0).setCellValue(teList.get(j).getPosition());
+                    tightEndSheet.getRow(j + 1).createCell(1).setCellValue(teList.get(j).getValue());
+                    tightEndSheet.getRow(j + 1).createCell(2).setCellValue(teList.get(j).getName());
+                    tightEndSheet.getRow(j + 1).createCell(3).setCellValue(teList.get(j).getTeam());
+                    tightEndSheet.getRow(j + 1).createCell(4).setCellValue(teList.get(j).getDraftorder());
+                    tightEndSheet.getRow(j + 1).createCell(5).setCellValue(teList.get(j).getReceptions());
+                    tightEndSheet.getRow(j + 1).createCell(6).setCellValue(teList.get(j).getReceivingYards());
+                    tightEndSheet.getRow(j + 1).createCell(7).setCellValue(teList.get(j).getTds());
+                    tightEndSheet.getRow(j + 1).createCell(8).setCellValue(teList.get(j).getFfppg());
+                    tightEndSheet.getRow(j + 1).createCell(9).setCellValue(teList.get(j).getTotalFFP());
+                    tightEndSheet.getRow(j + 1).createCell(10).setCellValue(teList.get(j).getQbs());
+                    tightEndSheet.getRow(j + 1).createCell(11).setCellValue(teList.get(j).getRookie());
                 }
             }
 
@@ -234,30 +235,48 @@ public class Main {
                 if (i <= qbList.size()) {
                     for (int j = 0; j < 12; j++) {
                         quarterbackSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
+                        if (i < 1) {
+                            quarterbackSheet.autoSizeColumn(j);
+                        }
                     }
                 }
                 if (i <= teList.size()) {
                     for (int j = 0; j < 12; j++) {
                         tightEndSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
+                        if (i < 1) {
+                            tightEndSheet.autoSizeColumn(j);
+                        }
                     }
                 }
                 if (i <= rbsList.size()) {
                     for (int j = 0; j < 14; j++) {
                         runningBackSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
+                        if (i < 1) {
+                            runningBackSheet.autoSizeColumn(j);
+                        }
                     }
                 }
                 if (i <= kickerList.size()) {
                     for (int j = 0; j < 12; j++) {
                         kickerSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
+                        if (i < 1) {
+                            kickerSheet.autoSizeColumn(j);
+                        }
                     }
                 }
                 if (i <= defenseList.size()) {
                     for (int j = 0; j < 9; j++) {
                         defenseSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
+                        if (i < 1) {
+                            defenseSheet.autoSizeColumn(j);
+                        }
                     }
                 }
                 for (int j = 0; j < 12; j++) {
                     wideReceiverSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
+                    if (i < 1) {
+                        wideReceiverSheet.autoSizeColumn(j);
+                    }
                 }
             }
 

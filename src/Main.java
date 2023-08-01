@@ -1,4 +1,9 @@
-import groovy.swing.factory.TextArgWidgetFactory;
+import java.io.*;
+import java.io.File;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
 
 import java.util.ArrayList;
 
@@ -43,6 +48,227 @@ public class Main {
         wrList = Wrs.valueBerechnen(wrList);
         wrList = Wrs.sortAfterValue(wrList, 10);
         printRanking();
+        try {
+            HSSFWorkbook wb = new HSSFWorkbook();
+            CellStyle cellStyle = wb.createCellStyle();
+            cellStyle.setAlignment(HorizontalAlignment.CENTER);
+            HSSFSheet quarterbackSheet = wb.createSheet("Quarterback");
+            HSSFSheet wideReceiverSheet = wb.createSheet("Wide Receiver");
+            HSSFSheet tightEndSheet = wb.createSheet("Tight End");
+            HSSFSheet runningBackSheet = wb.createSheet("Running Back");
+            HSSFSheet kickerSheet = wb.createSheet("Kicker");
+            HSSFSheet defenseSheet = wb.createSheet("Defense");
+
+            quarterbackSheet.createRow(0);
+            quarterbackSheet.getRow(0).createCell(0).setCellValue("Rank");
+            quarterbackSheet.getRow(0).createCell(1).setCellValue("Value");
+            quarterbackSheet.getRow(0).createCell(2).setCellValue("Name");
+            quarterbackSheet.getRow(0).createCell(3).setCellValue("Team");
+            quarterbackSheet.getRow(0).createCell(4).setCellValue("Draft Order");
+            quarterbackSheet.getRow(0).createCell(5).setCellValue("Passing Yards");
+            quarterbackSheet.getRow(0).createCell(6).setCellValue("Cmp Pct");
+            quarterbackSheet.getRow(0).createCell(7).setCellValue("TD/INT");
+            quarterbackSheet.getRow(0).createCell(8).setCellValue("FFPpG");
+            quarterbackSheet.getRow(0).createCell(9).setCellValue("Total FFP");
+            quarterbackSheet.getRow(0).createCell(10).setCellValue("WR-Room");
+            quarterbackSheet.getRow(0).createCell(11).setCellValue("Rookie");
+            for (int i = 0; i < qbList.size(); i++) {
+                quarterbackSheet.createRow(i + 1);
+                quarterbackSheet.getRow(i + 1).createCell(0).setCellValue(qbList.get(i).getPosition());
+                quarterbackSheet.getRow(i + 1).createCell(1).setCellValue(qbList.get(i).getValue());
+                quarterbackSheet.getRow(i + 1).createCell(2).setCellValue(qbList.get(i).getName());
+                quarterbackSheet.getRow(i + 1).createCell(3).setCellValue(qbList.get(i).getTeam());
+                quarterbackSheet.getRow(i + 1).createCell(4).setCellValue(qbList.get(i).getDraftOrder());
+                quarterbackSheet.getRow(i + 1).createCell(5).setCellValue(qbList.get(i).getPassingYards());
+                quarterbackSheet.getRow(i + 1).createCell(6).setCellValue(qbList.get(i).getCmpPct());
+                quarterbackSheet.getRow(i + 1).createCell(7).setCellValue(qbList.get(i).getTdInt());
+                quarterbackSheet.getRow(i + 1).createCell(8).setCellValue(qbList.get(i).getFfppg());
+                quarterbackSheet.getRow(i + 1).createCell(9).setCellValue(qbList.get(i).getTotalFFP());
+                quarterbackSheet.getRow(i + 1).createCell(10).setCellValue(qbList.get(i).getWrRoom());
+                quarterbackSheet.getRow(i + 1).createCell(11).setCellValue(qbList.get(i).getRookie());
+            }
+
+            wideReceiverSheet.createRow(0);
+            wideReceiverSheet.getRow(0).createCell(0).setCellValue("Rank");
+            wideReceiverSheet.getRow(0).createCell(1).setCellValue("Value");
+            wideReceiverSheet.getRow(0).createCell(2).setCellValue("Name");
+            wideReceiverSheet.getRow(0).createCell(3).setCellValue("Team");
+            wideReceiverSheet.getRow(0).createCell(4).setCellValue("Draft Order");
+            wideReceiverSheet.getRow(0).createCell(5).setCellValue("Receptions");
+            wideReceiverSheet.getRow(0).createCell(6).setCellValue("Receiving Yards");
+            wideReceiverSheet.getRow(0).createCell(7).setCellValue("TD");
+            wideReceiverSheet.getRow(0).createCell(8).setCellValue("FFPpG");
+            wideReceiverSheet.getRow(0).createCell(9).setCellValue("Total FFP");
+            wideReceiverSheet.getRow(0).createCell(10).setCellValue("QB");
+            wideReceiverSheet.getRow(0).createCell(11).setCellValue("Rookie");
+            tightEndSheet.createRow(0);
+            tightEndSheet.getRow(0).createCell(0).setCellValue("Rank");
+            tightEndSheet.getRow(0).createCell(1).setCellValue("Value");
+            tightEndSheet.getRow(0).createCell(2).setCellValue("Name");
+            tightEndSheet.getRow(0).createCell(3).setCellValue("Team");
+            tightEndSheet.getRow(0).createCell(4).setCellValue("Draft Order");
+            tightEndSheet.getRow(0).createCell(5).setCellValue("Receptions");
+            tightEndSheet.getRow(0).createCell(6).setCellValue("Receiving Yards");
+            tightEndSheet.getRow(0).createCell(7).setCellValue("TD");
+            tightEndSheet.getRow(0).createCell(8).setCellValue("FFPpG");
+            tightEndSheet.getRow(0).createCell(9).setCellValue("Total FFP");
+            tightEndSheet.getRow(0).createCell(10).setCellValue("QB");
+            tightEndSheet.getRow(0).createCell(11).setCellValue("Rookie");
+            for (int j = 0; j < wrList.size(); j++) {
+                wideReceiverSheet.createRow(j + 1);
+                wideReceiverSheet.getRow(j + 1).createCell(0).setCellValue(wrList.get(j).getPosition());
+                wideReceiverSheet.getRow(j + 1).createCell(1).setCellValue(wrList.get(j).getValue());
+                wideReceiverSheet.getRow(j + 1).createCell(2).setCellValue(wrList.get(j).getName());
+                wideReceiverSheet.getRow(j + 1).createCell(3).setCellValue(wrList.get(j).getTeam());
+                wideReceiverSheet.getRow(j + 1).createCell(4).setCellValue(wrList.get(j).getDraftorder());
+                wideReceiverSheet.getRow(j + 1).createCell(5).setCellValue(wrList.get(j).getReceptions());
+                wideReceiverSheet.getRow(j + 1).createCell(6).setCellValue(wrList.get(j).getReceivingYards());
+                wideReceiverSheet.getRow(j + 1).createCell(7).setCellValue(wrList.get(j).getTds());
+                wideReceiverSheet.getRow(j + 1).createCell(8).setCellValue(wrList.get(j).getFfppg());
+                wideReceiverSheet.getRow(j + 1).createCell(9).setCellValue(wrList.get(j).getTotalFFP());
+                wideReceiverSheet.getRow(j + 1).createCell(10).setCellValue(wrList.get(j).getQbs());
+                wideReceiverSheet.getRow(j + 1).createCell(11).setCellValue(wrList.get(j).getRookie());
+                if(j < teList.size()) {
+                    tightEndSheet.createRow(j + 1);
+                    tightEndSheet.getRow(j + 1).createCell(0).setCellValue(wrList.get(j).getPosition());
+                    tightEndSheet.getRow(j + 1).createCell(1).setCellValue(wrList.get(j).getValue());
+                    tightEndSheet.getRow(j + 1).createCell(2).setCellValue(wrList.get(j).getName());
+                    tightEndSheet.getRow(j + 1).createCell(3).setCellValue(wrList.get(j).getTeam());
+                    tightEndSheet.getRow(j + 1).createCell(4).setCellValue(wrList.get(j).getDraftorder());
+                    tightEndSheet.getRow(j + 1).createCell(5).setCellValue(wrList.get(j).getReceptions());
+                    tightEndSheet.getRow(j + 1).createCell(6).setCellValue(wrList.get(j).getReceivingYards());
+                    tightEndSheet.getRow(j + 1).createCell(7).setCellValue(wrList.get(j).getTds());
+                    tightEndSheet.getRow(j + 1).createCell(8).setCellValue(wrList.get(j).getFfppg());
+                    tightEndSheet.getRow(j + 1).createCell(9).setCellValue(wrList.get(j).getTotalFFP());
+                    tightEndSheet.getRow(j + 1).createCell(10).setCellValue(wrList.get(j).getQbs());
+                    tightEndSheet.getRow(j + 1).createCell(11).setCellValue(wrList.get(j).getRookie());
+                }
+            }
+
+            runningBackSheet.createRow(0);
+            runningBackSheet.getRow(0).createCell(0).setCellValue("Rank");
+            runningBackSheet.getRow(0).createCell(1).setCellValue("Value");
+            runningBackSheet.getRow(0).createCell(2).setCellValue("Name");
+            runningBackSheet.getRow(0).createCell(3).setCellValue("Team");
+            runningBackSheet.getRow(0).createCell(4).setCellValue("Draft Order");
+            runningBackSheet.getRow(0).createCell(8).setCellValue("Rushing Attempts");
+            runningBackSheet.getRow(0).createCell(7).setCellValue("Rushing Yards");
+            runningBackSheet.getRow(0).createCell(5).setCellValue("Receptions");
+            runningBackSheet.getRow(0).createCell(6).setCellValue("Receiving Yards");
+            runningBackSheet.getRow(0).createCell(9).setCellValue("TD");
+            runningBackSheet.getRow(0).createCell(10).setCellValue("O-Line");
+            runningBackSheet.getRow(0).createCell(11).setCellValue("FFPpG");
+            runningBackSheet.getRow(0).createCell(12).setCellValue("Total FFP");
+            runningBackSheet.getRow(0).createCell(13).setCellValue("Rookie");
+            for(int k = 0; k < rbsList.size(); k++) {
+                runningBackSheet.createRow(k + 1);
+                runningBackSheet.getRow(k + 1).createCell(0).setCellValue(rbsList.get(k).getPosition());
+                runningBackSheet.getRow(k + 1).createCell(1).setCellValue(rbsList.get(k).getValue());
+                runningBackSheet.getRow(k + 1).createCell(2).setCellValue(rbsList.get(k).getName());
+                runningBackSheet.getRow(k + 1).createCell(3).setCellValue(rbsList.get(k).getTeam());
+                runningBackSheet.getRow(k + 1).createCell(4).setCellValue(rbsList.get(k).getDraftorder());
+                runningBackSheet.getRow(k + 1).createCell(8).setCellValue(rbsList.get(k).getAttempts());
+                runningBackSheet.getRow(k + 1).createCell(7).setCellValue(rbsList.get(k).getRushingYards());
+                runningBackSheet.getRow(k + 1).createCell(5).setCellValue(rbsList.get(k).getReceptions());
+                runningBackSheet.getRow(k + 1).createCell(6).setCellValue(rbsList.get(k).getReceivingYards());
+                runningBackSheet.getRow(k + 1).createCell(9).setCellValue(rbsList.get(k).getTds());
+                runningBackSheet.getRow(k + 1).createCell(10).setCellValue(rbsList.get(k).getoLine());
+                runningBackSheet.getRow(k + 1).createCell(11).setCellValue(rbsList.get(k).getFfppg());
+                runningBackSheet.getRow(k + 1).createCell(12).setCellValue(rbsList.get(k).getTotalFFP());
+                runningBackSheet.getRow(k + 1).createCell(13).setCellValue(rbsList.get(k).getRookie());
+            }
+
+            kickerSheet.createRow(0);
+            kickerSheet.getRow(0).createCell(0).setCellValue("Rank");
+            kickerSheet.getRow(0).createCell(1).setCellValue("Value");
+            kickerSheet.getRow(0).createCell(2).setCellValue("Name");
+            kickerSheet.getRow(0).createCell(3).setCellValue("Team");
+            kickerSheet.getRow(0).createCell(11).setCellValue("Draft Order");
+            kickerSheet.getRow(0).createCell(4).setCellValue("Attempts");
+            kickerSheet.getRow(0).createCell(5).setCellValue("Made");
+            kickerSheet.getRow(0).createCell(6).setCellValue("Pct");
+            kickerSheet.getRow(0).createCell(7).setCellValue("XP");
+            kickerSheet.getRow(0).createCell(8).setCellValue("50+");
+            kickerSheet.getRow(0).createCell(9).setCellValue("FFPpG");
+            kickerSheet.getRow(0).createCell(10).setCellValue("Total FFP");
+            for(int m = 0; m < kickerList.size(); m++) {
+                kickerSheet.createRow(m + 1);
+                kickerSheet.getRow(m + 1).createCell(0).setCellValue(kickerList.get(m).getPosition());
+                kickerSheet.getRow(m + 1).createCell(1).setCellValue(kickerList.get(m).getValue());
+                kickerSheet.getRow(m + 1).createCell(2).setCellValue(kickerList.get(m).getName());
+                kickerSheet.getRow(m + 1).createCell(3).setCellValue(kickerList.get(m).getTeam());
+                kickerSheet.getRow(m + 1).createCell(4).setCellValue(kickerList.get(m).getDraftOrder());
+                kickerSheet.getRow(m + 1).createCell(5).setCellValue(kickerList.get(m).getAttempts());
+                kickerSheet.getRow(m + 1).createCell(6).setCellValue(kickerList.get(m).getMade());
+                kickerSheet.getRow(m + 1).createCell(7).setCellValue(kickerList.get(m).getPct());
+                kickerSheet.getRow(m + 1).createCell(8).setCellValue(kickerList.get(m).getXp());
+                kickerSheet.getRow(m + 1).createCell(9).setCellValue(kickerList.get(m).getFiftyPlus());
+                kickerSheet.getRow(m + 1).createCell(10).setCellValue(kickerList.get(m).getFfppg());
+                kickerSheet.getRow(m + 1).createCell(11).setCellValue(kickerList.get(m).getTotalFFP());
+            }
+
+            defenseSheet.createRow(0);
+            defenseSheet.getRow(0).createCell(0).setCellValue("Rank");
+            defenseSheet.getRow(0).createCell(1).setCellValue("Value");
+            defenseSheet.getRow(0).createCell(2).setCellValue("Name");
+            defenseSheet.getRow(0).createCell(3).setCellValue("Order");
+            defenseSheet.getRow(0).createCell(4).setCellValue("Sacks");
+            defenseSheet.getRow(0).createCell(5).setCellValue("Safeties");
+            defenseSheet.getRow(0).createCell(6).setCellValue("Fumble Recoveries");
+            defenseSheet.getRow(0).createCell(7).setCellValue("Ints");
+            defenseSheet.getRow(0).createCell(8).setCellValue("TD");
+            for (int l = 0; l < defenseList.size(); l++) {
+                defenseSheet.createRow(l + 1);
+                defenseSheet.getRow(l + 1).createCell(0).setCellValue(defenseList.get(l).getPosition());
+                defenseSheet.getRow(l + 1).createCell(1).setCellValue(defenseList.get(l).getValue());
+                defenseSheet.getRow(l + 1).createCell(2).setCellValue(defenseList.get(l).getName());
+                defenseSheet.getRow(l + 1).createCell(3).setCellValue(defenseList.get(l).getOrder());
+                defenseSheet.getRow(l + 1).createCell(4).setCellValue(defenseList.get(l).getSacks());
+                defenseSheet.getRow(l + 1).createCell(5).setCellValue(defenseList.get(l).getSafeties());
+                defenseSheet.getRow(l + 1).createCell(6).setCellValue(defenseList.get(l).getFumbleRecoveries());
+                defenseSheet.getRow(l + 1).createCell(7).setCellValue(defenseList.get(l).getInts());
+                defenseSheet.getRow(l + 1).createCell(8).setCellValue(defenseList.get(l).getTds());
+            }
+
+            for (int i = 0; i <= wrList.size(); i++) {
+                if (i <= qbList.size()) {
+                    for (int j = 0; j < 12; j++) {
+                        quarterbackSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
+                    }
+                }
+                if (i <= teList.size()) {
+                    for (int j = 0; j < 12; j++) {
+                        tightEndSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
+                    }
+                }
+                if (i <= rbsList.size()) {
+                    for (int j = 0; j < 14; j++) {
+                        runningBackSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
+                    }
+                }
+                if (i <= kickerList.size()) {
+                    for (int j = 0; j < 12; j++) {
+                        kickerSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
+                    }
+                }
+                if (i <= defenseList.size()) {
+                    for (int j = 0; j < 9; j++) {
+                        defenseSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
+                    }
+                }
+                for (int j = 0; j < 12; j++) {
+                    wideReceiverSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
+                }
+            }
+
+            File file = new File("C:\\Users\\jelle\\Desktop\\Exceldaten\\Draftrankings.xls");
+
+            wb.write(file);
+            wb.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private static void printRanking() {

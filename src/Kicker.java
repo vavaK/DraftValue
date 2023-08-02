@@ -13,8 +13,9 @@ public class Kicker{
     private double draftOrder;
     private double value;
     private String team;
+    private int byeWeek;
 
-    public Kicker(String name, String team, int position, double attempts, double made, double fiftyPlus, double pct, double xp, double ffppg, double totalFFP, double draftOrder, double value) {
+    public Kicker(String name, String team, int position, double attempts, double made, double fiftyPlus, double pct, double xp, double ffppg, double totalFFP, double draftOrder, double value, int byeWeek) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -27,6 +28,7 @@ public class Kicker{
         this.totalFFP = totalFFP;
         this.draftOrder = draftOrder;
         this.value = value;
+        this.byeWeek = byeWeek;
     }
 
     public String getName() {
@@ -125,6 +127,14 @@ public class Kicker{
         this.value = value;
     }
 
+    public int getByeWeek() {
+        return byeWeek;
+    }
+
+    public void setByeWeek(int byeWeek) {
+        this.byeWeek = byeWeek;
+    }
+
     public static ArrayList<Kicker> werteGewichten(ArrayList<Kicker> kicker, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < kicker.size(); i++) {
             kicker.get(i).setAttempts((33 - kicker.get(i).getAttempts()) * tierD);
@@ -161,7 +171,7 @@ public class Kicker{
     }
 
     public static ArrayList<Kicker> sortAfterValue(ArrayList<Kicker> kicker) {
-        Kicker pivot = new Kicker("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, 0);
+        Kicker pivot = new Kicker("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         int pivotNumber;
         ArrayList<Kicker> sortedKickers = new ArrayList<Kicker>();
         while(!kicker.isEmpty()) {

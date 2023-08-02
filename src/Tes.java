@@ -13,8 +13,9 @@ public class Tes {
     private double draftorder;
     private Boolean rookie;
     private double value;
+    private int byeWeek;
 
-    public Tes(String name, String team, int position, double receptions, double receivingYards, double tds, double ffppg, double totalFFP, double qbs, double draftOrder, Boolean rookie, double value) {
+    public Tes(String name, String team, int position, double receptions, double receivingYards, double tds, double ffppg, double totalFFP, double qbs, double draftOrder, Boolean rookie, double value, int byeWeek) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -27,6 +28,7 @@ public class Tes {
         this.draftorder = draftOrder;
         this.rookie = rookie;
         this.value = value;
+        this.byeWeek = byeWeek;
     }
 
     public String getName() {
@@ -125,6 +127,14 @@ public class Tes {
         this.value = value;
     }
 
+    public int getByeWeek() {
+        return byeWeek;
+    }
+
+    public void setByeWeek(int byeWeek) {
+        this.byeWeek = byeWeek;
+    }
+
     public static ArrayList<Tes> werteGewichten(ArrayList<Tes> te, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < te.size(); i++) {
             te.get(i).setReceptions((36 - te.get(i).getReceptions()) * tierC);
@@ -159,7 +169,7 @@ public class Tes {
     }
 
     public static ArrayList<Tes> sortAfterValue(ArrayList<Tes> te, int amountRookies) {
-        Tes pivot = new Tes("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, false, 0);
+        Tes pivot = new Tes("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, false, 0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Tes> sortedTEs = new ArrayList<Tes>();

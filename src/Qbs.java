@@ -14,8 +14,9 @@ public class Qbs {
     private boolean rookie;
     private double value;
     private String team;
+    private int byeWeek;
 
-    public Qbs(String name, String team, int position, double passingYards, double rushingYards, double ffppg, double totalFFP, double draftOrder, double tdInt, double cmpPct, double wrRoom, boolean rookie, double value) {
+    public Qbs(String name, String team, int position, double passingYards, double rushingYards, double ffppg, double totalFFP, double draftOrder, double tdInt, double cmpPct, double wrRoom, boolean rookie, double value, int byeWeek) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -28,6 +29,7 @@ public class Qbs {
         this.wrRoom = wrRoom;
         this.rookie = rookie;
         this.value = value;
+        this.byeWeek = byeWeek;
     }
 
     public void setName(String name) {
@@ -82,6 +84,10 @@ public class Qbs {
         this.value = value;
     }
 
+    public void setByeWeek(int byeWeek) {
+        this.byeWeek = byeWeek;
+    }
+
     public String getName() {
         return name;
     }
@@ -124,6 +130,10 @@ public class Qbs {
 
     public double getWrRoom() {
         return wrRoom;
+    }
+
+    public int getByeWeek() {
+        return byeWeek;
     }
 
     public Boolean getRookie() {
@@ -170,7 +180,7 @@ public class Qbs {
     }
 
     public static ArrayList<Qbs> sortAfterValue(ArrayList<Qbs> qb, int amountRookies) {
-        Qbs pivot = new Qbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, false, 0);
+        Qbs pivot = new Qbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, false, 0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Qbs> sortedQBs = new ArrayList<Qbs>();

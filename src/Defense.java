@@ -10,8 +10,9 @@ public class Defense {
     private double tds;
     private double order;
     private double value;
+    private int byeWeek;
 
-    public Defense(String name, int position, double sacks, double ints, double fumbleRecoveries, double safeties, double tds, double order, double value) {
+    public Defense(String name, int position, double sacks, double ints, double fumbleRecoveries, double safeties, double tds, double order, double value, int byeeWeek) {
         this.name = name;
         this.position = position;
         this.sacks = sacks;
@@ -21,6 +22,7 @@ public class Defense {
         this.tds = tds;
         this.order = order;
         this.value = value;
+        this.byeWeek = byeeWeek;
     }
 
     public String getName() {
@@ -95,6 +97,14 @@ public class Defense {
         this.value = value;
     }
 
+    public int getByeWeek() {
+        return byeWeek;
+    }
+
+    public void setByeWeek(int byeWeek) {
+        this.byeWeek = byeWeek;
+    }
+
     public static ArrayList<Defense> werteGewichten(ArrayList<Defense> defense, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < defense.size(); i++) {
             defense.get(i).setSacks((33 - defense.get(i).getSacks()) * tierC);
@@ -127,7 +137,7 @@ public class Defense {
     }
 
     public static ArrayList<Defense> sortAfterValue(ArrayList<Defense> defense) {
-        Defense pivot = new Defense("pivot", 0, 0, 0, 0, 0, 0, 0, 0);
+        Defense pivot = new Defense("pivot", 0, 0, 0, 0, 0, 0, 0, 0, 0);
         int pivotNumber;
         ArrayList<Defense> sortedDefense = new ArrayList<Defense>();
         while(!defense.isEmpty()) {

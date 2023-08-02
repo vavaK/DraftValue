@@ -15,8 +15,9 @@ public class Rbs {
     private double draftorder;
     private double value;
     private Boolean rookie;
+    private int byeWeek;
 
-    public Rbs(String name, String team, int position, double receptions, double  receivingYards, double rushingYards, double attempts, double tds, double ffppg, double totalFFP, double oLine, double draftorder, Boolean rookie, double value) {
+    public Rbs(String name, String team, int position, double receptions, double  receivingYards, double rushingYards, double attempts, double tds, double ffppg, double totalFFP, double oLine, double draftorder, Boolean rookie, double value, int byeWeek) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -31,6 +32,7 @@ public class Rbs {
         this.draftorder = draftorder;
         this.rookie = rookie;
         this.value = value;
+        this.byeWeek = byeWeek;
     }
 
     public String getName() {
@@ -145,6 +147,14 @@ public class Rbs {
         this.value = value;
     }
 
+    public int getByeWeek() {
+        return byeWeek;
+    }
+
+    public void setByeWeek(int byeWeek) {
+        this.byeWeek = byeWeek;
+    }
+
     public static ArrayList<Rbs> werteGewichten(ArrayList<Rbs> rb, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < rb.size(); i++) {
             rb.get(i).setReceptions((42 - rb.get(i).getReceptions()) * tierC);
@@ -183,7 +193,7 @@ public class Rbs {
     }
 
     public static ArrayList<Rbs> sortAfterValue(ArrayList<Rbs> rb, int amountRookies) {
-        Rbs pivot = new Rbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, 0, false, 0);
+        Rbs pivot = new Rbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, 0, false, 0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Rbs> sortedRBs = new ArrayList<Rbs>();

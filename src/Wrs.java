@@ -13,8 +13,9 @@ public class Wrs {
     private double draftorder;
     private Boolean rookie;
     private double value;
+    private int byeWeek;
 
-    public Wrs(String name, String team, int position, double receptions, double receivingYards, double tds, double ffppg, double totalFFP, double qbs, double draftOrder, Boolean rookie, double value) {
+    public Wrs(String name, String team, int position, double receptions, double receivingYards, double tds, double ffppg, double totalFFP, double qbs, double draftOrder, Boolean rookie, double value, int byeWeek) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -27,6 +28,7 @@ public class Wrs {
         this.draftorder = draftOrder;
         this.rookie = rookie;
         this.value = value;
+        this.byeWeek = byeWeek;
     }
 
     public String getName() {
@@ -109,6 +111,14 @@ public class Wrs {
         this.draftorder = draftorder;
     }
 
+    public int getByeWeek() {
+        return byeWeek;
+    }
+
+    public void setByeWeek(int byeWeek) {
+        this.byeWeek = byeWeek;
+    }
+
     public Boolean getRookie() {
         return rookie;
     }
@@ -159,7 +169,7 @@ public class Wrs {
     }
 
     public static ArrayList<Wrs> sortAfterValue(ArrayList<Wrs> wr, int amountRookies) {
-        Wrs pivot = new Wrs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, false, 0);
+        Wrs pivot = new Wrs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, false, 0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Wrs> sortedWRs = new ArrayList<Wrs>();

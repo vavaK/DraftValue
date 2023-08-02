@@ -138,6 +138,19 @@ public class Wrs {
         return wr;
     }
 
+    public static ArrayList<Wrs> reverseWerteGewichten(ArrayList<Wrs> wr, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+        for (int i = 0; i < wr.size(); i++) {
+            wr.get(i).setReceptions(97 - wr.get(i).getReceptions() / tierD);
+            wr.get(i).setReceivingYards(97 - wr.get(i).getReceivingYards() / tierC);
+            wr.get(i).setTds(13 - wr.get(i).getTds() / tierD);
+            wr.get(i).setFfppg(97 - wr.get(i).getFfppg() / tierS);
+            wr.get(i).setTotalFFP(97 - wr.get(i).getTotalFFP() / tierB);
+            wr.get(i).setQbs(33 - wr.get(i).getQbs() / tierD);
+            wr.get(i).setDraftorder(107 - wr.get(i).getDraftorder() /  tierS);
+        }
+        return wr;
+    }
+
     public static ArrayList<Wrs> valueBerechnen(ArrayList<Wrs> wr) {
         for(int i = 0; i < wr.size(); i++) {
             wr.get(i).setValue(wr.get(i).getReceptions() + wr.get(i).getReceivingYards() + wr.get(i).getTds() + wr.get(i).getFfppg() + wr.get(i).getTotalFFP() + wr.get(i).getQbs() + wr.get(i).getDraftorder());

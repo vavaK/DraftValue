@@ -50,6 +50,7 @@ public class Main {
         wrList = Wrs.werteGewichten(wrList, tierS, tierA, tierB, tierC, tierD, tierE);
         wrList = Wrs.valueBerechnen(wrList);
         wrList = Wrs.sortAfterValue(wrList, 10);
+        wrList = Wrs.reverseWerteGewichten(wrList, tierS, tierA, tierB, tierC, tierD, tierE);
         printRanking();
         try {
             HSSFWorkbook wb = new HSSFWorkbook();
@@ -701,7 +702,7 @@ public class Main {
         Wrs devinDuvernay = new Wrs("Devin Duvernay", "Baltimore Ravens", 0, 70, 79, 8, 63, 58, 11, 86, false, 0);
         Wrs nelsonAgholor = new Wrs("Nelson Agholor", "Baltimore Ravens", 0, 78, 84, 10, 89, 86, 11, 85, false, 0);
         Wrs rashodBateman = new Wrs("Rashod Bateman", "Baltimore Ravens", 0, 92,89, 10, 58, 91, 11, 42, false, 0);
-        Wrs odellBackhamJr = new Wrs("Odell Backham Jr.", "Baltimore Ravens", 0, 0, 0, 0, 0, 0, 11, 0, true, 47);
+        Wrs odellBackhamJr = new Wrs("Odell Backham Jr.", "Baltimore Ravens", 0, 0, 0, 0, 0, 0, 11, 47, true, 0);
         Wrs stefonDiggs = new Wrs("Stefon Diggs", "Buffalo Bills", 0, 3, 5, 2, 5, 4, 4, 5, false, 0);
         Wrs gabeDavis = new Wrs("Gabe Davis", "Buffalo Bills", 0, 52, 30, 5, 37, 36, 4, 38, false, 0);
         Wrs trentSherfield = new Wrs("Trent Sherfield", "Buffalo Bills", 0, 80, 76, 10, 85, 81, 4, 83, false, 0);

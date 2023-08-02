@@ -1,4 +1,3 @@
-import java.io.*;
 import java.io.File;
 
 import org.apache.poi.hssf.usermodel.HSSFFont;
@@ -310,6 +309,9 @@ public class Main {
 
     }
 
+    /**
+     * Prints the ranking in the console
+     */
     private static void printRanking() {
         Qbs.printQBs(qbList);
         System.out.println();
@@ -324,6 +326,9 @@ public class Main {
         Wrs.printWrs(wrList);
     }
 
+    /**
+     * Creates and adds all quarterbacks to the quarterbackList
+     */
     private static void addQbToList() {
         Qbs kylerMurray = new Qbs("Kyler Murray", "Arizona Cardinals", 0, 19, 6, 8, 18, 22, 17, 11, 28,  false, 0);
         Qbs desmondRidder = new Qbs("Desmond Ridder", "Atlanta Falcons", 0, 26, 24, 28, 27, 30, 25, 20, 31, false, 0);
@@ -392,6 +397,9 @@ public class Main {
         qbList.add(ryanTennehill);
     }
 
+    /**
+     * Creates and adds all Defenses to the defenseList
+     */
     private static void addDefenseToList() {
         Defense sanFrancisco49ers = new Defense("San Francisco 49ers", 0, 6, 1, 7, 3, 4, 1, 0);
         Defense chicagoBears = new Defense("Chicago Bears", 0, 16, 6, 14, 3, 25, 31, 0);
@@ -460,6 +468,9 @@ public class Main {
         defenseList.add(minnesotaVikings);
     }
 
+    /**
+     * Creates and adds all kickers to the kickerList
+     */
     private static void addKickerToList() {
         Kicker justinTucker = new Kicker("Justin Tucker", "Baltimore Ravens", 0, 1, 1, 2, 13, 10, 2, 1, 1, 0);
         Kicker danielCarlson = new Kicker("Daniel Carlson", "Las Vegas Raiders", 0, 3, 3, 1, 6, 7, 3, 2, 2, 0);
@@ -528,6 +539,9 @@ public class Main {
         kickerList.add(andersCarlson);
     }
 
+    /**
+     * Creates and adds all running backs to the runningBackList
+     */
     private static void addRunningbackToList() {
         Rbs joshJacobs = new Rbs("Josh Jacobs", "Las Vegas Raiders", 0, 8, 7, 1, 2, 4, 2, 1, 19, 10, false, 0);
         Rbs christianMcCaffrey = new Rbs("Christian McCaffrey", "San Francisco 49ers", 0, 2, 1, 6, 8, 3, 3, 2, 18, 1, false, 0);
@@ -614,6 +628,9 @@ public class Main {
         rbsList.add(javonteWiliams);
     }
 
+    /**
+     * Creates and adds all tight ends to the tightEndList
+     */
     private static void addTightEndToList() {
         Tes travisKelce = new Tes("Travis Kelce", "Kansas City Ciefs", 0, 1, 1, 1, 1, 1, 2, 1, false, 0);
         Tes georgeKittle = new Tes("George Kittle", "San Francisco 49ers", 0, 7, 5, 2, 2, 2, 21, 4, false, 0);
@@ -696,6 +713,9 @@ public class Main {
         teList.add(brentonStrange);
     }
 
+    /**
+     * Creates and adds all wide receivers to the wideReceiverList
+     */
     private static void addWideReceiverToList() {
         Wrs marquiseBrown = new Wrs("Marquise Brown", "Arizona Cardinals", 0, 32, 43, 9, 28, 44, 18, 31, false, 0);
         Wrs gregDortch = new Wrs("Greg Dortch", "Arizona Cardinals", 0, 50, 68, 10, 73, 62, 18, 81, false, 0);

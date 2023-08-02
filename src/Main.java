@@ -94,7 +94,7 @@ public class Main {
             draftPlan.getRow(4).createCell(1).setCellValue("Running Back");
             draftPlan.getRow(5).createCell(1).setCellValue("Wide Receiver");
             draftPlan.getRow(6).createCell(1).setCellValue("Tight End");
-            draftPlan.getRow(7).createCell(1).setCellValue("Wide Receiver / Running Back");
+            draftPlan.getRow(7).createCell(1).setCellValue("Flex Spot");
             draftPlan.getRow(8).createCell(1).setCellValue("Kicker");
             draftPlan.getRow(9).createCell(1).setCellValue("Defense");
             draftPlan.getRow(10).createCell(1).setCellValue("Quarterback");

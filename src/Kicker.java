@@ -139,6 +139,20 @@ public class Kicker{
         return kicker;
     }
 
+    public static ArrayList<Kicker> reverseWerteGewichten(ArrayList<Kicker> kicker, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+        for (int i = 0; i < kicker.size(); i++) {
+            kicker.get(i).setAttempts(33 - kicker.get(i).getAttempts() / tierD);
+            kicker.get(i).setMade(33 - kicker.get(i).getMade() / tierB);
+            kicker.get(i).setFiftyPlus(33 - kicker.get(i).getFiftyPlus() / tierC);
+            kicker.get(i).setPct(33 - kicker.get(i).getPct() / tierD);
+            kicker.get(i).setXp(33 - kicker.get(i).getXp() / tierC);
+            kicker.get(i).setFfppg(33 - kicker.get(i).getFfppg() / tierA);
+            kicker.get(i).setTotalFFP(33 - kicker.get(i).getTotalFFP() / tierA);
+            kicker.get(i).setDraftOrder(33 - kicker.get(i).getDraftOrder() / tierS);
+        }
+        return kicker;
+    }
+
     public static ArrayList<Kicker> valueBerechnen(ArrayList<Kicker> kicker) {
         for(int i = 0; i < kicker.size(); i++) {
             kicker.get(i).setValue(kicker.get(i).getAttempts() + kicker.get(i).getMade() + kicker.get(i).getFiftyPlus() + kicker.get(i).getPct() + kicker.get(i).getXp() + kicker.get(i).getFfppg() + kicker.get(i).getFfppg() + kicker.get(i).getDraftOrder());

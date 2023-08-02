@@ -38,6 +38,7 @@ public class Main {
         kickerList = Kicker.werteGewichten(kickerList, tierS, tierA, tierB, tierC, tierD, tierE);
         kickerList = Kicker.valueBerechnen(kickerList);
         kickerList = Kicker.sortAfterValue(kickerList);
+        kickerList = Kicker.reverseWerteGewichten(kickerList, tierS, tierA, tierB, tierC, tierD, tierE);
         addRunningbackToList();
         rbsList = Rbs.werteGewichten(rbsList, tierS, tierA, tierB, tierC, tierD, tierE);
         rbsList = Rbs.valueBerechnen(rbsList);

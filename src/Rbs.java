@@ -160,6 +160,21 @@ public class Rbs {
         return rb;
     }
 
+    public static ArrayList<Rbs> reverseWerteGewichten(ArrayList<Rbs> rb, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+        for (int i = 0; i < rb.size(); i++) {
+            rb.get(i).setReceptions(42 - rb.get(i).getReceptions() / tierC);
+            rb.get(i).setReceivingYards(42 - rb.get(i).getReceivingYards() / tierC);
+            rb.get(i).setRushingYards(42 - rb.get(i).getRushingYards() / tierB);
+            rb.get(i).setAttempts(42 - rb.get(i).getAttempts() / tierD);
+            rb.get(i).setTds(42 - rb.get(i).getTds() / tierB);
+            rb.get(i).setFfppg(42 - rb.get(i).getFfppg() / tierA);
+            rb.get(i).setTotalFFP(42 - rb.get(i).getTotalFFP() / tierA);
+            rb.get(i).setoLine(42 - rb.get(i).getoLine() / tierE);
+            rb.get(i).setDraftorder(42 - rb.get(i).getDraftorder() / tierS);
+        }
+        return rb;
+    }
+
     public static ArrayList<Rbs> valueBerechnen(ArrayList<Rbs> rb) {
         for(int i = 0; i < rb.size(); i++) {
             rb.get(i).setValue(rb.get(i).getReceptions() + rb.get(i).getReceivingYards() + rb.get(i).getRushingYards() + rb.get(i).getAttempts() + rb.get(i).getTds() + rb.get(i).getFfppg() + rb.get(i).getTotalFFP() + rb.get(i).getoLine() + rb.get(i).getDraftorder());

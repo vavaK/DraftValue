@@ -42,6 +42,7 @@ public class Main {
         rbsList = Rbs.werteGewichten(rbsList, tierS, tierA, tierB, tierC, tierD, tierE);
         rbsList = Rbs.valueBerechnen(rbsList);
         rbsList = Rbs.sortAfterValue(rbsList, 3);
+        rbsList = Rbs.reverseWerteGewichten(rbsList, tierS, tierA, tierB, tierC, tierD, tierE);
         addTightEndToList();
         teList = Tes.werteGewichten(teList, tierS, tierA, tierB, tierC, tierD, tierE);
         teList = Tes.valueBerechnen(teList);

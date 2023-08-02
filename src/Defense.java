@@ -107,6 +107,18 @@ public class Defense {
         return defense;
     }
 
+    public static ArrayList<Defense> reverseWerteGewichten(ArrayList<Defense> defense, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+        for (int i = 0; i < defense.size(); i++) {
+            defense.get(i).setSacks(33 - defense.get(i).getSacks() / tierC);
+            defense.get(i).setInts(33 - defense.get(i).getInts() / tierB);
+            defense.get(i).setFumbleRecoveries(33 - defense.get(i).getFumbleRecoveries() / tierD);
+            defense.get(i).setSafeties(33 - defense.get(i).getSafeties() / tierD);
+            defense.get(i).setTds(33 - defense.get(i).getTds() / tierE);
+            defense.get(i).setOrder(33 - defense.get(i).getOrder() / tierS);
+        }
+        return defense;
+    }
+
     public static ArrayList<Defense> valueBerechnen(ArrayList<Defense> defense) {
         for(int i = 0; i < defense.size(); i++) {
             defense.get(i).setValue(defense.get(i).getSacks() + defense.get(i).getInts() + defense.get(i).getFumbleRecoveries() + defense.get(i).getSafeties() + defense.get(i).getTds() + defense.get(i).getOrder());

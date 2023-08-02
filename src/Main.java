@@ -34,6 +34,7 @@ public class Main {
         defenseList = Defense.werteGewichten(defenseList, tierS, tierA, tierB, tierC, tierD, tierE);
         defenseList = Defense.valueBerechnen(defenseList);
         defenseList = Defense.sortAfterValue(defenseList);
+        defenseList = Defense.reverseWerteGewichten(defenseList, tierS, tierA, tierB, tierC, tierD, tierE);
         addKickerToList();
         kickerList = Kicker.werteGewichten(kickerList, tierS, tierA, tierB, tierC, tierD, tierE);
         kickerList = Kicker.valueBerechnen(kickerList);

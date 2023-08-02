@@ -4,15 +4,13 @@ import java.io.File;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
-import org.apache.poi.ss.usermodel.Row;
 
 import java.util.ArrayList;
 
 public class Main {
-    private static final double tierS = 5.5;
+    private static final double tierS = 6;
     private static final double tierA = 3.5;
     private static final double tierB = 2.5;
     private static final double tierC = 2;
@@ -31,6 +29,7 @@ public class Main {
         qbList = Qbs.werteGewichten(qbList, tierS, tierA, tierB, tierC, tierD, tierE);
         qbList = Qbs.valueBerechnen(qbList);
         qbList = Qbs.sortAfterValue(qbList, 3);
+        qbList = Qbs.reverseWerteGewichten(qbList, tierS, tierA, tierB, tierC, tierD, tierE);
         addDefenseToList();
         defenseList = Defense.werteGewichten(defenseList, tierS, tierA, tierB, tierC, tierD, tierE);
         defenseList = Defense.valueBerechnen(defenseList);

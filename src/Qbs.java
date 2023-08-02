@@ -148,6 +148,20 @@ public class Qbs {
         return qb;
     }
 
+    public static ArrayList<Qbs> reverseWerteGewichten(ArrayList<Qbs> qb, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+        for (int i = 0; i < qb.size(); i++) {
+            qb.get(i).setPassingYards(33 - qb.get(i).getPassingYards() / tierB);
+            qb.get(i).setRushingYards(33 - qb.get(i).getRushingYards() / tierB);
+            qb.get(i).setFfppg(33 - qb.get(i).getFfppg() / tierA);
+            qb.get(i).setTotalFFP(33 - qb.get(i).getTotalFFP() / tierB);
+            qb.get(i).setDraftOrder(33 - qb.get(i).getDraftOrder() / tierS);
+            qb.get(i).setTdInt(33 - qb.get(i).getTdInt() / tierB);
+            qb.get(i).setCmpPct(33 - qb.get(i).getCmpPct() / tierE);
+            qb.get(i).setWrRoom(33 - qb.get(i).getWrRoom() / tierD);
+        }
+        return qb;
+    }
+
     public static ArrayList<Qbs> valueBerechnen(ArrayList<Qbs> qb) {
         for(int i = 0; i < qb.size(); i++) {
             qb.get(i).setValue(qb.get(i).getPassingYards() + qb.get(i).getRushingYards() + qb.get(i).getFfppg() + qb.get(i).getTotalFFP() + qb.get(i).getDraftOrder() + qb.get(i).getTdInt() + qb.get(i).getCmpPct() + qb.get(i).getWrRoom());

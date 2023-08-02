@@ -126,7 +126,7 @@ public class Qbs {
         return wrRoom;
     }
 
-    public boolean getRookie() {
+    public Boolean getRookie() {
         return rookie;
     }
 

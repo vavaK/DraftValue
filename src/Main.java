@@ -1,10 +1,13 @@
 import java.io.*;
 import java.io.File;
+
+import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.Row;
 
 import java.util.ArrayList;
 
@@ -53,6 +56,7 @@ public class Main {
             HSSFWorkbook wb = new HSSFWorkbook();
             CellStyle cellStyle = wb.createCellStyle();
             cellStyle.setAlignment(HorizontalAlignment.CENTER);
+            CellStyle headerStyle = wb.createCellStyle();
             HSSFSheet quarterbackSheet = wb.createSheet("Quarterback");
             HSSFSheet wideReceiverSheet = wb.createSheet("Wide Receiver");
             HSSFSheet tightEndSheet = wb.createSheet("Tight End");
@@ -73,6 +77,12 @@ public class Main {
             quarterbackSheet.getRow(0).createCell(9).setCellValue("Total FFP");
             quarterbackSheet.getRow(0).createCell(10).setCellValue("WR-Room");
             quarterbackSheet.getRow(0).createCell(11).setCellValue("Rookie");
+            HSSFFont font = wb.createFont();
+            font.setFontHeightInPoints((short)10);
+            font.setFontName("Arial");
+            font.setBold(true);
+            headerStyle.setFont(font);
+            headerStyle.setAlignment(HorizontalAlignment.CENTER);
             for (int i = 0; i < qbList.size(); i++) {
                 quarterbackSheet.createRow(i + 1);
                 quarterbackSheet.getRow(i + 1).createCell(0).setCellValue(qbList.get(i).getPosition());
@@ -86,7 +96,7 @@ public class Main {
                 quarterbackSheet.getRow(i + 1).createCell(8).setCellValue(qbList.get(i).getFfppg());
                 quarterbackSheet.getRow(i + 1).createCell(9).setCellValue(qbList.get(i).getTotalFFP());
                 quarterbackSheet.getRow(i + 1).createCell(10).setCellValue(qbList.get(i).getWrRoom());
-                quarterbackSheet.getRow(i + 1).createCell(11).setCellValue(qbList.get(i).getRookie());
+                quarterbackSheet.getRow(i + 1).createCell(11).setCellValue(qbList.get(i).getRookie().toString());
             }
 
             wideReceiverSheet.createRow(0);
@@ -128,7 +138,7 @@ public class Main {
                 wideReceiverSheet.getRow(j + 1).createCell(8).setCellValue(wrList.get(j).getFfppg());
                 wideReceiverSheet.getRow(j + 1).createCell(9).setCellValue(wrList.get(j).getTotalFFP());
                 wideReceiverSheet.getRow(j + 1).createCell(10).setCellValue(wrList.get(j).getQbs());
-                wideReceiverSheet.getRow(j + 1).createCell(11).setCellValue(wrList.get(j).getRookie());
+                wideReceiverSheet.getRow(j + 1).createCell(11).setCellValue(wrList.get(j).getRookie().toString());
                 if(j < teList.size()) {
                     tightEndSheet.createRow(j + 1);
                     tightEndSheet.getRow(j + 1).createCell(0).setCellValue(teList.get(j).getPosition());
@@ -142,7 +152,7 @@ public class Main {
                     tightEndSheet.getRow(j + 1).createCell(8).setCellValue(teList.get(j).getFfppg());
                     tightEndSheet.getRow(j + 1).createCell(9).setCellValue(teList.get(j).getTotalFFP());
                     tightEndSheet.getRow(j + 1).createCell(10).setCellValue(teList.get(j).getQbs());
-                    tightEndSheet.getRow(j + 1).createCell(11).setCellValue(teList.get(j).getRookie());
+                    tightEndSheet.getRow(j + 1).createCell(11).setCellValue(teList.get(j).getRookie().toString());
                 }
             }
 
@@ -176,7 +186,7 @@ public class Main {
                 runningBackSheet.getRow(k + 1).createCell(10).setCellValue(rbsList.get(k).getoLine());
                 runningBackSheet.getRow(k + 1).createCell(11).setCellValue(rbsList.get(k).getFfppg());
                 runningBackSheet.getRow(k + 1).createCell(12).setCellValue(rbsList.get(k).getTotalFFP());
-                runningBackSheet.getRow(k + 1).createCell(13).setCellValue(rbsList.get(k).getRookie());
+                runningBackSheet.getRow(k + 1).createCell(13).setCellValue(rbsList.get(k).getRookie().toString());
             }
 
             kickerSheet.createRow(0);
@@ -237,6 +247,7 @@ public class Main {
                         quarterbackSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
                         if (i < 1) {
                             quarterbackSheet.autoSizeColumn(j);
+                            quarterbackSheet.getRow(i).getCell(j).setCellStyle(headerStyle);
                         }
                     }
                 }
@@ -245,6 +256,7 @@ public class Main {
                         tightEndSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
                         if (i < 1) {
                             tightEndSheet.autoSizeColumn(j);
+                            tightEndSheet.getRow(i).getCell(j).setCellStyle(headerStyle);
                         }
                     }
                 }
@@ -253,6 +265,7 @@ public class Main {
                         runningBackSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
                         if (i < 1) {
                             runningBackSheet.autoSizeColumn(j);
+                            runningBackSheet.getRow(i).getCell(j).setCellStyle(headerStyle);
                         }
                     }
                 }
@@ -261,6 +274,7 @@ public class Main {
                         kickerSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
                         if (i < 1) {
                             kickerSheet.autoSizeColumn(j);
+                            kickerSheet.getRow(i).getCell(j).setCellStyle(headerStyle);
                         }
                     }
                 }
@@ -269,6 +283,7 @@ public class Main {
                         defenseSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
                         if (i < 1) {
                             defenseSheet.autoSizeColumn(j);
+                            defenseSheet.getRow(i).getCell(j).setCellStyle(headerStyle);
                         }
                     }
                 }
@@ -276,6 +291,7 @@ public class Main {
                     wideReceiverSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
                     if (i < 1) {
                         wideReceiverSheet.autoSizeColumn(j);
+                        wideReceiverSheet.getRow(i).getCell(j).setCellStyle(headerStyle);
                     }
                 }
             }

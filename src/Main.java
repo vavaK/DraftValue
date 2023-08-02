@@ -15,6 +15,7 @@ public class Main {
     private static final double tierC = 2;
     private static final double tierD = 1.5;
     private static final double tierE = 1.0;
+    private static final int amountDraftRounds = 15;
 
     private static ArrayList<Qbs> qbList = new ArrayList<Qbs>();
     private static ArrayList<Wrs> wrList = new ArrayList<Wrs>();
@@ -58,14 +59,55 @@ public class Main {
         try {
             HSSFWorkbook wb = new HSSFWorkbook();
             CellStyle cellStyle = wb.createCellStyle();
-            cellStyle.setAlignment(HorizontalAlignment.CENTER);
             CellStyle headerStyle = wb.createCellStyle();
+            cellStyle.setAlignment(HorizontalAlignment.CENTER);
+            headerStyle.setAlignment(HorizontalAlignment.CENTER);
+            HSSFFont font = wb.createFont();
+            font.setFontHeightInPoints((short)10);
+            font.setFontName("Arial");
+            font.setBold(true);
+            headerStyle.setFont(font);
+            HSSFSheet draftPlan = wb.createSheet("Draftplan");
             HSSFSheet quarterbackSheet = wb.createSheet("Quarterback");
             HSSFSheet wideReceiverSheet = wb.createSheet("Wide Receiver");
             HSSFSheet tightEndSheet = wb.createSheet("Tight End");
             HSSFSheet runningBackSheet = wb.createSheet("Running Back");
             HSSFSheet kickerSheet = wb.createSheet("Kicker");
             HSSFSheet defenseSheet = wb.createSheet("Defense");
+
+            for (int i = 0; i < amountDraftRounds + 2; i++) {
+                draftPlan.createRow(i);
+                if(i > 0) {
+                    draftPlan.getRow(i).createCell(0).setCellValue(i);
+
+                } else {
+                    draftPlan.getRow(i).createCell(0).setCellValue("Runde");
+                }
+                draftPlan.getRow(i).getCell(0).setCellStyle(headerStyle);
+            }
+            draftPlan.getRow(0).createCell(1).setCellValue("Position");
+            draftPlan.getRow(0).getCell(1).setCellStyle(headerStyle);
+            draftPlan.getRow(1).createCell(1).setCellValue("Wide Receiver");
+            draftPlan.getRow(2).createCell(1).setCellValue("Wide Receiver");
+            draftPlan.getRow(3).createCell(1).setCellValue("Quarter Back");
+            draftPlan.getRow(4).createCell(1).setCellValue("Running Back");
+            draftPlan.getRow(5).createCell(1).setCellValue("Wide Receiver");
+            draftPlan.getRow(6).createCell(1).setCellValue("Tight End");
+            draftPlan.getRow(7).createCell(1).setCellValue("Wide Receiver / Running Back");
+            draftPlan.getRow(8).createCell(1).setCellValue("Kicker");
+            draftPlan.getRow(9).createCell(1).setCellValue("Defense");
+            draftPlan.getRow(10).createCell(1).setCellValue("Quarterback");
+            draftPlan.getRow(11).createCell(1).setCellValue("Wide Receiver");
+            draftPlan.getRow(12).createCell(1).setCellValue("Running Back");
+            draftPlan.getRow(13).createCell(1).setCellValue("Tight End");
+            draftPlan.getRow(14).createCell(1).setCellValue("Kicker");
+            draftPlan.getRow(15).createCell(1).setCellValue("Defense");
+            draftPlan.getRow(16).createCell(1).setCellValue("Quarterback/ Best Player");
+            for (int i = 1; i < amountDraftRounds + 2; i++) {
+                draftPlan.getRow(i).getCell(1).setCellStyle(cellStyle);
+            }
+            draftPlan.autoSizeColumn(0);
+            draftPlan.autoSizeColumn(1);
 
             quarterbackSheet.createRow(0);
             quarterbackSheet.getRow(0).createCell(0).setCellValue("Rank");
@@ -80,12 +122,6 @@ public class Main {
             quarterbackSheet.getRow(0).createCell(9).setCellValue("Total FFP");
             quarterbackSheet.getRow(0).createCell(10).setCellValue("WR-Room");
             quarterbackSheet.getRow(0).createCell(11).setCellValue("Rookie");
-            HSSFFont font = wb.createFont();
-            font.setFontHeightInPoints((short)10);
-            font.setFontName("Arial");
-            font.setBold(true);
-            headerStyle.setFont(font);
-            headerStyle.setAlignment(HorizontalAlignment.CENTER);
             for (int i = 0; i < qbList.size(); i++) {
                 quarterbackSheet.createRow(i + 1);
                 quarterbackSheet.getRow(i + 1).createCell(0).setCellValue(qbList.get(i).getPosition());

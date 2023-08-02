@@ -46,6 +46,7 @@ public class Main {
         teList = Tes.werteGewichten(teList, tierS, tierA, tierB, tierC, tierD, tierE);
         teList = Tes.valueBerechnen(teList);
         teList = Tes.sortAfterValue(teList, 6);
+        teList = Tes.reverseWerteGewichten(teList, tierS, tierA, tierB, tierC, tierD, tierE);
         addWideReceiverToList();
         wrList = Wrs.werteGewichten(wrList, tierS, tierA, tierB, tierC, tierD, tierE);
         wrList = Wrs.valueBerechnen(wrList);

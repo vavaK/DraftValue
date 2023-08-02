@@ -76,7 +76,7 @@ public class Main {
             HSSFSheet kickerSheet = wb.createSheet("Kicker");
             HSSFSheet defenseSheet = wb.createSheet("Defense");
 
-            for (int i = 0; i < amountDraftRounds + 2; i++) {
+            for (int i = 0; i < amountDraftRounds + 1; i++) {
                 draftPlan.createRow(i);
                 if(i > 0) {
                     draftPlan.getRow(i).createCell(0).setCellValue(i);
@@ -103,8 +103,7 @@ public class Main {
             draftPlan.getRow(13).createCell(1).setCellValue("Tight End");
             draftPlan.getRow(14).createCell(1).setCellValue("Kicker");
             draftPlan.getRow(15).createCell(1).setCellValue("Defense");
-            draftPlan.getRow(16).createCell(1).setCellValue("Quarterback/ Best Player");
-            for (int i = 1; i < amountDraftRounds + 2; i++) {
+            for (int i = 1; i < amountDraftRounds + 1; i++) {
                 draftPlan.getRow(i).getCell(1).setCellStyle(cellStyle);
             }
             draftPlan.autoSizeColumn(0);

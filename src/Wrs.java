@@ -150,11 +150,11 @@ public class Wrs {
 
     public static ArrayList<Wrs> reverseWerteGewichten(ArrayList<Wrs> wr, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < wr.size(); i++) {
-            wr.get(i).setReceptions(97 - wr.get(i).getReceptions() / tierD);
-            wr.get(i).setReceivingYards(97 - wr.get(i).getReceivingYards() / tierC);
+            wr.get(i).setReceptions(98 - wr.get(i).getReceptions() / tierD);
+            wr.get(i).setReceivingYards(98 - wr.get(i).getReceivingYards() / tierC);
             wr.get(i).setTds(13 - wr.get(i).getTds() / tierD);
-            wr.get(i).setFfppg(97 - wr.get(i).getFfppg() / tierS);
-            wr.get(i).setTotalFFP(97 - wr.get(i).getTotalFFP() / tierB);
+            wr.get(i).setFfppg(98 - wr.get(i).getFfppg() / tierS);
+            wr.get(i).setTotalFFP(98 - wr.get(i).getTotalFFP() / tierB);
             wr.get(i).setQbs(33 - wr.get(i).getQbs() / tierD);
             wr.get(i).setDraftorder(107 - wr.get(i).getDraftorder() /  tierS);
         }

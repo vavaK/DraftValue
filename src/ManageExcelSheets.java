@@ -9,6 +9,19 @@ import java.util.ArrayList;
 
 public class ManageExcelSheets {
 
+    /**
+     * Erstellen der Excel-Datei
+     *
+     * ToDO: In Methoden Aufteilen.
+     *
+     * @param amountDraftRounds
+     * @param qbList
+     * @param wrList
+     * @param teList
+     * @param rbsList
+     * @param kickerList
+     * @param defenseList
+     */
     public static void createExcel(int amountDraftRounds, ArrayList<Qbs> qbList, ArrayList<Wrs> wrList, ArrayList<Tes> teList, ArrayList<Rbs> rbsList, ArrayList<Kicker> kickerList, ArrayList<Defense> defenseList) {
         try {
             HSSFWorkbook wb = new HSSFWorkbook();
@@ -63,8 +76,8 @@ public class ManageExcelSheets {
             draftPlan.autoSizeColumn(0);
             draftPlan.autoSizeColumn(1);
 
-            String[] captions = {"Rank", "Value", "Name", "Team", "Draft Order", "Passing Yards", "Cmp Pct", "TD/INT", "FFPpG", "Total FFP", "WR-Room", "Rookie", "Bye Week", "Receptions", "Receiving Yards", "TD", "QB", "Rushing Attempts", "Rushing Yards", "O-Line", "Attempts", "Made", "Pct", "XP", "50+", "Order", "Sacks", "Safeties", "Fumble Recoveries", "Ints"};
-            int[] qbCaption = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+            String[] captions = {"Rank", "Value", "Name", "Team", "Draft Order", "Passing Yards", "Cmp Pct", "TD/INT", "FFPpG", "Total FFP", "WR-Room", "Rookie", "Bye Week", "Receptions", "Receiving Yards", "TD", "QB", "Rushing Attempts", "Rushing Yards", "O-Line", "Attempts", "Made", "Pct", "XP", "50+", "Order", "Sacks", "Safeties", "Fumble Recoveries", "Ints", "Fumbles"};
+            int[] qbCaption = {0, 1, 2, 3, 4, 5, 6, 7, 8, 18, 30, 9, 10, 11, 12};
             int[] wrTeCaption = {0, 1, 2, 3, 4, 13, 14, 15, 8, 9, 16, 11, 12};
             int[] rbCaption = {0, 1, 2, 3, 4, 17, 18, 13, 14, 15, 19, 8, 9, 11, 12};
             int[] kickerCaption = {0, 1, 2, 3, 4, 20, 21, 22, 23, 24, 8, 9, 12};
@@ -83,13 +96,15 @@ public class ManageExcelSheets {
                 quarterbackSheet.getRow(i + 1).createCell(3).setCellValue(qbList.get(i).getTeam());
                 quarterbackSheet.getRow(i + 1).createCell(4).setCellValue(qbList.get(i).getDraftOrder());
                 quarterbackSheet.getRow(i + 1).createCell(5).setCellValue(qbList.get(i).getPassingYards());
-                quarterbackSheet.getRow(i + 1).createCell(6).setCellValue(qbList.get(i).getCmpPct());
-                quarterbackSheet.getRow(i + 1).createCell(7).setCellValue(qbList.get(i).getTdInt());
-                quarterbackSheet.getRow(i + 1).createCell(8).setCellValue(qbList.get(i).getFfppg());
-                quarterbackSheet.getRow(i + 1).createCell(9).setCellValue(qbList.get(i).getTotalFFP());
-                quarterbackSheet.getRow(i + 1).createCell(10).setCellValue(qbList.get(i).getWrRoom());
-                quarterbackSheet.getRow(i + 1).createCell(11).setCellValue(qbList.get(i).getRookie().toString());
-                quarterbackSheet.getRow(i + 1).createCell(12).setCellValue(qbList.get(i).getByeWeek());
+                quarterbackSheet.getRow(i + 1).createCell(6).setCellValue(qbList.get(i).getRushingYards());
+                quarterbackSheet.getRow(i + 1).createCell(7).setCellValue(qbList.get(i).getFumbles());
+                quarterbackSheet.getRow(i + 1).createCell(8).setCellValue(qbList.get(i).getCmpPct());
+                quarterbackSheet.getRow(i + 1).createCell(9).setCellValue(qbList.get(i).getTdInt());
+                quarterbackSheet.getRow(i + 1).createCell(10).setCellValue(qbList.get(i).getFfppg());
+                quarterbackSheet.getRow(i + 1).createCell(11).setCellValue(qbList.get(i).getTotalFFP());
+                quarterbackSheet.getRow(i + 1).createCell(12).setCellValue(qbList.get(i).getWrRoom());
+                quarterbackSheet.getRow(i + 1).createCell(13).setCellValue(qbList.get(i).getRookie().toString());
+                quarterbackSheet.getRow(i + 1).createCell(14).setCellValue(qbList.get(i).getByeWeek());
             }
 
             wideReceiverSheet.createRow(0);

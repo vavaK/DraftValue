@@ -5,6 +5,8 @@ public class Qbs {
     private int position;
     private double passingYards;
     private double rushingYards;
+
+    private double fumbles;
     private double ffppg;
     private double totalFFP;
     private double draftOrder;
@@ -16,11 +18,13 @@ public class Qbs {
     private String team;
     private int byeWeek;
 
-    public Qbs(String name, String team, int position, double passingYards, double rushingYards, double ffppg, double totalFFP, double draftOrder, double tdInt, double cmpPct, double wrRoom, boolean rookie, double value, int byeWeek) {
+    public Qbs(String name, String team, int position, double passingYards, double rushingYards, double fumbles, double ffppg, double totalFFP, double draftOrder, double tdInt, double cmpPct, double wrRoom, boolean rookie, double value, int byeWeek) {
         this.name = name;
         this.team = team;
         this.position = position;
         this.passingYards = passingYards;
+        this.rushingYards = rushingYards;
+        this.fumbles = fumbles;
         this.ffppg = ffppg;
         this.totalFFP = totalFFP;
         this.draftOrder = draftOrder;
@@ -51,6 +55,8 @@ public class Qbs {
     public void setRushingYards(double rushingYards) {
         this.rushingYards = rushingYards;
     }
+
+    public void setFumbles(double fumbles) {this.fumbles = fumbles;}
 
     public void setFfppg(double ffppg) {
         this.ffppg = ffppg;
@@ -108,6 +114,8 @@ public class Qbs {
         return rushingYards;
     }
 
+    public double getFumbles() {return fumbles;}
+
     public double getFfppg() {
         return ffppg;
     }
@@ -144,34 +152,66 @@ public class Qbs {
         return value;
     }
 
+    /**
+     * Gewichtet die Bestenliste der QBs und erstellt ein Highscore.
+     *
+     * @param qb
+     * @param tierS
+     * @param tierA
+     * @param tierB
+     * @param tierC
+     * @param tierD
+     * @param tierE
+     * @return
+     */
     public static ArrayList<Qbs> werteGewichten(ArrayList<Qbs> qb, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < qb.size(); i++) {
-            qb.get(i).setPassingYards((33 - qb.get(i).getPassingYards()) * tierB);
-            qb.get(i).setRushingYards((33 - qb.get(i).getRushingYards()) * tierB);
-            qb.get(i).setFfppg((33 - qb.get(i).getFfppg()) * tierA);
-            qb.get(i).setTotalFFP((33 - qb.get(i).getTotalFFP()) * tierB);
-            qb.get(i).setDraftOrder((33 - qb.get(i).getDraftOrder()) * tierS);
-            qb.get(i).setTdInt((33 - qb.get(i).getTdInt()) * tierB);
-            qb.get(i).setCmpPct((33 - qb.get(i).getCmpPct()) * tierE);
-            qb.get(i).setWrRoom((33 - qb.get(i).getWrRoom()) * tierD);
+            qb.get(i).setPassingYards((qb.size() + 1 - qb.get(i).getPassingYards()) * tierB);
+            qb.get(i).setRushingYards((qb.size() + 1 - qb.get(i).getRushingYards()) * tierB);
+            qb.get(i).setFumbles(qb.size() + 1 - qb.get(i).getFumbles() * tierC);
+            qb.get(i).setFfppg((qb.size() + 1 - qb.get(i).getFfppg()) * tierA);
+            qb.get(i).setTotalFFP((qb.size() + 1 - qb.get(i).getTotalFFP()) * tierB);
+            qb.get(i).setDraftOrder((qb.size() + 1 - qb.get(i).getDraftOrder()) * tierS);
+            qb.get(i).setTdInt((qb.size() + 1 - qb.get(i).getTdInt()) * tierB);
+            qb.get(i).setCmpPct((qb.size() + 1 - qb.get(i).getCmpPct()) * tierE);
+            qb.get(i).setWrRoom((qb.size() + 1 - qb.get(i).getWrRoom()) * tierD);
         }
         return qb;
     }
 
+    /**
+     * Setzt die Werte der Spieler in ein Ranking. Der Beste ist 1 der schlechteste n.
+     *
+     * @param qb
+     * @param tierS
+     * @param tierA
+     * @param tierB
+     * @param tierC
+     * @param tierD
+     * @param tierE
+     * @return
+     */
     public static ArrayList<Qbs> reverseWerteGewichten(ArrayList<Qbs> qb, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < qb.size(); i++) {
-            qb.get(i).setPassingYards(33 - qb.get(i).getPassingYards() / tierB);
-            qb.get(i).setRushingYards(33 - qb.get(i).getRushingYards() / tierB);
-            qb.get(i).setFfppg(33 - qb.get(i).getFfppg() / tierA);
-            qb.get(i).setTotalFFP(33 - qb.get(i).getTotalFFP() / tierB);
-            qb.get(i).setDraftOrder(33 - qb.get(i).getDraftOrder() / tierS);
-            qb.get(i).setTdInt(33 - qb.get(i).getTdInt() / tierB);
-            qb.get(i).setCmpPct(33 - qb.get(i).getCmpPct() / tierE);
-            qb.get(i).setWrRoom(33 - qb.get(i).getWrRoom() / tierD);
+            qb.get(i).setPassingYards(qb.size() + 1 - qb.get(i).getPassingYards() / tierB);
+            qb.get(i).setRushingYards(qb.size() + 1 - qb.get(i).getRushingYards() / tierB);
+            qb.get(i).setFumbles(qb.size() + 1 - qb.get(i).getFumbles() / tierC);
+            qb.get(i).setFfppg(qb.size() + 1 - qb.get(i).getFfppg() / tierA);
+            qb.get(i).setTotalFFP(qb.size() + 1 - qb.get(i).getTotalFFP() / tierB);
+            qb.get(i).setDraftOrder(qb.size() + 1 - qb.get(i).getDraftOrder() / tierS);
+            qb.get(i).setTdInt(qb.size() + 1 - qb.get(i).getTdInt() / tierB);
+            qb.get(i).setCmpPct(qb.size() + 1 - qb.get(i).getCmpPct() / tierE);
+            qb.get(i).setWrRoom(qb.size() + 1 - qb.get(i).getWrRoom() / tierD);
         }
         return qb;
     }
 
+    /**
+     * Berechnet Highscore(Value) für jeden Spieler.
+     *
+     * @param qb
+     * @return
+     */
     public static ArrayList<Qbs> valueBerechnen(ArrayList<Qbs> qb) {
         for(int i = 0; i < qb.size(); i++) {
             qb.get(i).setValue(qb.get(i).getPassingYards() + qb.get(i).getRushingYards() + qb.get(i).getFfppg() + qb.get(i).getTotalFFP() + qb.get(i).getDraftOrder() + qb.get(i).getTdInt() + qb.get(i).getCmpPct() + qb.get(i).getWrRoom());
@@ -179,8 +219,15 @@ public class Qbs {
         return qb;
     }
 
+    /**
+     * Sortiert die Spieler basierend auf ihrer Value.
+     *
+     * @param qb
+     * @param amountRookies
+     * @return
+     */
     public static ArrayList<Qbs> sortAfterValue(ArrayList<Qbs> qb, int amountRookies) {
-        Qbs pivot = new Qbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, false, 0, 0);
+        Qbs pivot = new Qbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, 0, false, 0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Qbs> sortedQBs = new ArrayList<Qbs>();
@@ -222,6 +269,11 @@ public class Qbs {
         return sortedQBs;
     }
 
+    /**
+     * Gibt die Quarterbackliste in der Konsole aus.
+     *
+     * @param qb
+     */
     public static void printQBs(ArrayList<Qbs> qb) {
         System.out.println("QB-List:");
         for(int i = 0; i < qb.size(); i++) {

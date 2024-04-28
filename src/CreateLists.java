@@ -200,6 +200,12 @@ public class CreateLists {
 
     /**
      * Creates and adds all quarterbacks to the quarterbackList
+     *
+     * ToDO: Create multiple objects in a loop
+     *
+     * ToDO: Daten der Spieler aus Exceldatei einlesen
+     *
+     * ToDo: Automatisches sortieren der Kategorien der Spieler aus Excel-Dateidaten
      */
     private static void addQbToList() {
         Qbs kylerMurray = new Qbs("Kyler Murray", "Arizona Cardinals", 0, 19, 6, 0, 8, 18, 22, 17, 11, 28,  false, 0, 0);

@@ -14,8 +14,9 @@ public class Wrs {
     private Boolean rookie;
     private double value;
     private int byeWeek;
+    private double id;
 
-    public Wrs(String name, String team, int position, double receptions, double receivingYards, double tds, double ffppg, double totalFFP, double qbs, double draftOrder, Boolean rookie, double value, int byeWeek) {
+    public Wrs(String name, String team, int position, double receptions, double receivingYards, double tds, double ffppg, double totalFFP, double qbs, double draftOrder, Boolean rookie, double value, int byeWeek, double id) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -29,6 +30,7 @@ public class Wrs {
         this.rookie = rookie;
         this.value = value;
         this.byeWeek = byeWeek;
+        this.id = id;
     }
 
     public String getName() {
@@ -135,6 +137,14 @@ public class Wrs {
         this.value = value;
     }
 
+    public double getId() {
+        return id;
+    }
+
+    public void setId(double id) {
+        this.id = id;
+    }
+
     public static ArrayList<Wrs> werteGewichten(ArrayList<Wrs> wr, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < wr.size(); i++) {
             wr.get(i).setReceptions((98 - wr.get(i).getReceptions()) * tierD);
@@ -169,7 +179,7 @@ public class Wrs {
     }
 
     public static ArrayList<Wrs> sortAfterValue(ArrayList<Wrs> wr, int amountRookies) {
-        Wrs pivot = new Wrs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, false, 0, 0);
+        Wrs pivot = new Wrs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, false, 0, 0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Wrs> sortedWRs = new ArrayList<Wrs>();
@@ -210,6 +220,103 @@ public class Wrs {
             sortedWRs.get(i).setPosition(i + 1);
         }
         return sortedWRs;
+    }
+
+    /**
+     * Schreibt alle Attribute in ein Array, damit automatisch prüfbar
+     *
+     * @param wrsArrayList Liste aller Wide Receiver
+     *
+     */
+    public static ArrayList<ArrayList<Double>> createArrayWithWRInformation(ArrayList<Wrs> wrsArrayList) {
+        Wrs wr;
+        ArrayList<ArrayList<Double>> listOfWrs = new ArrayList<>();
+
+        for(int i = 0; i < wrsArrayList.size(); i++) {
+            wr = wrsArrayList.get(i);
+            double[] wrsStats = {wr.getId(), wr.getDraftorder(), wr.getReceptions(), wr.getReceivingYards(), wr.getTds(), wr.getFfppg(), wr.getTotalFFP(), wr.getQbs()};
+            ArrayList<Double> wideReceiver = new ArrayList<Double>();
+            for(int j = 0; j < wrsStats.length; j++) {
+                wideReceiver.add(wrsStats[j]);
+            }
+            listOfWrs.add(wideReceiver);
+        }
+        return listOfWrs;
+    }
+
+    /**
+     * Alle Werte der Wide Receiver werden sortiert und eingeranked
+     * Höchster Wert -> 1, Niedrigster Wert -> |Wide Receiver|
+     *
+     * @param wrsArrayList Liste aller Wide Receiver
+     *
+     * @return
+     */
+    public static ArrayList<ArrayList<Double>> sortWRList(ArrayList<Wrs> wrsArrayList) {
+        ArrayList<ArrayList<Double>> listOfWrs = new ArrayList<ArrayList<Double>>();
+        ArrayList<ArrayList<Double>> sortedListOfWRs = createArrayWithWRInformation(wrsArrayList);
+        double[] pivot = new double[3];
+        int counter = 0;
+        int position = -1;
+        Boolean same = false;
+        for(int i = 1; i <= 7; i++) {
+            pivot[2] = -1;
+            listOfWrs.addAll(sortedListOfWRs);
+            while(!listOfWrs.isEmpty()) {
+                pivot[0] = listOfWrs.get(0).get(0);
+                pivot[1] = listOfWrs.get(0).get(i);
+                for (int j = 0; j < listOfWrs.size(); j++) {
+                    if(listOfWrs.get(j).get(i) == pivot[2]) {
+                        pivot[0] = listOfWrs.get(j).get(0);
+                        pivot[1] = listOfWrs.get(j).get(i);
+                        same = true;
+                        break;
+                    } else if(listOfWrs.get(j).get(i) > pivot[1]) {
+                        pivot[0] = listOfWrs.get(j).get(0);
+                        pivot[1] = listOfWrs.get(j).get(i);
+                    }
+                }
+                do {
+                    position += 1;
+                } while(pivot[0] != listOfWrs.get(position).get(0));
+                if(!same) {
+                    counter += 1;
+                } else {
+                    same = false;
+                }
+                sortedListOfWRs.get((int)pivot[0] - 1).set(i, (double)counter);
+                System.out.println(sortedListOfWRs.get(position).get(i));
+                System.out.println("ID: " + pivot[0] + ", Value: " + pivot[1]);
+                System.out.println("ID(sorted_1): " + sortedListOfWRs.get(position).get(0) + ", Value(sorted_1): " + sortedListOfWRs.get(position).get(i));
+                listOfWrs.remove(position);
+                position = -1;
+                pivot[2] = pivot[1];
+                System.out.println("Size: " + listOfWrs.size());
+            }
+            counter = 0;
+        }
+        return sortedListOfWRs;
+    }
+
+    /**
+     * Zurückschreiben aller Werte aus der doppelten ArrayListe zurück in Wide Receiver Liste
+     *
+     * @param wrsArrayList Liste aller Wide Receiver
+     *
+     * @return Sortierte Liste aller Wide Receiver (eingeranked/sortiert)
+     */
+    public static ArrayList<Wrs> rewriteWRValues(ArrayList<Wrs> wrsArrayList) {
+        ArrayList<ArrayList<Double>> listOfWRs = sortWRList(wrsArrayList);
+        for (Wrs wr:wrsArrayList) {
+            wr.setDraftorder(listOfWRs.get((int)wr.getId() - 1).get(1));
+            wr.setReceptions(listOfWRs.get((int)wr.getId() - 1).get(2));
+            wr.setReceivingYards(listOfWRs.get((int)wr.getId() - 1).get(3));
+            wr.setTds(listOfWRs.get((int)wr.getId() - 1).get(4));
+            wr.setFfppg(listOfWRs.get((int)wr.getId() - 1).get(5));
+            wr.setTotalFFP(listOfWRs.get((int)wr.getId() - 1).get(6));
+            wr.setQbs(listOfWRs.get((int)wr.getId() - 1).get(7));
+        }
+        return wrsArrayList;
     }
 
     public static void printWrs(ArrayList<Wrs> wr) {

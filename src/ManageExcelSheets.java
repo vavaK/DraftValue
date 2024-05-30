@@ -6,12 +6,15 @@ import org.apache.poi.ss.usermodel.HorizontalAlignment;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ManageExcelSheets {
 
     private static final String[] draftOrderPositions = {"Position", "Wide Receiver", "Wide Receiver", "Wide Receiver", "Running Back", "Tight End", "Flex Spot", "Quarterback", "Wide Receiver", "Kicker", "Defense", "Wide Receiver", "Running Back", "Tight End", "Quarterback", "Wide Receiver", "Kicker"};
-    private static final String[] captions = {"Rank", "Value", "Name", "Team", "Draft Order", "Passing Yards", "Cmp Pct", "TD/INT", "FFPpG", "Total FFP", "WR-Room", "Rookie", "Bye Week", "Receptions", "Receiving Yards", "TD", "QB", "Rushing Attempts", "Rushing Yards", "O-Line", "Attempts", "Made", "Pct", "XP", "50+", "Order", "Sacks", "Safeties", "Fumble Recoveries", "Ints", "Fumbles"};
-    private static final int[] qbCaption = {0, 1, 2, 3, 4, 5, 6, 7, 8, 18, 30, 9, 10, 11, 12};
+    private static final String[] captions = {"Rank", "Value", "Name", "Team", "Draft Order", "Passing Yards", "Cmp Pct", "TD", "FFPpG", "Total FFP",
+            "WR-Room", "Rookie", "Bye Week", "Receptions", "Receiving Yards", "QB", "Rushing Attempts", "Rushing Yards", "O-Line", "Attempts",
+            "Made", "Pct", "XP", "50+", "Order", "Sacks", "Safeties", "Fumble Recoveries", "Ints", "Fumbles"};
+    private static final int[] qbCaption = {0, 1, 2, 3, 4, 5, 17, 29, 6, 7, 28, 8, 9, 10, 11, 12};
     private static final int[] wrTeCaption = {0, 1, 2, 3, 4, 13, 14, 15, 8, 9, 16, 11, 12};
     private static final int[] rbCaption = {0, 1, 2, 3, 4, 17, 18, 13, 14, 15, 19, 8, 9, 11, 12};
     private static final int[] kickerCaption = {0, 1, 2, 3, 4, 20, 21, 22, 23, 24, 8, 9, 12};
@@ -64,7 +67,7 @@ public class ManageExcelSheets {
             giveKickerValue(kickerList, kickerSheet);
             giveDefenseValue(defenseList, defenseSheet);
 
-            setupExcelCells(qbList, 15, quarterbackSheet, cellStyle, headerStyle);
+            setupExcelCells(qbList, 16, quarterbackSheet, cellStyle, headerStyle);
             setupExcelCells(wrList, 13, wideReceiverSheet, cellStyle, headerStyle);
             setupExcelCells(teList, 13, tightEndSheet, cellStyle, headerStyle);
             setupExcelCells(rbsList, 15, runningBackSheet, cellStyle, headerStyle);
@@ -133,12 +136,13 @@ public class ManageExcelSheets {
             quarterbackSheet.getRow(i + 1).createCell(6).setCellValue(qbList.get(i).getRushingYards());
             quarterbackSheet.getRow(i + 1).createCell(7).setCellValue(qbList.get(i).getFumbles());
             quarterbackSheet.getRow(i + 1).createCell(8).setCellValue(qbList.get(i).getCmpPct());
-            quarterbackSheet.getRow(i + 1).createCell(9).setCellValue(qbList.get(i).getTdInt());
-            quarterbackSheet.getRow(i + 1).createCell(10).setCellValue(qbList.get(i).getFfppg());
-            quarterbackSheet.getRow(i + 1).createCell(11).setCellValue(qbList.get(i).getTotalFFP());
-            quarterbackSheet.getRow(i + 1).createCell(12).setCellValue(qbList.get(i).getWrRoom());
-            quarterbackSheet.getRow(i + 1).createCell(13).setCellValue(qbList.get(i).getRookie().toString());
-            quarterbackSheet.getRow(i + 1).createCell(14).setCellValue(qbList.get(i).getByeWeek());
+            quarterbackSheet.getRow(i + 1).createCell(9).setCellValue(qbList.get(i).getTd());
+            quarterbackSheet.getRow(i + 1).createCell(10).setCellValue(qbList.get(i).getInterception());
+            quarterbackSheet.getRow(i + 1).createCell(11).setCellValue(qbList.get(i).getFfppg());
+            quarterbackSheet.getRow(i + 1).createCell(12).setCellValue(qbList.get(i).getTotalFFP());
+            quarterbackSheet.getRow(i + 1).createCell(13).setCellValue(qbList.get(i).getWrRoom());
+            quarterbackSheet.getRow(i + 1).createCell(14).setCellValue(qbList.get(i).getRookie().toString());
+            quarterbackSheet.getRow(i + 1).createCell(15).setCellValue(qbList.get(i).getByeWeek());
         }
     }
 
@@ -232,4 +236,81 @@ public class ManageExcelSheets {
             defenseSheet.getRow(m + 1).createCell(9).setCellValue(defenseList.get(m).getByeWeek());
         }
     }
+
+    /**
+    public static ArrayList<Double> createArrayWithWRInformation(ArrayList<Wrs> wrsArrayList, int id) {
+        Qbs qb;
+        ArrayList<ArrayList<Double>> listOfQbs = new ArrayList<>();
+        for(int i = 0; i < qbsArrayList.size(); i++) {
+            qb = qbsArrayList.get(i);
+            double[] qbsStats = {qb.getId(), qb.getDraftOrder(), qb.getPassingYards(), qb.getRushingYards(), qb.getFumbles(), qb.getCmpPct(), qb.getTd(), qb.getFfppg(), qb.getTotalFFP(), qb.getWrRoom()};
+            ArrayList<Double> quarterback = new ArrayList<Double>();
+            for(int j = 0; j < qbsStats.length; j++) {
+                quarterback.add(qbsStats[j]);
+            }
+            listOfQbs.add(quarterback);
+        }
+        return listOfQbs;
+    }
+
+    public static ArrayList<Double> createArrayWithTEInformation(ArrayList<Tes> tesArrayList, int id) {
+        Qbs qb;
+        ArrayList<ArrayList<Double>> listOfQbs = new ArrayList<>();
+        for(int i = 0; i < qbsArrayList.size(); i++) {
+            qb = qbsArrayList.get(i);
+            double[] qbsStats = {qb.getId(), qb.getDraftOrder(), qb.getPassingYards(), qb.getRushingYards(), qb.getFumbles(), qb.getCmpPct(), qb.getTd(), qb.getFfppg(), qb.getTotalFFP(), qb.getWrRoom()};
+            ArrayList<Double> quarterback = new ArrayList<Double>();
+            for(int j = 0; j < qbsStats.length; j++) {
+                quarterback.add(qbsStats[j]);
+            }
+            listOfQbs.add(quarterback);
+        }
+        return listOfQbs;
+    }
+
+    public static ArrayList<Double> createArrayWithRBInformation(ArrayList<Rbs> rbsArrayList, int id) {
+        Qbs qb;
+        ArrayList<ArrayList<Double>> listOfQbs = new ArrayList<>();
+        for(int i = 0; i < qbsArrayList.size(); i++) {
+            qb = qbsArrayList.get(i);
+            double[] qbsStats = {qb.getId(), qb.getDraftOrder(), qb.getPassingYards(), qb.getRushingYards(), qb.getFumbles(), qb.getCmpPct(), qb.getTd(), qb.getFfppg(), qb.getTotalFFP(), qb.getWrRoom()};
+            ArrayList<Double> quarterback = new ArrayList<Double>();
+            for(int j = 0; j < qbsStats.length; j++) {
+                quarterback.add(qbsStats[j]);
+            }
+            listOfQbs.add(quarterback);
+        }
+        return listOfQbs;
+    }
+
+    public static ArrayList<Double> createArrayWithKickerInformation(ArrayList<Kicker> kickerArrayList, int id) {
+        Qbs qb;
+        ArrayList<ArrayList<Double>> listOfQbs = new ArrayList<>();
+        for(int i = 0; i < qbsArrayList.size(); i++) {
+            qb = qbsArrayList.get(i);
+            double[] qbsStats = {qb.getId(), qb.getDraftOrder(), qb.getPassingYards(), qb.getRushingYards(), qb.getFumbles(), qb.getCmpPct(), qb.getTd(), qb.getFfppg(), qb.getTotalFFP(), qb.getWrRoom()};
+            ArrayList<Double> quarterback = new ArrayList<Double>();
+            for(int j = 0; j < qbsStats.length; j++) {
+                quarterback.add(qbsStats[j]);
+            }
+            listOfQbs.add(quarterback);
+        }
+        return listOfQbs;
+    }
+
+    public static ArrayList<Double> createArrayWithDefenseInformation(ArrayList<Defense> defenseArrayList, int id) {
+        Qbs qb;
+        ArrayList<ArrayList<Double>> listOfQbs = new ArrayList<>();
+        for(int i = 0; i < qbsArrayList.size(); i++) {
+            qb = qbsArrayList.get(i);
+            double[] qbsStats = {qb.getId(), qb.getDraftOrder(), qb.getPassingYards(), qb.getRushingYards(), qb.getFumbles(), qb.getCmpPct(), qb.getTd(), qb.getFfppg(), qb.getTotalFFP(), qb.getWrRoom()};
+            ArrayList<Double> quarterback = new ArrayList<Double>();
+            for(int j = 0; j < qbsStats.length; j++) {
+                quarterback.add(qbsStats[j]);
+            }
+            listOfQbs.add(quarterback);
+        }
+        return listOfQbs;
+    }
+     */
 }

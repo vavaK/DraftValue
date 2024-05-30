@@ -10,15 +10,18 @@ public class Qbs {
     private double ffppg;
     private double totalFFP;
     private double draftOrder;
-    private double tdInt;
+    private double td;
+
+    private double interception;
     private double cmpPct;
     private double wrRoom;
     private boolean rookie;
     private double value;
     private String team;
     private int byeWeek;
+    private double id;
 
-    public Qbs(String name, String team, int position, double passingYards, double rushingYards, double fumbles, double ffppg, double totalFFP, double draftOrder, double tdInt, double cmpPct, double wrRoom, boolean rookie, double value, int byeWeek) {
+    public Qbs(String name, String team, int position, double passingYards, double rushingYards, double fumbles, double ffppg, double totalFFP, double draftOrder, double td, double interception, double cmpPct, double wrRoom, boolean rookie, double value, int byeWeek, double id) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -28,12 +31,14 @@ public class Qbs {
         this.ffppg = ffppg;
         this.totalFFP = totalFFP;
         this.draftOrder = draftOrder;
-        this.tdInt = tdInt;
+        this.td = td;
+        this.interception = interception;
         this.cmpPct = cmpPct;
         this.wrRoom = wrRoom;
         this.rookie = rookie;
         this.value = value;
         this.byeWeek = byeWeek;
+        this.id = id;
     }
 
     public void setName(String name) {
@@ -70,8 +75,12 @@ public class Qbs {
         this.draftOrder = draftOrder;
     }
 
-    public void setTdInt(double tdInt) {
-        this.tdInt = tdInt;
+    public void setTd(double td) {
+        this.td = td;
+    }
+
+    public void setInterception(double interception) {
+        this.interception = interception;
     }
 
     public void setCmpPct(double cmpPct) {
@@ -92,6 +101,10 @@ public class Qbs {
 
     public void setByeWeek(int byeWeek) {
         this.byeWeek = byeWeek;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -128,8 +141,12 @@ public class Qbs {
         return draftOrder;
     }
 
-    public double getTdInt() {
-        return tdInt;
+    public double getTd() {
+        return td;
+    }
+
+    public double getInterception() {
+        return interception;
     }
 
     public double getCmpPct() {
@@ -152,6 +169,10 @@ public class Qbs {
         return value;
     }
 
+    public double getId() {
+        return id;
+    }
+
     /**
      * Gewichtet die Bestenliste der QBs und erstellt ein Highscore.
      *
@@ -168,11 +189,12 @@ public class Qbs {
         for (int i = 0; i < qb.size(); i++) {
             qb.get(i).setPassingYards((qb.size() + 1 - qb.get(i).getPassingYards()) * tierB);
             qb.get(i).setRushingYards((qb.size() + 1 - qb.get(i).getRushingYards()) * tierB);
-            qb.get(i).setFumbles(qb.size() + 1 - qb.get(i).getFumbles() * tierC);
+            qb.get(i).setFumbles((qb.size() + 1 - qb.get(i).getFumbles()) * tierC);
             qb.get(i).setFfppg((qb.size() + 1 - qb.get(i).getFfppg()) * tierA);
             qb.get(i).setTotalFFP((qb.size() + 1 - qb.get(i).getTotalFFP()) * tierB);
             qb.get(i).setDraftOrder((qb.size() + 1 - qb.get(i).getDraftOrder()) * tierS);
-            qb.get(i).setTdInt((qb.size() + 1 - qb.get(i).getTdInt()) * tierB);
+            qb.get(i).setTd((qb.size() + 1 - qb.get(i).getTd()) * tierB);
+            qb.get(i).setInterception((qb.size() + 1 - qb.get(i).getInterception()) * tierB);
             qb.get(i).setCmpPct((qb.size() + 1 - qb.get(i).getCmpPct()) * tierE);
             qb.get(i).setWrRoom((qb.size() + 1 - qb.get(i).getWrRoom()) * tierD);
         }
@@ -199,7 +221,8 @@ public class Qbs {
             qb.get(i).setFfppg(qb.size() + 1 - qb.get(i).getFfppg() / tierA);
             qb.get(i).setTotalFFP(qb.size() + 1 - qb.get(i).getTotalFFP() / tierB);
             qb.get(i).setDraftOrder(qb.size() + 1 - qb.get(i).getDraftOrder() / tierS);
-            qb.get(i).setTdInt(qb.size() + 1 - qb.get(i).getTdInt() / tierB);
+            qb.get(i).setTd(qb.size() + 1 - qb.get(i).getTd() / tierB);
+            qb.get(i).setInterception(qb.size() + 1 - qb.get(i).getInterception() / tierB);
             qb.get(i).setCmpPct(qb.size() + 1 - qb.get(i).getCmpPct() / tierE);
             qb.get(i).setWrRoom(qb.size() + 1 - qb.get(i).getWrRoom() / tierD);
         }
@@ -214,7 +237,7 @@ public class Qbs {
      */
     public static ArrayList<Qbs> valueBerechnen(ArrayList<Qbs> qb) {
         for(int i = 0; i < qb.size(); i++) {
-            qb.get(i).setValue(qb.get(i).getPassingYards() + qb.get(i).getRushingYards() + qb.get(i).getFfppg() + qb.get(i).getTotalFFP() + qb.get(i).getDraftOrder() + qb.get(i).getTdInt() + qb.get(i).getCmpPct() + qb.get(i).getWrRoom());
+            qb.get(i).setValue(qb.get(i).getPassingYards() + qb.get(i).getRushingYards() + qb.get(i).getFfppg() + qb.get(i).getTotalFFP() + qb.get(i).getDraftOrder() + qb.get(i).getTd() + qb.get(i).getCmpPct() + qb.get(i).getWrRoom());
         }
         return qb;
     }
@@ -227,7 +250,7 @@ public class Qbs {
      * @return
      */
     public static ArrayList<Qbs> sortAfterValue(ArrayList<Qbs> qb, int amountRookies) {
-        Qbs pivot = new Qbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, 0, false, 0, 0);
+        Qbs pivot = new Qbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, 0, 0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Qbs> sortedQBs = new ArrayList<Qbs>();
@@ -267,6 +290,107 @@ public class Qbs {
             sortedQBs.get(i).setPosition(i + 1);
         }
         return sortedQBs;
+    }
+
+    /**
+     * Schreibt alle Attribute in ein Array, damit automatisch prüfbar
+     *
+     * @param qbsArrayList Liste aller Quarterbacks
+     *
+     * @return Doppelte ArrayListe mit den Werten aller Quarterbacks
+     */
+    public static ArrayList<ArrayList<Double>> createArrayWithQBInformation(ArrayList<Qbs> qbsArrayList) {
+        Qbs qb;
+        ArrayList<ArrayList<Double>> listOfQbs = new ArrayList<>();
+
+        for(int i = 0; i < qbsArrayList.size(); i++) {
+            qb = qbsArrayList.get(i);
+            double[] qbsStats = {qb.getId(), qb.getDraftOrder(), qb.getPassingYards(), qb.getRushingYards(), qb.getFumbles(), qb.getCmpPct(), qb.getTd(), qb.getInterception(), qb.getFfppg(), qb.getTotalFFP(), qb.getWrRoom()};
+            ArrayList<Double> quarterback = new ArrayList<Double>();
+            for(int j = 0; j < qbsStats.length; j++) {
+                quarterback.add(qbsStats[j]);
+            }
+            listOfQbs.add(quarterback);
+        }
+        return listOfQbs;
+    }
+
+    /**
+     * Alle Werte der Quarterbacks werden sortiert und eingeranked
+     * Höchster Wert -> 1, Niedrigster Wert -> |Quarterbacks|
+     *
+     * @param qbsArrayList Liste aller Quarterbacks
+     *
+     * @return
+     */
+    public static ArrayList<ArrayList<Double>> sortQBList(ArrayList<Qbs> qbsArrayList) {
+        ArrayList<ArrayList<Double>> listOfQBs = new ArrayList<ArrayList<Double>>();
+        ArrayList<ArrayList<Double>> sortedListOfQBs = createArrayWithQBInformation(qbsArrayList);
+        double[] pivot = new double[3];
+        int counter = 0;
+        int position = -1;
+        Boolean same = false;
+        for(int i = 1; i <= 10; i++) {
+            pivot[2] = -1;
+            listOfQBs.addAll(sortedListOfQBs);
+            while(!listOfQBs.isEmpty()) {
+                pivot[0] = listOfQBs.get(0).get(0);
+                pivot[1] = listOfQBs.get(0).get(i);
+                for (int j = 0; j < listOfQBs.size(); j++) {
+                    if(listOfQBs.get(j).get(i) == pivot[2]) {
+                        pivot[0] = listOfQBs.get(j).get(0);
+                        pivot[1] = listOfQBs.get(j).get(i);
+                        same = true;
+                        break;
+                    } else if(listOfQBs.get(j).get(i) > pivot[1]) {
+                        pivot[0] = listOfQBs.get(j).get(0);
+                        pivot[1] = listOfQBs.get(j).get(i);
+                    }
+                }
+                do {
+                    position += 1;
+                } while(pivot[0] != listOfQBs.get(position).get(0));
+                if(!same) {
+                    counter += 1;
+                } else {
+                    same = false;
+                }
+                sortedListOfQBs.get((int)pivot[0] - 1).set(i, (double)counter);
+                System.out.println(sortedListOfQBs.get(position).get(i));
+                System.out.println("ID: " + pivot[0] + ", Value: " + pivot[1]);
+                System.out.println("ID(sorted_1): " + sortedListOfQBs.get(position).get(0) + ", Value(sorted_1): " + sortedListOfQBs.get(position).get(i));
+                listOfQBs.remove(position);
+                position = -1;
+                pivot[2] = pivot[1];
+                System.out.println("Size: " + listOfQBs.size());
+            }
+            counter = 0;
+        }
+        return sortedListOfQBs;
+    }
+
+    /**
+     * Zurückschreiben aller Werte aus der doppelten ArrayListe zurück in Quarterbacklsite
+     *
+     * @param qbsArrayList Liste aller Quarterbacks
+     *
+     * @return Sortierte Liste aller Quarterbacks (eingeranked/sortiert)
+     */
+    public static ArrayList<Qbs> rewriteQBValues(ArrayList<Qbs> qbsArrayList) {
+        ArrayList<ArrayList<Double>> listOfQBs = sortQBList(qbsArrayList);
+        for (Qbs qb:qbsArrayList) {
+            qb.setDraftOrder(listOfQBs.get((int)qb.getId() - 1).get(1));
+            qb.setPassingYards(listOfQBs.get((int)qb.getId() - 1).get(2));
+            qb.setRushingYards(listOfQBs.get((int)qb.getId() - 1).get(3));
+            qb.setFumbles(listOfQBs.get((int)qb.getId() - 1).get(4));
+            qb.setCmpPct(listOfQBs.get((int)qb.getId() - 1).get(5));
+            qb.setTd(listOfQBs.get((int)qb.getId() - 1).get(6));
+            qb.setInterception(listOfQBs.get((int)qb.getId() - 1).get(7));
+            qb.setFfppg(listOfQBs.get((int)qb.getId() - 1).get(8));
+            qb.setTotalFFP(listOfQBs.get((int)qb.getId() - 1).get(9));
+            qb.setWrRoom(listOfQBs.get((int)qb.getId() - 1).get(10));
+        }
+        return qbsArrayList;
     }
 
     /**

@@ -273,7 +273,7 @@ public class Rbs {
      * Alle Werte der Runningbacks werden sortiert und eingeranked
      * Höchster Wert -> 1, Niedrigster Wert -> |Runningbacks|
      *
-     * @param rbsArrayList Liste aller Wide Receiver
+     * @param rbsArrayList Liste aller Runningbacks
      *
      * @return
      */
@@ -324,11 +324,11 @@ public class Rbs {
     }
 
     /**
-     * Zurückschreiben aller Werte aus der doppelten ArrayListe zurück in Tight End Liste
+     * Zurückschreiben aller Werte aus der doppelten ArrayListe zurück in Runningbackliste
      *
-     * @param rbsArrayList Liste aller Tight Ends
+     * @param rbsArrayList Liste aller Runningbacks
      *
-     * @return Sortierte Liste aller Tight Ends (eingeranked/sortiert)
+     * @return Sortierte Liste aller Runningbacks (eingeranked/sortiert)
      */
     public static ArrayList<Rbs> rewriteRBValues(ArrayList<Rbs> rbsArrayList) {
         ArrayList<ArrayList<Double>> listOfRBs = sortRBList(rbsArrayList);

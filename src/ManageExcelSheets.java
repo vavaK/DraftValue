@@ -17,7 +17,7 @@ public class ManageExcelSheets {
     private static final int[] qbCaption = {0, 1, 2, 3, 4, 5, 17, 29, 6, 7, 28, 8, 9, 10, 11, 12};
     private static final int[] wrTeCaption = {0, 1, 2, 3, 4, 13, 14, 7, 8, 9, 15, 11, 12};
     private static final int[] rbCaption = {0, 1, 2, 3, 4, 13, 14, 17, 16, 7, 18, 8, 9, 11, 12};
-    private static final int[] kickerCaption = {0, 1, 2, 3, 4, 20, 21, 22, 23, 24, 8, 9, 12};
+    private static final int[] kickerCaption = {0, 1, 2, 3, 4, 19, 20, 21, 22, 23, 8, 9, 12};
     private static final int[] defenseCaption = {0, 1, 2, 25, 26, 27, 28, 29, 15, 12};
 
     /**

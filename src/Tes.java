@@ -246,10 +246,10 @@ public class Tes {
     }
 
     /**
-     * Alle Werte der Wide Receiver werden sortiert und eingeranked
+     * Alle Werte der Tight Ends werden sortiert und eingeranked
      * Höchster Wert -> 1, Niedrigster Wert -> |Tight Ends|
      *
-     * @param tesArrayList Liste aller Wide Receiver
+     * @param tesArrayList Liste aller Tight Ends
      *
      * @return
      */

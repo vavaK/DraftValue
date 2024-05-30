@@ -17,7 +17,9 @@ public class Rbs {
     private Boolean rookie;
     private int byeWeek;
 
-    public Rbs(String name, String team, int position, double receptions, double  receivingYards, double rushingYards, double attempts, double tds, double ffppg, double totalFFP, double oLine, double draftorder, Boolean rookie, double value, int byeWeek) {
+    private double id;
+
+    public Rbs(String name, String team, int position, double receptions, double  receivingYards, double rushingYards, double attempts, double tds, double ffppg, double totalFFP, double oLine, double draftorder, Boolean rookie, double value, int byeWeek, double id) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -33,6 +35,7 @@ public class Rbs {
         this.rookie = rookie;
         this.value = value;
         this.byeWeek = byeWeek;
+        this.id = id;
     }
 
     public String getName() {
@@ -155,6 +158,14 @@ public class Rbs {
         this.byeWeek = byeWeek;
     }
 
+    public double getId() {
+        return id;
+    }
+
+    public void setId(double id) {
+        this.id = id;
+    }
+
     public static ArrayList<Rbs> werteGewichten(ArrayList<Rbs> rb, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < rb.size(); i++) {
             rb.get(i).setReceptions((42 - rb.get(i).getReceptions()) * tierC);
@@ -193,7 +204,7 @@ public class Rbs {
     }
 
     public static ArrayList<Rbs> sortAfterValue(ArrayList<Rbs> rb, int amountRookies) {
-        Rbs pivot = new Rbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, 0, false, 0, 0);
+        Rbs pivot = new Rbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, 0, false, 0, 0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Rbs> sortedRBs = new ArrayList<Rbs>();
@@ -235,6 +246,106 @@ public class Rbs {
         }
         return sortedRBs;
     }
+
+    /**
+     * Schreibt alle Attribute in ein Array, damit automatisch prüfbar
+     *
+     * @param rbsArrayList Liste aller Runningbacks
+     *
+     */
+    public static ArrayList<ArrayList<Double>> createArrayWithRBInformation(ArrayList<Rbs> rbsArrayList) {
+        Rbs rb;
+        ArrayList<ArrayList<Double>> listOfRbs = new ArrayList<>();
+
+        for(int i = 0; i < rbsArrayList.size(); i++) {
+            rb = rbsArrayList.get(i);
+            double[] rbsStats = {rb.getId(), rb.getDraftorder(), rb.getReceptions(), rb.getReceivingYards(), rb.getRushingYards(), rb.getAttempts(), rb.getTds(), rb.getoLine(), rb.getFfppg(), rb.getTotalFFP()};
+            ArrayList<Double> runningBack = new ArrayList<Double>();
+            for(int j = 0; j < rbsStats.length; j++) {
+                runningBack.add(rbsStats[j]);
+            }
+            listOfRbs.add(runningBack);
+        }
+        return listOfRbs;
+    }
+
+    /**
+     * Alle Werte der Runningbacks werden sortiert und eingeranked
+     * Höchster Wert -> 1, Niedrigster Wert -> |Runningbacks|
+     *
+     * @param rbsArrayList Liste aller Wide Receiver
+     *
+     * @return
+     */
+    public static ArrayList<ArrayList<Double>> sortRBList(ArrayList<Rbs> rbsArrayList) {
+        ArrayList<ArrayList<Double>> listOfRBs = new ArrayList<ArrayList<Double>>();
+        ArrayList<ArrayList<Double>> sortedListOfRBs = createArrayWithRBInformation(rbsArrayList);
+        double[] pivot = new double[3];
+        int counter = 0;
+        int position = -1;
+        Boolean same = false;
+        for(int i = 1; i <= 9; i++) {
+            pivot[2] = -1;
+            listOfRBs.addAll(sortedListOfRBs);
+            while(!listOfRBs.isEmpty()) {
+                pivot[0] = listOfRBs.get(0).get(0);
+                pivot[1] = listOfRBs.get(0).get(i);
+                for (int j = 0; j < listOfRBs.size(); j++) {
+                    if(listOfRBs.get(j).get(i) == pivot[2]) {
+                        pivot[0] = listOfRBs.get(j).get(0);
+                        pivot[1] = listOfRBs.get(j).get(i);
+                        same = true;
+                        break;
+                    } else if(listOfRBs.get(j).get(i) > pivot[1]) {
+                        pivot[0] = listOfRBs.get(j).get(0);
+                        pivot[1] = listOfRBs.get(j).get(i);
+                    }
+                }
+                do {
+                    position += 1;
+                } while(pivot[0] != listOfRBs.get(position).get(0));
+                if(!same) {
+                    counter += 1;
+                } else {
+                    same = false;
+                }
+                sortedListOfRBs.get((int)pivot[0] - 1).set(i, (double)counter);
+                System.out.println(sortedListOfRBs.get(position).get(i));
+                System.out.println("ID: " + pivot[0] + ", Value: " + pivot[1]);
+                System.out.println("ID(sorted_1): " + sortedListOfRBs.get(position).get(0) + ", Value(sorted_1): " + sortedListOfRBs.get(position).get(i));
+                listOfRBs.remove(position);
+                position = -1;
+                pivot[2] = pivot[1];
+                System.out.println("Size: " + listOfRBs.size());
+            }
+            counter = 0;
+        }
+        return sortedListOfRBs;
+    }
+
+    /**
+     * Zurückschreiben aller Werte aus der doppelten ArrayListe zurück in Tight End Liste
+     *
+     * @param rbsArrayList Liste aller Tight Ends
+     *
+     * @return Sortierte Liste aller Tight Ends (eingeranked/sortiert)
+     */
+    public static ArrayList<Rbs> rewriteRBValues(ArrayList<Rbs> rbsArrayList) {
+        ArrayList<ArrayList<Double>> listOfRBs = sortRBList(rbsArrayList);
+        for (Rbs rb:rbsArrayList) {
+            rb.setDraftorder(listOfRBs.get((int)rb.getId() - 1).get(1));
+            rb.setReceptions(listOfRBs.get((int)rb.getId() - 1).get(2));
+            rb.setReceivingYards(listOfRBs.get((int)rb.getId() - 1).get(3));
+            rb.setRushingYards(listOfRBs.get((int)rb.getId() - 1).get(4));
+            rb.setAttempts(listOfRBs.get((int)rb.getId() - 1).get(5));
+            rb.setTds(listOfRBs.get((int)rb.getId() - 1).get(6));
+            rb.setoLine(listOfRBs.get((int)rb.getId() - 1).get(7));
+            rb.setFfppg(listOfRBs.get((int)rb.getId() - 1).get(8));
+            rb.setTotalFFP(listOfRBs.get((int)rb.getId() - 1).get(9));
+        }
+        return rbsArrayList;
+    }
+
 
     public static void printRBs(ArrayList<Rbs> rb) {
         System.out.println("RB-List:");

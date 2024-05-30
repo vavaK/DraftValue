@@ -12,7 +12,9 @@ public class Defense {
     private double value;
     private int byeWeek;
 
-    public Defense(String name, int position, double sacks, double ints, double fumbleRecoveries, double safeties, double tds, double order, double value, int byeeWeek) {
+    private double id;
+
+    public Defense(String name, int position, double sacks, double ints, double fumbleRecoveries, double safeties, double tds, double order, double value, int byeeWeek, double id) {
         this.name = name;
         this.position = position;
         this.sacks = sacks;
@@ -23,6 +25,7 @@ public class Defense {
         this.order = order;
         this.value = value;
         this.byeWeek = byeeWeek;
+        this.id = id;
     }
 
     public String getName() {
@@ -105,6 +108,14 @@ public class Defense {
         this.byeWeek = byeWeek;
     }
 
+    public double getId() {
+        return id;
+    }
+
+    public void setId(double id) {
+        this.id = id;
+    }
+
     public static ArrayList<Defense> werteGewichten(ArrayList<Defense> defense, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < defense.size(); i++) {
             defense.get(i).setSacks((33 - defense.get(i).getSacks()) * tierC);
@@ -137,7 +148,7 @@ public class Defense {
     }
 
     public static ArrayList<Defense> sortAfterValue(ArrayList<Defense> defense) {
-        Defense pivot = new Defense("pivot", 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        Defense pivot = new Defense("pivot", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         int pivotNumber;
         ArrayList<Defense> sortedDefense = new ArrayList<Defense>();
         while(!defense.isEmpty()) {
@@ -164,6 +175,102 @@ public class Defense {
             sortedDefense.get(i).setPosition(i + 1);
         }
         return sortedDefense;
+    }
+
+    /**
+     * Schreibt alle Attribute in ein Array, damit automatisch prüfbar
+     *
+     * @param defenseArrayList Liste aller Runningbacks
+     *
+     */
+    public static ArrayList<ArrayList<Double>> createArrayWithDefenseInformation(ArrayList<Defense> defenseArrayList) {
+        Defense def;
+        ArrayList<ArrayList<Double>> listOfDefense = new ArrayList<>();
+
+        for(int i = 0; i < defenseArrayList.size(); i++) {
+            def = defenseArrayList.get(i);
+            double[] defenseStats = {def.getId(), def.getOrder(), def.getSacks(), def.getSafeties(), def.getFumbleRecoveries(), def.getInts(), def.getTds()};
+            ArrayList<Double> defense = new ArrayList<Double>();
+            for(int j = 0; j < defenseStats.length; j++) {
+                defense.add(defenseStats[j]);
+            }
+            listOfDefense.add(defense);
+        }
+        return listOfDefense;
+    }
+
+    /**
+     * Alle Werte der Defense werden sortiert und eingeranked
+     * Höchster Wert -> 1, Niedrigster Wert -> |Defense|
+     *
+     * @param defenseArrayList Liste aller Defense
+     *
+     * @return
+     */
+    public static ArrayList<ArrayList<Double>> sortDefenseList(ArrayList<Defense> defenseArrayList) {
+        ArrayList<ArrayList<Double>> listOfDefense = new ArrayList<ArrayList<Double>>();
+        ArrayList<ArrayList<Double>> sortedListOfDefense = createArrayWithDefenseInformation(defenseArrayList);
+        double[] pivot = new double[3];
+        int counter = 0;
+        int position = -1;
+        Boolean same = false;
+        for(int i = 1; i <= 6; i++) {
+            pivot[2] = -1;
+            listOfDefense.addAll(sortedListOfDefense);
+            while(!listOfDefense.isEmpty()) {
+                pivot[0] = listOfDefense.get(0).get(0);
+                pivot[1] = listOfDefense.get(0).get(i);
+                for (int j = 0; j < listOfDefense.size(); j++) {
+                    if(listOfDefense.get(j).get(i) == pivot[2]) {
+                        pivot[0] = listOfDefense.get(j).get(0);
+                        pivot[1] = listOfDefense.get(j).get(i);
+                        same = true;
+                        break;
+                    } else if(listOfDefense.get(j).get(i) > pivot[1]) {
+                        pivot[0] = listOfDefense.get(j).get(0);
+                        pivot[1] = listOfDefense.get(j).get(i);
+                    }
+                }
+                do {
+                    position += 1;
+                } while(pivot[0] != listOfDefense.get(position).get(0));
+                if(!same) {
+                    counter += 1;
+                } else {
+                    same = false;
+                }
+                sortedListOfDefense.get((int)pivot[0] - 1).set(i, (double)counter);
+                System.out.println(sortedListOfDefense.get(position).get(i));
+                System.out.println("ID: " + pivot[0] + ", Value: " + pivot[1]);
+                System.out.println("ID(sorted_1): " + sortedListOfDefense.get(position).get(0) + ", Value(sorted_1): " + sortedListOfDefense.get(position).get(i));
+                listOfDefense.remove(position);
+                position = -1;
+                pivot[2] = pivot[1];
+                System.out.println("Size: " + listOfDefense.size());
+            }
+            counter = 0;
+        }
+        return sortedListOfDefense;
+    }
+
+    /**
+     * Zurückschreiben aller Werte aus der doppelten ArrayListe zurück in KickerListe
+     *
+     * @param defenseArrayList Liste aller Defense
+     *
+     * @return Sortierte Liste aller Kicker (eingeranked/sortiert)
+     */
+    public static ArrayList<Defense> rewriteDefenseValues(ArrayList<Defense> defenseArrayList) {
+        ArrayList<ArrayList<Double>> listOfKicker = sortDefenseList(defenseArrayList);
+        for (Defense defense:defenseArrayList) {
+            defense.setOrder(listOfKicker.get((int)defense.getId() - 1).get(1));
+            defense.setSacks(listOfKicker.get((int)defense.getId() - 1).get(2));
+            defense.setSafeties(listOfKicker.get((int)defense.getId() - 1).get(3));
+            defense.setFumbleRecoveries(listOfKicker.get((int)defense.getId() - 1).get(4));
+            defense.setInts(listOfKicker.get((int)defense.getId() - 1).get(5));
+            defense.setTds(listOfKicker.get((int)defense.getId() - 1).get(6));
+        }
+        return defenseArrayList;
     }
 
     public static void printDefense(ArrayList<Defense> defense) {

@@ -10,7 +10,10 @@ import java.util.Arrays;
 
 public class ManageExcelSheets {
 
-    private static final String[] draftOrderPositions = {"Position", "Wide Receiver", "Wide Receiver", "Wide Receiver", "Running Back", "Tight End", "Flex Spot", "Quarterback", "Wide Receiver", "Kicker", "Defense", "Wide Receiver", "Running Back", "Tight End", "Quarterback", "Wide Receiver", "Kicker"};
+    private static final String[] draftOrderPositions = {"Position", "Wide Receiver", "Wide Receiver", "Wide Receiver", "Running Back",
+            "Tight End", "Flex Spot", "Quarterback", "Wide Receiver", "Kicker",
+            "Defense", "Wide Receiver", "Running Back", "Tight End", "Quarterback",
+            "Wide Receiver", "Kicker"};
     private static final String[] captions = {"Rank", "Value", "Name", "Team", "Draft Order", "Passing Yards", "Cmp Pct", "TD", "FFPpG", "Total FFP",
             "WR-Room", "Rookie", "Bye Week", "Receptions", "Receiving Yards", "QB", "Rushing Attempts", "Rushing Yards", "O-Line", "Attempts",
             "Made", "Pct", "XP", "50+", "Order", "Sacks", "Safeties", "Fumble Recoveries", "Ints", "Fumbles"};
@@ -18,7 +21,7 @@ public class ManageExcelSheets {
     private static final int[] wrTeCaption = {0, 1, 2, 3, 4, 13, 14, 7, 8, 9, 15, 11, 12};
     private static final int[] rbCaption = {0, 1, 2, 3, 4, 13, 14, 17, 16, 7, 18, 8, 9, 11, 12};
     private static final int[] kickerCaption = {0, 1, 2, 3, 4, 19, 20, 21, 22, 23, 8, 9, 12};
-    private static final int[] defenseCaption = {0, 1, 2, 25, 26, 27, 28, 29, 15, 12};
+    private static final int[] defenseCaption = {0, 1, 2, 24, 25, 26, 27, 28, 7, 12};
 
     /**
      * Erstellen der Excel-Datei
@@ -31,7 +34,8 @@ public class ManageExcelSheets {
      * @param kickerList
      * @param defenseList
      */
-    public static void createExcel(int amountDraftRounds, ArrayList<Qbs> qbList, ArrayList<Wrs> wrList, ArrayList<Tes> teList, ArrayList<Rbs> rbsList, ArrayList<Kicker> kickerList, ArrayList<Defense> defenseList) {
+    public static void createExcel(int amountDraftRounds, ArrayList<Qbs> qbList, ArrayList<Wrs> wrList, ArrayList<Tes> teList, ArrayList<Rbs> rbsList,
+                                   ArrayList<Kicker> kickerList, ArrayList<Defense> defenseList) {
         try {
             HSSFWorkbook wb = new HSSFWorkbook();
             CellStyle cellStyle = wb.createCellStyle();

@@ -15,7 +15,9 @@ public class Tes {
     private double value;
     private int byeWeek;
 
-    public Tes(String name, String team, int position, double receptions, double receivingYards, double tds, double ffppg, double totalFFP, double qbs, double draftOrder, Boolean rookie, double value, int byeWeek) {
+    private double id;
+
+    public Tes(String name, String team, int position, double receptions, double receivingYards, double tds, double ffppg, double totalFFP, double qbs, double draftOrder, Boolean rookie, double value, int byeWeek, double id) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -29,6 +31,7 @@ public class Tes {
         this.rookie = rookie;
         this.value = value;
         this.byeWeek = byeWeek;
+        this.id = id;
     }
 
     public String getName() {
@@ -135,6 +138,14 @@ public class Tes {
         this.byeWeek = byeWeek;
     }
 
+    public double getId() {
+        return id;
+    }
+
+    public void setId(double id) {
+        this.id = id;
+    }
+
     public static ArrayList<Tes> werteGewichten(ArrayList<Tes> te, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < te.size(); i++) {
             te.get(i).setReceptions((36 - te.get(i).getReceptions()) * tierC);
@@ -169,7 +180,7 @@ public class Tes {
     }
 
     public static ArrayList<Tes> sortAfterValue(ArrayList<Tes> te, int amountRookies) {
-        Tes pivot = new Tes("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, false, 0, 0);
+        Tes pivot = new Tes("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, false, 0, 0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Tes> sortedTEs = new ArrayList<Tes>();
@@ -211,6 +222,104 @@ public class Tes {
         }
         return sortedTEs;
     }
+
+    /**
+     * Schreibt alle Attribute in ein Array, damit automatisch prüfbar
+     *
+     * @param tesArrayList Liste aller Tight Ends
+     *
+     */
+    public static ArrayList<ArrayList<Double>> createArrayWithTEInformation(ArrayList<Tes> tesArrayList) {
+        Tes te;
+        ArrayList<ArrayList<Double>> listOfTes = new ArrayList<>();
+
+        for(int i = 0; i < tesArrayList.size(); i++) {
+            te = tesArrayList.get(i);
+            double[] tesStats = {te.getId(), te.getDraftorder(), te.getReceptions(), te.getReceivingYards(), te.getTds(), te.getFfppg(), te.getTotalFFP(), te.getQbs()};
+            ArrayList<Double> tightEnd = new ArrayList<Double>();
+            for(int j = 0; j < tesStats.length; j++) {
+                tightEnd.add(tesStats[j]);
+            }
+            listOfTes.add(tightEnd);
+        }
+        return listOfTes;
+    }
+
+    /**
+     * Alle Werte der Wide Receiver werden sortiert und eingeranked
+     * Höchster Wert -> 1, Niedrigster Wert -> |Tight Ends|
+     *
+     * @param tesArrayList Liste aller Wide Receiver
+     *
+     * @return
+     */
+    public static ArrayList<ArrayList<Double>> sortTEList(ArrayList<Tes> tesArrayList) {
+        ArrayList<ArrayList<Double>> listOfTes = new ArrayList<ArrayList<Double>>();
+        ArrayList<ArrayList<Double>> sortedListOfTEs = createArrayWithTEInformation(tesArrayList);
+        double[] pivot = new double[3];
+        int counter = 0;
+        int position = -1;
+        Boolean same = false;
+        for(int i = 1; i <= 7; i++) {
+            pivot[2] = -1;
+            listOfTes.addAll(sortedListOfTEs);
+            while(!listOfTes.isEmpty()) {
+                pivot[0] = listOfTes.get(0).get(0);
+                pivot[1] = listOfTes.get(0).get(i);
+                for (int j = 0; j < listOfTes.size(); j++) {
+                    if(listOfTes.get(j).get(i) == pivot[2]) {
+                        pivot[0] = listOfTes.get(j).get(0);
+                        pivot[1] = listOfTes.get(j).get(i);
+                        same = true;
+                        break;
+                    } else if(listOfTes.get(j).get(i) > pivot[1]) {
+                        pivot[0] = listOfTes.get(j).get(0);
+                        pivot[1] = listOfTes.get(j).get(i);
+                    }
+                }
+                do {
+                    position += 1;
+                } while(pivot[0] != listOfTes.get(position).get(0));
+                if(!same) {
+                    counter += 1;
+                } else {
+                    same = false;
+                }
+                sortedListOfTEs.get((int)pivot[0] - 1).set(i, (double)counter);
+                System.out.println(sortedListOfTEs.get(position).get(i));
+                System.out.println("ID: " + pivot[0] + ", Value: " + pivot[1]);
+                System.out.println("ID(sorted_1): " + sortedListOfTEs.get(position).get(0) + ", Value(sorted_1): " + sortedListOfTEs.get(position).get(i));
+                listOfTes.remove(position);
+                position = -1;
+                pivot[2] = pivot[1];
+                System.out.println("Size: " + listOfTes.size());
+            }
+            counter = 0;
+        }
+        return sortedListOfTEs;
+    }
+
+    /**
+     * Zurückschreiben aller Werte aus der doppelten ArrayListe zurück in Tight End Liste
+     *
+     * @param tesArrayList Liste aller Tight Ends
+     *
+     * @return Sortierte Liste aller Tight Ends (eingeranked/sortiert)
+     */
+    public static ArrayList<Tes> rewriteTEValues(ArrayList<Tes> tesArrayList) {
+        ArrayList<ArrayList<Double>> listOfWRs = sortTEList(tesArrayList);
+        for (Tes te:tesArrayList) {
+            te.setDraftorder(listOfWRs.get((int)te.getId() - 1).get(1));
+            te.setReceptions(listOfWRs.get((int)te.getId() - 1).get(2));
+            te.setReceivingYards(listOfWRs.get((int)te.getId() - 1).get(3));
+            te.setTds(listOfWRs.get((int)te.getId() - 1).get(4));
+            te.setFfppg(listOfWRs.get((int)te.getId() - 1).get(5));
+            te.setTotalFFP(listOfWRs.get((int)te.getId() - 1).get(6));
+            te.setQbs(listOfWRs.get((int)te.getId() - 1).get(7));
+        }
+        return tesArrayList;
+    }
+
 
     public static void printTes(ArrayList<Tes> te) {
         System.out.println("TE-List:");

@@ -121,69 +121,71 @@ public class CreateLists {
     private static int determineByeWeek(String team) {
         switch (team) {
             case "Cleveland Browns":
-                return 5;
+                return 10;
             case "Los Angeles Chargers":
                 return 5;
             case "Seattle Seahawks":
-                return 5;
+                return 10;
             case "Tampa Bay Buccaneers":
-                return 5;
+                return 11;
             case "Green Bay Packers":
-                return 6;
+                return 10;
             case "Pittsburgh Steelers":
-                return 6;
+                return 9;
             case "Carolina Panthers":
-                return 7;
+                return 11;
             case "Cincinnati Bengals":
-                return 7;
+                return 12;
             case "Dallas Cowboys":
                 return 7;
             case "Houston Texans":
-                return 7;
+                return 14;
             case "New York Jets":
-                return 7;
+                return 12;
             case "Tennessee Titans":
-                return 7;
+                return 5;
             case "Denver Broncos":
-                return 9;
+                return 14;
             case "Detroit Lions":
-                return 9;
+                return 5;
             case "Jacksonville Jaguars":
-                return 9;
+                return 12;
             case "San Francisco 49ers":
                 return 9;
             case "Kansas City Chiefs":
-                return 10;
+                return 6;
             case "Los Angeles Rams":
-                return 10;
+                return 6;
             case "Miami Dolphins":
-                return 10;
+                return 6;
             case "Philadelphia Eagles":
-                return 10;
+                return 5;
             case "Atlanta Falcons":
-                return 11;
+                return 12;
             case "Indianapolis Colts":
-                return 11;
+                return 14;
             case "New England Patriots":
-                return 11;
+                return 14;
             case "New Orleans Saints":
-                return 11;
+                return 12;
             case "Baltimore Ravens":
-                return 13;
+                return 14;
             case "Buffalo Bills":
-                return 13;
+                return 12;
             case "Chicago Bears":
-                return 13;
+                return 7;
             case "Las Vegas Raiders":
-                return 13;
+                return 10;
             case "Minnesota Vikings":
-                return 13;
+                return 6;
             case "New York Giants":
-                return 13;
+                return 11;
             case "Arizona Cardinals":
+                return 11;
+            case "Washington Commanders":
                 return 14;
         }
-        return 14;
+        return 0;
     }
 
 

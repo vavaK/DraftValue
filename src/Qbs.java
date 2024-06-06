@@ -237,7 +237,7 @@ public class Qbs {
      */
     public static ArrayList<Qbs> valueBerechnen(ArrayList<Qbs> qb) {
         for(int i = 0; i < qb.size(); i++) {
-            qb.get(i).setValue(qb.get(i).getPassingYards() + qb.get(i).getRushingYards() + qb.get(i).getFfppg() + qb.get(i).getTotalFFP() + qb.get(i).getDraftOrder() + qb.get(i).getTd() + qb.get(i).getCmpPct() + qb.get(i).getWrRoom());
+            qb.get(i).setValue(qb.get(i).getPassingYards() + qb.get(i).getRushingYards() + qb.get(i).getFfppg() + qb.get(i).getTotalFFP() + qb.get(i).getDraftOrder() + qb.get(i).getTd() + qb.get(i).getCmpPct() + qb.get(i).getWrRoom() - qb.get(i).getFumbles() - qb.get(i).getInterception());
         }
         return qb;
     }
@@ -356,13 +356,13 @@ public class Qbs {
                     same = false;
                 }
                 sortedListOfQBs.get((int)pivot[0] - 1).set(i, (double)counter);
-                System.out.println(sortedListOfQBs.get(position).get(i));
-                System.out.println("ID: " + pivot[0] + ", Value: " + pivot[1]);
-                System.out.println("ID(sorted_1): " + sortedListOfQBs.get(position).get(0) + ", Value(sorted_1): " + sortedListOfQBs.get(position).get(i));
+                //System.out.println(sortedListOfQBs.get(position).get(i));
+                //System.out.println("ID: " + pivot[0] + ", Value: " + pivot[1]);
+                //System.out.println("ID(sorted_1): " + sortedListOfQBs.get(position).get(0) + ", Value(sorted_1): " + sortedListOfQBs.get(position).get(i));
                 listOfQBs.remove(position);
                 position = -1;
                 pivot[2] = pivot[1];
-                System.out.println("Size: " + listOfQBs.size());
+                //System.out.println("Size: " + listOfQBs.size());
             }
             counter = 0;
         }

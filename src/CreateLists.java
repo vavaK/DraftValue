@@ -29,7 +29,7 @@ public class CreateLists {
     /**
      * Anzahl der Rookies im jeweiligen Draft
      */
-    private static final int amountRookieQBs = 3;
+    private static final int amountRookieQBs = 6;
     private static final int amountRookieWRs = 10;
     private static final int amountRookieRBs = 3;
     private static final int amountRookieTEs = 6;
@@ -46,7 +46,7 @@ public class CreateLists {
      * Sortiert die Listen der Spieler, sodass der mit der besten Value auf der 1 steht
      */
     private static void sortLists() {
-        addQbToList();
+        qbList = ManageExcelSheets.readExcelQB();
         qbList = Qbs.rewriteQBValues(qbList);
         qbList = Qbs.werteGewichten(qbList, tierS, tierA, tierB, tierC, tierD, tierE);
         qbList = Qbs.valueBerechnen(qbList);
@@ -202,83 +202,6 @@ public class CreateLists {
         Tes.printTes(teList);
         System.out.println();
         Wrs.printWrs(wrList);
-    }
-
-    /**
-     * Creates and adds all quarterbacks to the quarterbackList
-     *
-     * ToDO: Create multiple objects in a loop
-     *
-     * ToDO: Daten der Spieler aus Exceldatei einlesen
-     *
-     * ToDo: Automatisches sortieren der Kategorien der Spieler aus Excel-Dateidaten
-     */
-    private static void addQbToList() {
-        Qbs kylerMurray = new Qbs("Kyler Murray", "Arizona Cardinals", 0, 19, 6, 0, 8, 18, 22, 17, 0, 11, 28,  false, 0, 0, 1);
-        Qbs desmondRidder = new Qbs("Desmond Ridder", "Atlanta Falcons", 0, 26, 24, 0, 28, 27, 30, 25, 0, 20, 31, false, 0, 0, 2);
-        Qbs lamarJackson = new Qbs("Lamar Jackson", "Baltimore Ravens", 0, 21, 3, 0, 6, 13, 4, 15, 0, 23,20, false, 0, 0, 3);
-        Qbs joshAllen = new Qbs("Josh Allen", "Buffalo Bills", 0, 6, 2, 0, 3, 2, 3, 4, 0, 21, 11,false, 0, 0, 4);
-        Qbs bryceYoung = new Qbs("Bryce Young", "Carolina Panthers", 0,30,30, 0, 30,30, 24,30, 0,30,23, true, 0, 0, 5);
-        Qbs justinFields = new Qbs("Justin Fields", "Chicago Bears", 0,20, 1, 0, 5, 6, 6, 13, 0, 26, 15, false, 0, 0, 6);
-        Qbs joeBurrow = new Qbs("Joe Burrow", "Cincinnati Bengals", 0, 4, 11, 0, 4, 4, 5, 3, 0, 2, 1, false, 0, 0, 7);
-        Qbs deshaunWatson = new Qbs("Deshaun Watson", "Cleveland Browns", 0, 25, 14, 0, 21, 26, 9, 24, 0, 28, 17, false, 0, 0, 8);
-        Qbs dakPrescott = new Qbs("Dak Prescott", "Dallas Cowboys", 0, 15, 13, 0, 15, 17, 11, 19, 0, 13, 9, false, 0, 0, 9);
-        Qbs jaredGoff = new Qbs("Jared Goff", "Detroit Lions", 0, 5, 22, 0, 16, 10, 17, 6, 0, 17, 22, false, 0, 0, 10);
-        Qbs russelWilson = new Qbs("Russel Wilson", "Denver Broncos", 0, 11, 10, 0, 18, 15, 18, 21, 0, 25, 13, false, 0, 0, 11);
-        Qbs cjStroud = new Qbs("C. J. Stroud", "Houston Texans", 0, 30, 30, 0, 30, 30, 25, 30, 0, 30, 30, true, 0, 0, 12);
-        Qbs jordanLove = new Qbs("Jordan Love", "Green Bay Packers", 0, 27, 29, 0, 29, 29, 20, 28, 0, 9, 29, false, 0, 0, 13);
-        Qbs matthewStafford = new Qbs("Matthew Stafford", "Los Angeles Rams", 0, 23, 28, 0, 25, 24, 21, 23, 0, 4, 18, false, 0, 0, 14);
-        Qbs anthonyRichardson = new Qbs("Anthony Richardson", "Indianapolis Colts", 0, 30, 30, 0, 30, 30, 14, 30, 0, 30, 25, true, 0, 0, 15);
-        Qbs trevorLawrence = new Qbs("Trevor Lawrence", "Jacksonville Jaguars", 0, 8, 9, 0, 14, 8, 8, 5, 0, 12, 12, false, 0, 0, 16);
-        Qbs kirkCousins = new Qbs("Kirk Cousins", "Minnesota Vikings", 0, 3, 19, 0, 13, 7, 12, 8, 0, 14, 8, false, 0, 0, 17);
-        Qbs darekCarr = new Qbs("Darek Carr", "New Orleans Saints", 0, 12, 16, 0, 19, 16, 19, 16, 0, 24, 19, false, 0, 0, 18);
-        Qbs patrickMahomes = new Qbs("Patrick Mahomes", "Kansas City Chiefs", 0, 1, 8, 0, 2, 1, 1, 1, 0, 7, 26, false, 0, 0, 19);
-        Qbs jimmyGaroppolo = new Qbs("Jimmy Garoppolo", "Las Vegas Raiders", 0, 17, 26, 0, 20, 20, 29, 14, 0, 6, 4, false, 0, 0, 20);
-        Qbs danielJones = new Qbs("Daniel Jones", "New York Giants", 0, 13, 5, 0, 10, 9, 13, 10, 0, 5, 24, false, 0, 0, 21);
-        Qbs jalenHurts = new Qbs("Jalen Hurts", "Philadelphia Eagles", 0, 8, 4, 0, 1, 3, 2, 2, 0, 10, 2, false, 0, 0, 22);
-        Qbs justinHerbert = new Qbs("Justin Herbert", "Los Angeles Chargers", 0, 2, 15, 0, 17, 11, 7, 12, 0, 3, 5, false, 0, 0, 23);
-        Qbs tuaTagovailoa = new Qbs("Tua Tagovailoa", "Miami Dolphins", 0, 10, 23, 0, 11, 14, 10, 9, 0, 18, 3, false, 0, 0, 24);
-        Qbs brockPurdy = new Qbs("Brock Purdy", "San Francisco 49ers", 0, 24, 27, 0, 12, 25, 27, 18, 0, 8, 10, false, 0, 0, 25);
-        Qbs genoSmith = new Qbs("Geno Smith", "Seattle Seahawks", 0, 7, 7, 0, 9, 5, 15, 7, 0, 1, 7, false, 0, 0, 26);
-        Qbs macJones = new Qbs("Mac Jones", "New England Patriots", 0, 14, 17, 0, 24, 19, 26, 22, 0, 15, 27, false, 0, 0, 27);
-        Qbs aaronRodgers = new Qbs("Aaron Rodgers", "New York Jets", 0, 9, 20, 0, 22, 12, 16, 11, 0, 19, 14, false, 0, 0, 28);
-        Qbs bakerMayfield = new Qbs("Baker Mayfield", "Tampa Bay Buccaneers", 0, 22, 21, 0, 27, 23, 32, 23, 0, 27, 6, false, 0, 0, 29);
-        Qbs samHowell = new Qbs("Sam Howell", "Washington Commanders", 0, 28, 25, 0, 7, 28, 28, 27, 0, 29, 26, false, 0, 0, 30);
-        Qbs kennyPickett = new Qbs("Kenny Pickett", "Pittsburgh Steelers", 0, 18, 12, 0, 26, 22, 23, 26, 0, 22, 21, false, 0, 0, 31);
-        Qbs ryanTennehill = new Qbs("Ryan Tennehill", "Tennessee Titans", 0, 16, 18, 0, 23, 21, 31, 20, 0, 16, 32, false, 0, 0, 32);
-
-        qbList.add(kylerMurray);
-        qbList.add(desmondRidder);
-        qbList.add(lamarJackson);
-        qbList.add(joshAllen);
-        qbList.add(bryceYoung);
-        qbList.add(justinFields);
-        qbList.add(joeBurrow);
-        qbList.add(deshaunWatson);
-        qbList.add(dakPrescott);
-        qbList.add(jaredGoff);
-        qbList.add(russelWilson);
-        qbList.add(cjStroud);
-        qbList.add(jordanLove);
-        qbList.add(matthewStafford);
-        qbList.add(anthonyRichardson);
-        qbList.add(trevorLawrence);
-        qbList.add(kirkCousins);
-        qbList.add(darekCarr);
-        qbList.add(patrickMahomes);
-        qbList.add(jimmyGaroppolo);
-        qbList.add(danielJones);
-        qbList.add(jalenHurts);
-        qbList.add(justinHerbert);
-        qbList.add(tuaTagovailoa);
-        qbList.add(brockPurdy);
-        qbList.add(genoSmith);
-        qbList.add(macJones);
-        qbList.add(aaronRodgers);
-        qbList.add(bakerMayfield);
-        qbList.add(samHowell);
-        qbList.add(kennyPickett);
-        qbList.add(ryanTennehill);
     }
 
     /**

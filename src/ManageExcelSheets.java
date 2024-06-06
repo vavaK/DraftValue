@@ -1,12 +1,21 @@
-import org.apache.poi.hssf.usermodel.HSSFFont;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.formula.functions.Column;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.util.Iterator;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ManageExcelSheets {
 
@@ -239,5 +248,82 @@ public class ManageExcelSheets {
             defenseSheet.getRow(m + 1).createCell(8).setCellValue(defenseList.get(m).getTds());
             defenseSheet.getRow(m + 1).createCell(9).setCellValue(defenseList.get(m).getByeWeek());
         }
+    }
+
+    public static ArrayList<Qbs> readExcelQB() {
+        int qbColumn = 14;
+
+        ArrayList<Qbs> qbs = new ArrayList<Qbs>();
+        double[] numbers = new double[14];
+        try {
+            FileInputStream file = new FileInputStream(new File("C:\\Users\\Jelle\\OneDrive\\Desktop\\Exceldaten\\Spielerbase.xlsx"));
+            XSSFWorkbook wb = new XSSFWorkbook(file);
+            Sheet quarterbackInputSheet = wb.getSheetAt(0);
+
+            int qbRows = quarterbackInputSheet.getPhysicalNumberOfRows() - 1;
+
+            for(int i = 1; i < qbRows; i++) {
+                Row currentRow = quarterbackInputSheet.getRow(i);
+                for(int j = 0; j < qbColumn; j++) {
+                    if(j == 1) j = 3;
+                    numbers[j] = currentRow.getCell(j).getNumericCellValue();
+                }
+                qbs.add(new Qbs(currentRow.getCell(1).getStringCellValue(), currentRow.getCell(2).getStringCellValue(), 0, numbers[3], numbers[8], numbers[7], numbers[9], numbers[10], numbers[13], numbers[5], numbers[6], numbers[4], numbers[11], rookie(currentRow.getCell(12).getNumericCellValue()), 0, 0, numbers[0]));
+            }
+            /**int receiverColumns = 11;
+            int rbColumns = 13;
+            int kickerColumns = 11;
+            int defenseColumns = 8;*/
+
+            return qbs;
+        } catch(Exception ioe) {
+            ioe.printStackTrace();
+        }
+        return qbs;
+    }
+
+    /**
+     * Reading the amount of
+     *
+     * @param position
+     * @return
+     */
+    public int amountRookies(int position) {
+        try {
+            FileInputStream file = new FileInputStream(new File("C:\\Users\\Jelle\\OneDrive\\Desktop\\Exceldaten\\Spielerbase.xlsx"));
+            XSSFWorkbook wb = new XSSFWorkbook(file);
+            Sheet quarterbackInputSheet = wb.getSheetAt(0);
+
+            switch (position) {
+                // Case QB
+                case 0:
+                    return (int)quarterbackInputSheet.getRow(quarterbackInputSheet.getPhysicalNumberOfRows()).getCell(12).getNumericCellValue();
+                // Case WR
+                case 1:
+                    return 1;
+                // Case TE
+                case 2:
+                    return 2;
+                // Case RB
+                case 3:
+                    return 3;
+            }
+            // Case Kicker
+            return 4;
+        } catch(Exception ioe) {
+            ioe.printStackTrace();
+        }
+        return 0;
+    }
+
+    /**
+     * Convert Excel-Input into Boolean
+     *
+     * @param isRookie
+     * @return If Player is a rookie
+     */
+    private static boolean rookie(double isRookie) {
+        if(isRookie == 1) return true;
+        return false;
     }
 }

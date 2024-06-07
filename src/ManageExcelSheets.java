@@ -250,36 +250,102 @@ public class ManageExcelSheets {
         }
     }
 
-    public static ArrayList<Qbs> readExcelQB() {
+    /**
+     * Lesen der Quarterback-Werte aus der Excel
+     *
+     * @return Qb liste
+     */
+    public static ArrayList<?> readExcel(String position) {
         int qbColumn = 14;
+        int receiverColumns = 11;
+         int rbColumns = 13;
+         int kickerColumns = 11;
+         int defenseColumns = 8;
 
         ArrayList<Qbs> qbs = new ArrayList<Qbs>();
-        double[] numbers = new double[14];
+        ArrayList<Wrs> wrs = new ArrayList<Wrs>();
+        ArrayList<Tes> tes = new ArrayList<Tes>();
+        ArrayList<Rbs> rbs = new ArrayList<Rbs>();
+        ArrayList<Kicker> kickers = new ArrayList<Kicker>();
+        ArrayList<Defense> defenses = new ArrayList<Defense>();
+        double[] numbersQB = new double[qbColumn];
+        double[] numbersWR = new double[receiverColumns];
+        double[] numbersTE = new double[receiverColumns];
+        double[] numbersRB = new double[rbColumns];
+        double[] numbersK = new double[kickerColumns];
+        double[] numbersD = new double[defenseColumns];
         try {
             FileInputStream file = new FileInputStream(new File("C:\\Users\\Jelle\\OneDrive\\Desktop\\Exceldaten\\Spielerbase.xlsx"));
             XSSFWorkbook wb = new XSSFWorkbook(file);
             Sheet quarterbackInputSheet = wb.getSheetAt(0);
+            Sheet wideReceiverInputSheet = wb.getSheetAt(1);
+            Sheet tightEndInputSheet = wb.getSheetAt(2);
+            Sheet runningBackInputSheet = wb.getSheetAt(3);
+            Sheet kickerInputSheet = wb.getSheetAt(4);
+            Sheet defenseInputSheet = wb.getSheetAt(5);
 
             int qbRows = quarterbackInputSheet.getPhysicalNumberOfRows() - 1;
+            int wrRows = wideReceiverInputSheet.getPhysicalNumberOfRows() - 1;
+            int teRows = tightEndInputSheet.getPhysicalNumberOfRows() - 1;
+            int rbRows = runningBackInputSheet.getPhysicalNumberOfRows() - 1;
+            int kickerRows = kickerInputSheet.getPhysicalNumberOfRows() - 1;
+            int defenseRows = defenseInputSheet.getPhysicalNumberOfRows() - 1;
 
-            for(int i = 1; i < qbRows; i++) {
-                Row currentRow = quarterbackInputSheet.getRow(i);
-                for(int j = 0; j < qbColumn; j++) {
-                    if(j == 1) j = 3;
-                    numbers[j] = currentRow.getCell(j).getNumericCellValue();
+            if(position == "qb") {
+                for (int i = 1; i < qbRows; i++) {
+                    Row currentRow = quarterbackInputSheet.getRow(i);
+                    for (int j = 0; j < qbColumn; j++) {
+                        if (j == 1) j = 3;
+                        numbersQB[j] = currentRow.getCell(j).getNumericCellValue();
+                    }
+                    qbs.add(new Qbs(currentRow.getCell(1).getStringCellValue(), currentRow.getCell(2).getStringCellValue(),
+                            0, numbersQB[3], numbersQB[8], numbersQB[7], numbersQB[9], numbersQB[10], numbersQB[13], numbersQB[5],
+                            numbersQB[6], numbersQB[4], numbersQB[11], rookie(numbersQB[12]),
+                            0, 0, numbersQB[0]));
                 }
-                qbs.add(new Qbs(currentRow.getCell(1).getStringCellValue(), currentRow.getCell(2).getStringCellValue(), 0, numbers[3], numbers[8], numbers[7], numbers[9], numbers[10], numbers[13], numbers[5], numbers[6], numbers[4], numbers[11], rookie(currentRow.getCell(12).getNumericCellValue()), 0, 0, numbers[0]));
+            } else if(position == "wr" || position == "te") {
+                for (int i = 1; i < wrRows; i++) {
+                    Row currentRowWR = wideReceiverInputSheet.getRow(i);
+                    Row currentRowTE = tightEndInputSheet.getRow(i);
+                    for (int j = 0; j < receiverColumns; j++) {
+                        if (j == 1) j = 3;
+                        numbersWR[j] = currentRowWR.getCell(j).getNumericCellValue();
+                        if (i < teRows) numbersTE[j] = currentRowTE.getCell(j).getNumericCellValue();
+                    }
+                    wrs.add(new Wrs(currentRowWR.getCell(1).getStringCellValue(), currentRowWR.getCell(2).getStringCellValue(), 0, numbersWR[3], numbersWR[4], numbersWR[5], numbersWR[6], numbersWR[7], numbersWR[8], numbersWR[10], rookie(numbersWR[9]), 0, 0, numbersWR[0]));
+                    if (i < teRows)
+                        tes.add(new Tes(currentRowTE.getCell(1).getStringCellValue(), currentRowTE.getCell(2).getStringCellValue(), 0, numbersTE[3], numbersTE[4], numbersTE[5], numbersTE[6], numbersTE[7], numbersTE[8], numbersTE[10], rookie(numbersTE[9]), 0, 0, numbersTE[0]));
+                }
+            } else if(position == "rb") {
+                for (int i = 1; i < rbRows; i++) {
+                    Row currentRowRB = runningBackInputSheet.getRow(i);
+                    for (int j = 0; j < rbColumns; j++) {
+                        if (j == 1) j = 3;
+                        numbersRB[j] = currentRowRB.getCell(j).getNumericCellValue();
+                    }
+                    rbs.add(new Rbs(currentRowRB.getCell(1).getStringCellValue(), currentRowRB.getCell(2).getStringCellValue(), 0, numbersRB[5], numbersRB[6], numbersRB[4], numbersRB[3], numbersRB[7], numbersRB[8], numbersRB[9], numbersRB[10], numbersRB[12], rookie(numbersRB[11]), 0, 0, numbersRB[0]));
+                }
+            } else if(position == "kicker") {
+                for (int i = 1; i < kickerRows; i++) {
+                    Row currentRowK = kickerInputSheet.getRow(i);
+                    for (int j = 0; j < kickerColumns; j++) {
+                        if (j == 1) j = 3;
+                        numbersK[j] = currentRowK.getCell(j).getNumericCellValue();
+                    }
+                    kickers.add(new Kicker(currentRowK.getCell(1).getStringCellValue(), currentRowK.getCell(2).getStringCellValue(), 0, numbersK[3], numbersK[4], numbersK[7], numbersK[5], numbersK[6], numbersK[8], numbersK[9], numbersK[10], 0, 0, numbersK[0]));
+                }
             }
-            /**int receiverColumns = 11;
-            int rbColumns = 13;
-            int kickerColumns = 11;
-            int defenseColumns = 8;*/
-
-            return qbs;
         } catch(Exception ioe) {
             ioe.printStackTrace();
         }
-        return qbs;
+        switch (position) {
+            case "qb": return qbs;
+            case "wr": return wrs;
+            case "te": return tes;
+            case "rb": return rbs;
+            case "kicker": return kickers;
+        }
+        return defenses;
     }
 
     /**
@@ -288,28 +354,28 @@ public class ManageExcelSheets {
      * @param position
      * @return
      */
-    public int amountRookies(int position) {
+    public static int amountRookies(int position) {
         try {
             FileInputStream file = new FileInputStream(new File("C:\\Users\\Jelle\\OneDrive\\Desktop\\Exceldaten\\Spielerbase.xlsx"));
             XSSFWorkbook wb = new XSSFWorkbook(file);
             Sheet quarterbackInputSheet = wb.getSheetAt(0);
+            Sheet wideReceiverInputSheet = wb.getSheetAt(1);
+            Sheet tightEndInputSheet = wb.getSheetAt(2);
+            Sheet runningBackInputSheet = wb.getSheetAt(3);
 
             switch (position) {
                 // Case QB
                 case 0:
-                    return (int)quarterbackInputSheet.getRow(quarterbackInputSheet.getPhysicalNumberOfRows()).getCell(12).getNumericCellValue();
+                    return (int) quarterbackInputSheet.getRow(quarterbackInputSheet.getPhysicalNumberOfRows()).getCell(12).getNumericCellValue();
                 // Case WR
                 case 1:
-                    return 1;
+                    return (int) wideReceiverInputSheet.getRow(wideReceiverInputSheet.getPhysicalNumberOfRows()).getCell(9).getNumericCellValue();
                 // Case TE
                 case 2:
-                    return 2;
-                // Case RB
-                case 3:
-                    return 3;
+                    return (int) tightEndInputSheet.getRow(tightEndInputSheet.getPhysicalNumberOfRows()).getCell(9).getNumericCellValue();
             }
-            // Case Kicker
-            return 4;
+            // Case RB
+            return (int) runningBackInputSheet.getRow(runningBackInputSheet.getPhysicalNumberOfRows()).getCell(11).getNumericCellValue();
         } catch(Exception ioe) {
             ioe.printStackTrace();
         }

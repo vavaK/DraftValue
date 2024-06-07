@@ -29,10 +29,10 @@ public class CreateLists {
     /**
      * Anzahl der Rookies im jeweiligen Draft
      */
-    private static final int amountRookieQBs = 6;
-    private static final int amountRookieWRs = 10;
-    private static final int amountRookieRBs = 3;
-    private static final int amountRookieTEs = 6;
+    private static final int amountRookieQBs = ManageExcelSheets.amountRookies(0);
+    private static final int amountRookieWRs = ManageExcelSheets.amountRookies(1);
+    private static final int amountRookieRBs = ManageExcelSheets.amountRookies(2);
+    private static final int amountRookieTEs = ManageExcelSheets.amountRookies(3);
 
     /**
      * Listen und Excel-Datei erstellen
@@ -70,7 +70,7 @@ public class CreateLists {
         rbsList = Rbs.valueBerechnen(rbsList);
         rbsList = Rbs.sortAfterValue(rbsList, amountRookieRBs);
         rbsList = Rbs.reverseWerteGewichten(rbsList, tierS, tierA, tierB, tierC, tierD, tierE);
-        addTightEndToList();
+        teList = (ArrayList<Tes>) ManageExcelSheets.readExcelReceiver("te");
         teList = Tes.rewriteTEValues(teList);
         teList = Tes.werteGewichten(teList, tierS, tierA, tierB, tierC, tierD, tierE);
         teList = Tes.valueBerechnen(teList);

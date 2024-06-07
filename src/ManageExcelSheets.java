@@ -312,9 +312,13 @@ public class ManageExcelSheets {
                         numbersWR[j] = currentRowWR.getCell(j).getNumericCellValue();
                         if (i < teRows) numbersTE[j] = currentRowTE.getCell(j).getNumericCellValue();
                     }
-                    wrs.add(new Wrs(currentRowWR.getCell(1).getStringCellValue(), currentRowWR.getCell(2).getStringCellValue(), 0, numbersWR[3], numbersWR[4], numbersWR[5], numbersWR[6], numbersWR[7], numbersWR[8], numbersWR[10], rookie(numbersWR[9]), 0, 0, numbersWR[0]));
+                    wrs.add(new Wrs(currentRowWR.getCell(1).getStringCellValue(), currentRowWR.getCell(2).getStringCellValue(),
+                            0, numbersWR[3], numbersWR[4], numbersWR[5], numbersWR[6], numbersWR[7], numbersWR[8],
+                            numbersWR[10], rookie(numbersWR[9]), 0, 0, numbersWR[0]));
                     if (i < teRows)
-                        tes.add(new Tes(currentRowTE.getCell(1).getStringCellValue(), currentRowTE.getCell(2).getStringCellValue(), 0, numbersTE[3], numbersTE[4], numbersTE[5], numbersTE[6], numbersTE[7], numbersTE[8], numbersTE[10], rookie(numbersTE[9]), 0, 0, numbersTE[0]));
+                        tes.add(new Tes(currentRowTE.getCell(1).getStringCellValue(), currentRowTE.getCell(2).getStringCellValue(),
+                                0, numbersTE[3], numbersTE[4], numbersTE[5], numbersTE[6], numbersTE[7],
+                                numbersTE[8], numbersTE[10], rookie(numbersTE[9]), 0, 0, numbersTE[0]));
                 }
             } else if(position == "rb") {
                 for (int i = 1; i < rbRows; i++) {
@@ -323,7 +327,9 @@ public class ManageExcelSheets {
                         if (j == 1) j = 3;
                         numbersRB[j] = currentRowRB.getCell(j).getNumericCellValue();
                     }
-                    rbs.add(new Rbs(currentRowRB.getCell(1).getStringCellValue(), currentRowRB.getCell(2).getStringCellValue(), 0, numbersRB[5], numbersRB[6], numbersRB[4], numbersRB[3], numbersRB[7], numbersRB[8], numbersRB[9], numbersRB[10], numbersRB[12], rookie(numbersRB[11]), 0, 0, numbersRB[0]));
+                    rbs.add(new Rbs(currentRowRB.getCell(1).getStringCellValue(), currentRowRB.getCell(2).getStringCellValue(),
+                            0, numbersRB[5], numbersRB[6], numbersRB[4], numbersRB[3], numbersRB[7], numbersRB[8],
+                            numbersRB[9], numbersRB[10], numbersRB[12], rookie(numbersRB[11]), 0, 0, numbersRB[0]));
                 }
             } else if(position == "kicker") {
                 for (int i = 1; i < kickerRows; i++) {
@@ -332,7 +338,19 @@ public class ManageExcelSheets {
                         if (j == 1) j = 3;
                         numbersK[j] = currentRowK.getCell(j).getNumericCellValue();
                     }
-                    kickers.add(new Kicker(currentRowK.getCell(1).getStringCellValue(), currentRowK.getCell(2).getStringCellValue(), 0, numbersK[3], numbersK[4], numbersK[7], numbersK[5], numbersK[6], numbersK[8], numbersK[9], numbersK[10], 0, 0, numbersK[0]));
+                    kickers.add(new Kicker(currentRowK.getCell(1).getStringCellValue(), currentRowK.getCell(2).getStringCellValue(),
+                            0, numbersK[3], numbersK[4], numbersK[7], numbersK[5], numbersK[6], numbersK[8],
+                            numbersK[9], numbersK[10], 0, 0, numbersK[0]));
+                }
+            } else if(position == "defense") {
+                for (int i = 1; i < defenseRows; i++) {
+                    Row currentRowD = defenseInputSheet.getRow(i);
+                    for (int j = 0; j < defenseColumns; j++) {
+                        if (j == 1) j = 3;
+                        numbersD[j] = currentRowD.getCell(j).getNumericCellValue();
+                    }
+                    defenses.add(new Defense(currentRowD.getCell(1).getStringCellValue(), 0, numbersD[2],
+                            numbersD[5], numbersD[4], numbersD[3], numbersD[6], numbersD[7], 0, 0, numbersD[0]));
                 }
             }
         } catch(Exception ioe) {

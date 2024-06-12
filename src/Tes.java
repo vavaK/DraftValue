@@ -286,13 +286,9 @@ public class Tes {
                     same = false;
                 }
                 sortedListOfTEs.get((int)pivot[0] - 1).set(i, (double)counter);
-                System.out.println(sortedListOfTEs.get(position).get(i));
-                System.out.println("ID: " + pivot[0] + ", Value: " + pivot[1]);
-                System.out.println("ID(sorted_1): " + sortedListOfTEs.get(position).get(0) + ", Value(sorted_1): " + sortedListOfTEs.get(position).get(i));
                 listOfTes.remove(position);
                 position = -1;
                 pivot[2] = pivot[1];
-                System.out.println("Size: " + listOfTes.size());
             }
             counter = 0;
         }

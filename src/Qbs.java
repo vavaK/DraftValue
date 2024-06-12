@@ -356,13 +356,9 @@ public class Qbs {
                     same = false;
                 }
                 sortedListOfQBs.get((int)pivot[0] - 1).set(i, (double)counter);
-                //System.out.println(sortedListOfQBs.get(position).get(i));
-                //System.out.println("ID: " + pivot[0] + ", Value: " + pivot[1]);
-                //System.out.println("ID(sorted_1): " + sortedListOfQBs.get(position).get(0) + ", Value(sorted_1): " + sortedListOfQBs.get(position).get(i));
                 listOfQBs.remove(position);
                 position = -1;
                 pivot[2] = pivot[1];
-                //System.out.println("Size: " + listOfQBs.size());
             }
             counter = 0;
         }

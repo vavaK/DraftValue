@@ -274,13 +274,9 @@ public class Kicker{
                     same = false;
                 }
                 sortedListOfKicker.get((int)pivot[0] - 1).set(i, (double)counter);
-                System.out.println(sortedListOfKicker.get(position).get(i));
-                System.out.println("ID: " + pivot[0] + ", Value: " + pivot[1]);
-                System.out.println("ID(sorted_1): " + sortedListOfKicker.get(position).get(0) + ", Value(sorted_1): " + sortedListOfKicker.get(position).get(i));
                 listOfKicker.remove(position);
                 position = -1;
                 pivot[2] = pivot[1];
-                System.out.println("Size: " + listOfKicker.size());
             }
             counter = 0;
         }

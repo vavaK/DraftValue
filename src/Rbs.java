@@ -310,13 +310,9 @@ public class Rbs {
                     same = false;
                 }
                 sortedListOfRBs.get((int)pivot[0] - 1).set(i, (double)counter);
-                System.out.println(sortedListOfRBs.get(position).get(i));
-                System.out.println("ID: " + pivot[0] + ", Value: " + pivot[1]);
-                System.out.println("ID(sorted_1): " + sortedListOfRBs.get(position).get(0) + ", Value(sorted_1): " + sortedListOfRBs.get(position).get(i));
                 listOfRBs.remove(position);
                 position = -1;
                 pivot[2] = pivot[1];
-                System.out.println("Size: " + listOfRBs.size());
             }
             counter = 0;
         }

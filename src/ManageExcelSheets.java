@@ -1,20 +1,10 @@
 import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.apache.poi.ss.formula.functions.Column;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.Iterator;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 
 public class ManageExcelSheets {
@@ -63,6 +53,7 @@ public class ManageExcelSheets {
             HSSFSheet runningBackSheet = wb.createSheet("Running Back");
             HSSFSheet kickerSheet = wb.createSheet("Kicker");
             HSSFSheet defenseSheet = wb.createSheet("Defense");
+
 
 
             positionDraftorder(draftPlan, amountDraftRounds, headerStyle, cellStyle);
@@ -384,16 +375,16 @@ public class ManageExcelSheets {
             switch (position) {
                 // Case QB
                 case 0:
-                    return (int) quarterbackInputSheet.getRow(quarterbackInputSheet.getPhysicalNumberOfRows()).getCell(12).getNumericCellValue();
+                    return (int) quarterbackInputSheet.getRow(quarterbackInputSheet.getPhysicalNumberOfRows() - 1).getCell(12).getNumericCellValue();
                 // Case WR
                 case 1:
-                    return (int) wideReceiverInputSheet.getRow(wideReceiverInputSheet.getPhysicalNumberOfRows()).getCell(9).getNumericCellValue();
+                    return (int) wideReceiverInputSheet.getRow(wideReceiverInputSheet.getPhysicalNumberOfRows() - 1).getCell(9).getNumericCellValue();
                 // Case TE
                 case 2:
-                    return (int) tightEndInputSheet.getRow(tightEndInputSheet.getPhysicalNumberOfRows()).getCell(9).getNumericCellValue();
+                    return (int) tightEndInputSheet.getRow(tightEndInputSheet.getPhysicalNumberOfRows() - 1).getCell(9).getNumericCellValue();
             }
             // Case RB
-            return (int) runningBackInputSheet.getRow(runningBackInputSheet.getPhysicalNumberOfRows()).getCell(11).getNumericCellValue();
+            return (int) runningBackInputSheet.getRow(runningBackInputSheet.getPhysicalNumberOfRows() - 1).getCell(11).getNumericCellValue();
         } catch(Exception ioe) {
             ioe.printStackTrace();
         }

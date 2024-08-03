@@ -20,7 +20,7 @@ public class ManageExcelSheets {
     private static final int[] wrTeCaption = {0, 1, 2, 3, 4, 13, 14, 7, 8, 9, 15, 11, 12};
     private static final int[] rbCaption = {0, 1, 2, 3, 4, 13, 14, 17, 16, 7, 18, 8, 9, 11, 12};
     private static final int[] kickerCaption = {0, 1, 2, 3, 4, 19, 20, 21, 22, 23, 8, 9, 12};
-    private static final int[] defenseCaption = {0, 1, 2, 24, 25, 26, 27, 28, 7, 12};
+    private static final int[] defenseCaption = {0, 1, 2, 24, 25, 26, 27, 28, 7, 8, 9, 12};
 
     /**
      * Erstellen der Excel-Datei
@@ -76,7 +76,7 @@ public class ManageExcelSheets {
             setupExcelCells(teList, 13, tightEndSheet, cellStyle, headerStyle);
             setupExcelCells(rbsList, 15, runningBackSheet, cellStyle, headerStyle);
             setupExcelCells(kickerList, 13, kickerSheet, cellStyle, headerStyle);
-            setupExcelCells(defenseList, 10, defenseSheet, cellStyle, headerStyle);
+            setupExcelCells(defenseList, 12, defenseSheet, cellStyle, headerStyle);
 
             File file = new File("C:\\Users\\Jelle\\OneDrive\\Desktop\\Exceldaten\\Draftrankings.xls");
 
@@ -237,7 +237,9 @@ public class ManageExcelSheets {
             defenseSheet.getRow(m + 1).createCell(6).setCellValue(defenseList.get(m).getFumbleRecoveries());
             defenseSheet.getRow(m + 1).createCell(7).setCellValue(defenseList.get(m).getInts());
             defenseSheet.getRow(m + 1).createCell(8).setCellValue(defenseList.get(m).getTds());
-            defenseSheet.getRow(m + 1).createCell(9).setCellValue(defenseList.get(m).getByeWeek());
+            defenseSheet.getRow(m + 1).createCell(9).setCellValue(defenseList.get(m).getFfppg());
+            defenseSheet.getRow(m + 1).createCell(10).setCellValue(defenseList.get(m).getTotalffp());
+            defenseSheet.getRow(m + 1).createCell(11).setCellValue(defenseList.get(m).getByeWeek());
         }
     }
 
@@ -251,7 +253,7 @@ public class ManageExcelSheets {
         int receiverColumns = 11;
          int rbColumns = 13;
          int kickerColumns = 11;
-         int defenseColumns = 8;
+         int defenseColumns = 10;
 
         ArrayList<Qbs> qbs = new ArrayList<Qbs>();
         ArrayList<Wrs> wrs = new ArrayList<Wrs>();
@@ -279,7 +281,7 @@ public class ManageExcelSheets {
             int wrRows = wideReceiverInputSheet.getPhysicalNumberOfRows() - 1;
             int teRows = tightEndInputSheet.getPhysicalNumberOfRows() - 1;
             int rbRows = runningBackInputSheet.getPhysicalNumberOfRows() - 1;
-            int kickerRows = kickerInputSheet.getPhysicalNumberOfRows() - 1;
+            int kickerRows = kickerInputSheet.getPhysicalNumberOfRows();
             int defenseRows = defenseInputSheet.getPhysicalNumberOfRows() - 1;
 
             if(position == "qb") {
@@ -340,9 +342,8 @@ public class ManageExcelSheets {
                         if (j == 1) j = 2;
                         numbersD[j] = currentRowD.getCell(j).getNumericCellValue();
                     }
-                    System.out.println(currentRowD.getCell(1).getStringCellValue() + " hat Sacks: " + numbersD[2]);
                     defenses.add(new Defense(currentRowD.getCell(1).getStringCellValue(), 0, numbersD[2],
-                            numbersD[5], numbersD[4], numbersD[3], numbersD[6], numbersD[7], 0, 0, numbersD[0]));
+                            numbersD[5], numbersD[4], numbersD[3], numbersD[6], numbersD[7], 0, 0, numbersD[0], numbersD[8], numbersD[9]));
                 }
             }
         } catch(Exception ioe) {

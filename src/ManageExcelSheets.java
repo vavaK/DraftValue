@@ -337,9 +337,10 @@ public class ManageExcelSheets {
                 for (int i = 1; i < defenseRows; i++) {
                     Row currentRowD = defenseInputSheet.getRow(i);
                     for (int j = 0; j < defenseColumns; j++) {
-                        if (j == 1) j = 3;
+                        if (j == 1) j = 2;
                         numbersD[j] = currentRowD.getCell(j).getNumericCellValue();
                     }
+                    System.out.println(currentRowD.getCell(1).getStringCellValue() + " hat Sacks: " + numbersD[2]);
                     defenses.add(new Defense(currentRowD.getCell(1).getStringCellValue(), 0, numbersD[2],
                             numbersD[5], numbersD[4], numbersD[3], numbersD[6], numbersD[7], 0, 0, numbersD[0]));
                 }

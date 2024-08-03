@@ -272,7 +272,7 @@ public class Defense {
     public static void printDefense(ArrayList<Defense> defense) {
         System.out.println("Defense List:");
         for(int i = 0; i < defense.size(); i++) {
-            System.out.println(defense.get(i).getPosition() + ", " + defense.get(i).getName() + ", " + defense.get(i).getValue());
+            System.out.println(defense.get(i).getPosition() + ", " + defense.get(i).getName() + ", " + defense.get(i).getValue() + ", Sacks: " + defense.get(i).getSacks());
         }
     }
 }

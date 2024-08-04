@@ -264,7 +264,7 @@ public class Tes {
         for(int i = 1; i <= 7; i++) {
             pivot[2] = -1;
             listOfTes.addAll(sortedListOfTEs);
-            if(i > 5) {
+            if(i == 1 || i == 7) {
                 reverse = true;
             } else {
                 reverse = false;

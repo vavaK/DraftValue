@@ -263,7 +263,7 @@ public class Wrs {
         for(int i = 1; i <= 7; i++) {
             pivot[2] = -1;
             listOfWrs.addAll(sortedListOfWRs);
-            if(i > 5) {
+            if(i  == 1 || i == 7) {
                 reverse = true;
             } else {
                 reverse = false;

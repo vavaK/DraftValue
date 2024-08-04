@@ -145,30 +145,32 @@ public class Kicker{
         this.id = id;
     }
 
+    private static int amountKicker = 33;
+
     public static ArrayList<Kicker> werteGewichten(ArrayList<Kicker> kicker, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < kicker.size(); i++) {
-            kicker.get(i).setAttempts((33 - kicker.get(i).getAttempts()) * tierD);
-            kicker.get(i).setMade((33 - kicker.get(i).getMade()) * tierB);
-            kicker.get(i).setFiftyPlus((33 - kicker.get(i).getFiftyPlus()) * tierC);
-            kicker.get(i).setPct((33 - kicker.get(i).getPct()) * tierD);
-            kicker.get(i).setXp((33 - kicker.get(i).getXp()) * tierC);
-            kicker.get(i).setFfppg((33 - kicker.get(i).getFfppg()) * tierA);
-            kicker.get(i).setTotalFFP((33 - kicker.get(i).getTotalFFP()) * tierA);
-            kicker.get(i).setDraftOrder((33 - kicker.get(i).getDraftOrder()) * tierS);
+            kicker.get(i).setAttempts((amountKicker + 1 - kicker.get(i).getAttempts()) * tierD);
+            kicker.get(i).setMade((amountKicker + 1 - kicker.get(i).getMade()) * tierB);
+            kicker.get(i).setFiftyPlus((amountKicker + 1 - kicker.get(i).getFiftyPlus()) * tierC);
+            kicker.get(i).setPct((amountKicker + 1 - kicker.get(i).getPct()) * tierD);
+            kicker.get(i).setXp((amountKicker + 1 - kicker.get(i).getXp()) * tierC);
+            kicker.get(i).setFfppg((amountKicker + 1 - kicker.get(i).getFfppg()) * tierA);
+            kicker.get(i).setTotalFFP((amountKicker + 1 - kicker.get(i).getTotalFFP()) * tierA);
+            kicker.get(i).setDraftOrder((amountKicker + 1 - kicker.get(i).getDraftOrder()) * tierS);
         }
         return kicker;
     }
 
     public static ArrayList<Kicker> reverseWerteGewichten(ArrayList<Kicker> kicker, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < kicker.size(); i++) {
-            kicker.get(i).setAttempts(33 - kicker.get(i).getAttempts() / tierD);
-            kicker.get(i).setMade(33 - kicker.get(i).getMade() / tierB);
-            kicker.get(i).setFiftyPlus(33 - kicker.get(i).getFiftyPlus() / tierC);
-            kicker.get(i).setPct(33 - kicker.get(i).getPct() / tierD);
-            kicker.get(i).setXp(33 - kicker.get(i).getXp() / tierC);
-            kicker.get(i).setFfppg(33 - kicker.get(i).getFfppg() / tierA);
-            kicker.get(i).setTotalFFP(33 - kicker.get(i).getTotalFFP() / tierA);
-            kicker.get(i).setDraftOrder(33 - kicker.get(i).getDraftOrder() / tierS);
+            kicker.get(i).setAttempts(amountKicker + 1 - kicker.get(i).getAttempts() / tierD);
+            kicker.get(i).setMade(amountKicker + 1 - kicker.get(i).getMade() / tierB);
+            kicker.get(i).setFiftyPlus(amountKicker + 1 - kicker.get(i).getFiftyPlus() / tierC);
+            kicker.get(i).setPct(amountKicker + 1 - kicker.get(i).getPct() / tierD);
+            kicker.get(i).setXp(amountKicker + 1 - kicker.get(i).getXp() / tierC);
+            kicker.get(i).setFfppg(amountKicker + 1 - kicker.get(i).getFfppg() / tierA);
+            kicker.get(i).setTotalFFP(amountKicker + 1 - kicker.get(i).getTotalFFP() / tierA);
+            kicker.get(i).setDraftOrder(amountKicker + 1 - kicker.get(i).getDraftOrder() / tierS);
         }
         return kicker;
     }
@@ -252,7 +254,7 @@ public class Kicker{
         for(int i = 1; i <= 8; i++) {
             pivot[2] = -1;
             listOfKicker.addAll(sortedListOfKicker);
-            if(i == 8) {
+            if(i == 1) {
                 reverse = true;
             } else {
                 reverse = false;

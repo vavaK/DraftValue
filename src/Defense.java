@@ -244,7 +244,7 @@ public class Defense {
         for(int i = 1; i <= 8; i++) {
             pivot[2] = -1;
             listOfDefense.addAll(sortedListOfDefense);
-            if(i == 6) {
+            if(i == 1) {
                 reverse = true;
             } else {
                 reverse = false;

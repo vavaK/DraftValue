@@ -288,7 +288,7 @@ public class Rbs {
         for(int i = 1; i <= 9; i++) {
             pivot[2] = -1;
             listOfRBs.addAll(sortedListOfRBs);
-            if(i > 7) {
+            if(i == 1 || i == 7) {
                 reverse = true;
             } else {
                 reverse = false;

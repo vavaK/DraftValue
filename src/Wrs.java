@@ -259,9 +259,15 @@ public class Wrs {
         int counter = 0;
         int position = -1;
         Boolean same = false;
+        Boolean reverse = false;
         for(int i = 1; i <= 7; i++) {
             pivot[2] = -1;
             listOfWrs.addAll(sortedListOfWRs);
+            if(i > 5) {
+                reverse = true;
+            } else {
+                reverse = false;
+            }
             while(!listOfWrs.isEmpty()) {
                 pivot[0] = listOfWrs.get(0).get(0);
                 pivot[1] = listOfWrs.get(0).get(i);
@@ -271,7 +277,10 @@ public class Wrs {
                         pivot[1] = listOfWrs.get(j).get(i);
                         same = true;
                         break;
-                    } else if(listOfWrs.get(j).get(i) > pivot[1]) {
+                    } else if(listOfWrs.get(j).get(i) > pivot[1] && !reverse) {
+                        pivot[0] = listOfWrs.get(j).get(0);
+                        pivot[1] = listOfWrs.get(j).get(i);
+                    } else if(listOfWrs.get(j).get(i) < pivot[1] && reverse) {
                         pivot[0] = listOfWrs.get(j).get(0);
                         pivot[1] = listOfWrs.get(j).get(i);
                     }

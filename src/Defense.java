@@ -240,9 +240,15 @@ public class Defense {
         int counter = 0;
         int position = -1;
         Boolean same = false;
+        Boolean reverse = false;
         for(int i = 1; i <= 8; i++) {
             pivot[2] = -1;
             listOfDefense.addAll(sortedListOfDefense);
+            if(i == 6) {
+                reverse = true;
+            } else {
+                reverse = false;
+            }
             while(!listOfDefense.isEmpty()) {
                 pivot[0] = listOfDefense.get(0).get(0);
                 pivot[1] = listOfDefense.get(0).get(i);
@@ -252,7 +258,10 @@ public class Defense {
                         pivot[1] = listOfDefense.get(j).get(i);
                         same = true;
                         break;
-                    } else if(listOfDefense.get(j).get(i) > pivot[1]) {
+                    } else if(listOfDefense.get(j).get(i) > pivot[1] && !reverse) {
+                        pivot[0] = listOfDefense.get(j).get(0);
+                        pivot[1] = listOfDefense.get(j).get(i);
+                    } else if(listOfDefense.get(j).get(i) < pivot[1] && reverse) {
                         pivot[0] = listOfDefense.get(j).get(0);
                         pivot[1] = listOfDefense.get(j).get(i);
                     }

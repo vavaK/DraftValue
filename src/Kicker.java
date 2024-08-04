@@ -248,9 +248,15 @@ public class Kicker{
         int counter = 0;
         int position = -1;
         Boolean same = false;
+        Boolean reverse = false;
         for(int i = 1; i <= 8; i++) {
             pivot[2] = -1;
             listOfKicker.addAll(sortedListOfKicker);
+            if(i == 8) {
+                reverse = true;
+            } else {
+                reverse = false;
+            }
             while(!listOfKicker.isEmpty()) {
                 pivot[0] = listOfKicker.get(0).get(0);
                 pivot[1] = listOfKicker.get(0).get(i);
@@ -260,7 +266,10 @@ public class Kicker{
                         pivot[1] = listOfKicker.get(j).get(i);
                         same = true;
                         break;
-                    } else if(listOfKicker.get(j).get(i) > pivot[1]) {
+                    } else if(listOfKicker.get(j).get(i) > pivot[1] && !reverse) {
+                        pivot[0] = listOfKicker.get(j).get(0);
+                        pivot[1] = listOfKicker.get(j).get(i);
+                    } else if(listOfKicker.get(j).get(i) < pivot[1] && reverse) {
                         pivot[0] = listOfKicker.get(j).get(0);
                         pivot[1] = listOfKicker.get(j).get(i);
                     }

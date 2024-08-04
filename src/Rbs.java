@@ -284,9 +284,16 @@ public class Rbs {
         int counter = 0;
         int position = -1;
         Boolean same = false;
+        Boolean reverse = false;
         for(int i = 1; i <= 9; i++) {
             pivot[2] = -1;
             listOfRBs.addAll(sortedListOfRBs);
+            if(i > 7) {
+                reverse = true;
+            } else {
+                reverse = false;
+            }
+
             while(!listOfRBs.isEmpty()) {
                 pivot[0] = listOfRBs.get(0).get(0);
                 pivot[1] = listOfRBs.get(0).get(i);
@@ -296,7 +303,10 @@ public class Rbs {
                         pivot[1] = listOfRBs.get(j).get(i);
                         same = true;
                         break;
-                    } else if(listOfRBs.get(j).get(i) > pivot[1]) {
+                    } else if(listOfRBs.get(j).get(i) > pivot[1] && !reverse) {
+                        pivot[0] = listOfRBs.get(j).get(0);
+                        pivot[1] = listOfRBs.get(j).get(i);
+                    } else if(listOfRBs.get(j).get(i) < pivot[1] && reverse) {
                         pivot[0] = listOfRBs.get(j).get(0);
                         pivot[1] = listOfRBs.get(j).get(i);
                     }

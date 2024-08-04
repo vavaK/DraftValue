@@ -330,6 +330,7 @@ public class Qbs {
         int counter = 0;
         int position = -1;
         Boolean same = false;
+        Boolean reverse = false;
         for(int i = 1; i <= 10; i++) {
             pivot[2] = -1;
             listOfQBs.addAll(sortedListOfQBs);
@@ -337,12 +338,20 @@ public class Qbs {
                 pivot[0] = listOfQBs.get(0).get(0);
                 pivot[1] = listOfQBs.get(0).get(i);
                 for (int j = 0; j < listOfQBs.size(); j++) {
+                    if(i == 1 || i == 10) {
+                        reverse = true;
+                    } else {
+                        reverse = false;
+                    }
                     if(listOfQBs.get(j).get(i) == pivot[2]) {
                         pivot[0] = listOfQBs.get(j).get(0);
                         pivot[1] = listOfQBs.get(j).get(i);
                         same = true;
                         break;
-                    } else if(listOfQBs.get(j).get(i) > pivot[1]) {
+                    } else if(listOfQBs.get(j).get(i) > pivot[1] && !reverse) {
+                        pivot[0] = listOfQBs.get(j).get(0);
+                        pivot[1] = listOfQBs.get(j).get(i);
+                    } else if(listOfQBs.get(j).get(i) < pivot[1] && reverse) {
                         pivot[0] = listOfQBs.get(j).get(0);
                         pivot[1] = listOfQBs.get(j).get(i);
                     }

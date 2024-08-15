@@ -140,28 +140,28 @@ public class Defense {
 
     public static ArrayList<Defense> werteGewichten(ArrayList<Defense> defense, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < defense.size(); i++) {
-            defense.get(i).setSacks((33 - defense.get(i).getSacks()) * tierC);
-            defense.get(i).setInts((33 - defense.get(i).getInts()) * tierB);
-            defense.get(i).setFumbleRecoveries((33 - defense.get(i).getFumbleRecoveries()) * tierD);
-            defense.get(i).setSafeties((33 - defense.get(i).getSafeties()) * tierD);
-            defense.get(i).setTds((33 - defense.get(i).getTds()) * tierE);
-            defense.get(i).setOrder((33 - defense.get(i).getOrder()) * tierS);
-            defense.get(i).setFfppg((33 - defense.get(i).getFfppg()) * tierA);
-            defense.get(i).setTotalffp((33 - defense.get(i).getTotalffp()) * tierA);
+            defense.get(i).setSacks((defense.size() + 1 - defense.get(i).getSacks()) * tierC);
+            defense.get(i).setInts((defense.size() + 1 - defense.get(i).getInts()) * tierB);
+            defense.get(i).setFumbleRecoveries((defense.size() + 1 - defense.get(i).getFumbleRecoveries()) * tierD);
+            defense.get(i).setSafeties((defense.size() + 1 - defense.get(i).getSafeties()) * tierD);
+            defense.get(i).setTds((defense.size() + 1 - defense.get(i).getTds()) * tierE);
+            defense.get(i).setOrder((defense.size() + 1 - defense.get(i).getOrder()) * tierS);
+            defense.get(i).setFfppg((defense.size() + 1 - defense.get(i).getFfppg()) * tierA);
+            defense.get(i).setTotalffp((defense.size() + 1 - defense.get(i).getTotalffp()) * tierA);
         }
         return defense;
     }
 
     public static ArrayList<Defense> reverseWerteGewichten(ArrayList<Defense> defense, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < defense.size(); i++) {
-            defense.get(i).setSacks(33 - defense.get(i).getSacks() / tierC);
-            defense.get(i).setInts(33 - defense.get(i).getInts() / tierB);
-            defense.get(i).setFumbleRecoveries(33 - defense.get(i).getFumbleRecoveries() / tierD);
-            defense.get(i).setSafeties(33 - defense.get(i).getSafeties() / tierD);
-            defense.get(i).setTds(33 - defense.get(i).getTds() / tierE);
-            defense.get(i).setOrder(33 - defense.get(i).getOrder() / tierS);
-            defense.get(i).setFfppg(33 - defense.get(i).getFfppg() / tierA);
-            defense.get(i).setTotalffp(33 - defense.get(i).getTotalffp() / tierA);
+            defense.get(i).setSacks(defense.size() + 1 - defense.get(i).getSacks() / tierC);
+            defense.get(i).setInts(defense.size() + 1 - defense.get(i).getInts() / tierB);
+            defense.get(i).setFumbleRecoveries(defense.size() + 1 - defense.get(i).getFumbleRecoveries() / tierD);
+            defense.get(i).setSafeties(defense.size() + 1 - defense.get(i).getSafeties() / tierD);
+            defense.get(i).setTds(defense.size() + 1 - defense.get(i).getTds() / tierE);
+            defense.get(i).setOrder(defense.size() + 1 - defense.get(i).getOrder() / tierS);
+            defense.get(i).setFfppg(defense.size() + 1 - defense.get(i).getFfppg() / tierA);
+            defense.get(i).setTotalffp(defense.size() + 1 - defense.get(i).getTotalffp() / tierA);
         }
         return defense;
     }

@@ -148,26 +148,26 @@ public class Tes {
 
     public static ArrayList<Tes> werteGewichten(ArrayList<Tes> te, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < te.size(); i++) {
-            te.get(i).setReceptions((36 - te.get(i).getReceptions()) * tierC);
-            te.get(i).setReceivingYards((36 - te.get(i).getReceivingYards()) * tierB);
-            te.get(i).setTds((36 - te.get(i).getTds()) * tierB);
-            te.get(i).setFfppg((36 - te.get(i).getFfppg()) * tierA);
-            te.get(i).setTotalFFP((36 - te.get(i).getTotalFFP()) * tierA);
-            te.get(i).setQbs((36 - te.get(i).getQbs()) * tierE);
-            te.get(i).setDraftorder((36 - te.get(i).getDraftorder()) * tierS);
+            te.get(i).setReceptions((te.size() + 1 - te.get(i).getReceptions()) * tierC);
+            te.get(i).setReceivingYards((te.size() + 1 - te.get(i).getReceivingYards()) * tierB);
+            te.get(i).setTds((te.size() + 1 - te.get(i).getTds()) * tierB);
+            te.get(i).setFfppg((te.size() + 1 - te.get(i).getFfppg()) * tierA);
+            te.get(i).setTotalFFP((te.size() + 1 - te.get(i).getTotalFFP()) * tierA);
+            te.get(i).setQbs((te.size() + 1 - te.get(i).getQbs()) * tierE);
+            te.get(i).setDraftorder((te.size() + 1 - te.get(i).getDraftorder()) * tierS);
         }
         return te;
     }
 
     public static ArrayList<Tes> reverseWerteGewichten(ArrayList<Tes> te, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < te.size(); i++) {
-            te.get(i).setReceptions(36 - te.get(i).getReceptions() / tierC);
-            te.get(i).setReceivingYards(36 - te.get(i).getReceivingYards() / tierB);
-            te.get(i).setTds(36 - te.get(i).getTds() / tierB);
-            te.get(i).setFfppg(36 - te.get(i).getFfppg() / tierA);
-            te.get(i).setTotalFFP(36 - te.get(i).getTotalFFP() / tierA);
-            te.get(i).setQbs(36 - te.get(i).getQbs() / tierE);
-            te.get(i).setDraftorder(36 - te.get(i).getDraftorder() / tierS);
+            te.get(i).setReceptions(te.size() + 1 - te.get(i).getReceptions() / tierC);
+            te.get(i).setReceivingYards(te.size() + 1 - te.get(i).getReceivingYards() / tierB);
+            te.get(i).setTds(te.size() + 1 - te.get(i).getTds() / tierB);
+            te.get(i).setFfppg(te.size() + 1 - te.get(i).getFfppg() / tierA);
+            te.get(i).setTotalFFP(te.size() + 1 - te.get(i).getTotalFFP() / tierA);
+            te.get(i).setQbs(te.size() + 1 - te.get(i).getQbs() / tierE);
+            te.get(i).setDraftorder(te.size() + 1 - te.get(i).getDraftorder() / tierS);
         }
         return te;
     }

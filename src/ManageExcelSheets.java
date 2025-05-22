@@ -9,13 +9,14 @@ import java.util.ArrayList;
 
 public class ManageExcelSheets {
 
-    private static final String[] draftOrderPositions = {"Position", "Wide Receiver", "Wide Receiver", "Wide Receiver", "Running Back",
-            "Tight End", "Flex Spot", "Quarterback", "Wide Receiver", "Kicker",
+    private static final String[] draftOrderPositions = {"Position", "Wide Receiver", "Wide Receiver", "Wide Receiver",
+            "Running Back", "Tight End", "Flex Spot", "Quarterback", "Wide Receiver", "Kicker",
             "Defense", "Wide Receiver", "Running Back", "Tight End", "Quarterback",
             "Wide Receiver", "Kicker"};
-    private static final String[] captions = {"Rank", "Value", "Name", "Team", "Draft Order", "Passing Yards", "Cmp Pct", "TD", "FFPpG", "Total FFP",
-            "WR-Room", "Rookie", "Bye Week", "Receptions", "Receiving Yards", "QB", "Rushing Attempts", "Rushing Yards", "O-Line", "Attempts",
-            "Made", "Pct", "XP", "50+", "Order", "Sacks", "Safeties", "Fumble Recoveries", "Ints", "Fumbles"};
+    private static final String[] captions = {"Rank", "Value", "Name", "Team", "Draft Order", "Passing Yards",
+            "Cmp Pct", "TD", "FFPpG", "Total FFP", "WR-Room", "Rookie", "Bye Week", "Receptions", "Receiving Yards",
+            "QB", "Rushing Attempts", "Rushing Yards", "O-Line", "Attempts", "Made", "Pct", "XP", "50+", "Order",
+            "Sacks", "Safeties", "Fumble Recoveries", "Ints", "Fumbles"};
     private static final int[] qbCaption = {0, 1, 2, 3, 4, 5, 17, 29, 6, 7, 28, 8, 9, 10, 11, 12};
     private static final int[] wrTeCaption = {0, 1, 2, 3, 4, 13, 14, 7, 8, 9, 15, 11, 12};
     private static final int[] rbCaption = {0, 1, 2, 3, 4, 13, 14, 17, 16, 7, 18, 8, 9, 11, 12};
@@ -33,7 +34,8 @@ public class ManageExcelSheets {
      * @param kickerList
      * @param defenseList
      */
-    public static void createExcel(int amountDraftRounds, ArrayList<Qbs> qbList, ArrayList<Wrs> wrList, ArrayList<Tes> teList, ArrayList<Rbs> rbsList,
+    public static void createExcel(int amountDraftRounds, ArrayList<Qbs> qbList, ArrayList<Wrs> wrList,
+                                   ArrayList<Tes> teList, ArrayList<Rbs> rbsList,
                                    ArrayList<Kicker> kickerList, ArrayList<Defense> defenseList) {
         try {
             HSSFWorkbook wb = new HSSFWorkbook();
@@ -78,7 +80,7 @@ public class ManageExcelSheets {
             setupExcelCells(kickerList, 13, kickerSheet, cellStyle, headerStyle);
             setupExcelCells(defenseList, 12, defenseSheet, cellStyle, headerStyle);
 
-            File file = new File("C:\\Users\\Jelle\\OneDrive\\Desktop\\Exceldaten\\Draftrankings.xls");
+            File file = new File("C:\\Users\\Jelle\\Desktop\\Exceldaten\\Draftrankings.xls");
 
             wb.write(file);
             wb.close();
@@ -87,7 +89,8 @@ public class ManageExcelSheets {
         }
     }
 
-    private static void setupExcelCells(ArrayList<?> playerList, int property, HSSFSheet excelSheet, CellStyle cellStyle, CellStyle headerStyle) {
+    private static void setupExcelCells(ArrayList<?> playerList, int property, HSSFSheet excelSheet,
+                                        CellStyle cellStyle, CellStyle headerStyle) {
         for(int i = 0; i <= playerList.size(); i++) {
             for(int j = 0; j < property; j++) {
                 excelSheet.getRow(i).getCell(j).setCellStyle(cellStyle);
@@ -99,7 +102,8 @@ public class ManageExcelSheets {
         }
     }
 
-    private static void positionDraftorder(HSSFSheet draftPlan, int amountDraftRounds, CellStyle headerStyle, CellStyle cellStyle) {
+    private static void positionDraftorder(HSSFSheet draftPlan, int amountDraftRounds, CellStyle headerStyle,
+                                           CellStyle cellStyle) {
         for (int i = 0; i < amountDraftRounds + 1; i++) {
             draftPlan.createRow(i);
             if (i > 0) {
@@ -145,12 +149,14 @@ public class ManageExcelSheets {
             quarterbackSheet.getRow(i + 1).createCell(11).setCellValue(qbList.get(i).getFfppg());
             quarterbackSheet.getRow(i + 1).createCell(12).setCellValue(qbList.get(i).getTotalFFP());
             quarterbackSheet.getRow(i + 1).createCell(13).setCellValue(qbList.get(i).getWrRoom());
-            quarterbackSheet.getRow(i + 1).createCell(14).setCellValue(qbList.get(i).getRookie().toString());
+            quarterbackSheet.getRow(i + 1).createCell(14).setCellValue(qbList.get(i).getRookie().
+                    toString());
             quarterbackSheet.getRow(i + 1).createCell(15).setCellValue(qbList.get(i).getByeWeek());
         }
     }
 
-    private static void giveReceiverValue(ArrayList<Wrs> wrList, ArrayList<Tes> teList, HSSFSheet wideReceiverSheet, HSSFSheet tightEndSheet) {
+    private static void giveReceiverValue(ArrayList<Wrs> wrList, ArrayList<Tes> teList, HSSFSheet wideReceiverSheet,
+                                          HSSFSheet tightEndSheet) {
         for (int j = 0; j < wrList.size(); j++) {
             wideReceiverSheet.createRow(j + 1);
             wideReceiverSheet.getRow(j + 1).createCell(0).setCellValue(wrList.get(j).getPosition());
@@ -159,12 +165,14 @@ public class ManageExcelSheets {
             wideReceiverSheet.getRow(j + 1).createCell(3).setCellValue(wrList.get(j).getTeam());
             wideReceiverSheet.getRow(j + 1).createCell(4).setCellValue(wrList.get(j).getDraftorder());
             wideReceiverSheet.getRow(j + 1).createCell(5).setCellValue(wrList.get(j).getReceptions());
-            wideReceiverSheet.getRow(j + 1).createCell(6).setCellValue(wrList.get(j).getReceivingYards());
+            wideReceiverSheet.getRow(j + 1).createCell(6).setCellValue(wrList.get(j).
+                    getReceivingYards());
             wideReceiverSheet.getRow(j + 1).createCell(7).setCellValue(wrList.get(j).getTds());
             wideReceiverSheet.getRow(j + 1).createCell(8).setCellValue(wrList.get(j).getFfppg());
             wideReceiverSheet.getRow(j + 1).createCell(9).setCellValue(wrList.get(j).getTotalFFP());
             wideReceiverSheet.getRow(j + 1).createCell(10).setCellValue(wrList.get(j).getQbs());
-            wideReceiverSheet.getRow(j + 1).createCell(11).setCellValue(wrList.get(j).getRookie().toString());
+            wideReceiverSheet.getRow(j + 1).createCell(11).setCellValue(wrList.get(j).getRookie().
+                    toString());
             wideReceiverSheet.getRow(j + 1).createCell(12).setCellValue(wrList.get(j).getByeWeek());
             if (j < teList.size()) {
                 tightEndSheet.createRow(j + 1);
@@ -174,12 +182,14 @@ public class ManageExcelSheets {
                 tightEndSheet.getRow(j + 1).createCell(3).setCellValue(teList.get(j).getTeam());
                 tightEndSheet.getRow(j + 1).createCell(4).setCellValue(teList.get(j).getDraftorder());
                 tightEndSheet.getRow(j + 1).createCell(5).setCellValue(teList.get(j).getReceptions());
-                tightEndSheet.getRow(j + 1).createCell(6).setCellValue(teList.get(j).getReceivingYards());
+                tightEndSheet.getRow(j + 1).createCell(6).setCellValue(teList.get(j).
+                        getReceivingYards());
                 tightEndSheet.getRow(j + 1).createCell(7).setCellValue(teList.get(j).getTds());
                 tightEndSheet.getRow(j + 1).createCell(8).setCellValue(teList.get(j).getFfppg());
                 tightEndSheet.getRow(j + 1).createCell(9).setCellValue(teList.get(j).getTotalFFP());
                 tightEndSheet.getRow(j + 1).createCell(10).setCellValue(teList.get(j).getQbs());
-                tightEndSheet.getRow(j + 1).createCell(11).setCellValue(teList.get(j).getRookie().toString());
+                tightEndSheet.getRow(j + 1).createCell(11).setCellValue(teList.get(j).getRookie().
+                        toString());
                 tightEndSheet.getRow(j + 1).createCell(12).setCellValue(teList.get(j).getByeWeek());
             }
         }
@@ -196,12 +206,14 @@ public class ManageExcelSheets {
             runningBackSheet.getRow(k + 1).createCell(8).setCellValue(rbsList.get(k).getAttempts());
             runningBackSheet.getRow(k + 1).createCell(7).setCellValue(rbsList.get(k).getRushingYards());
             runningBackSheet.getRow(k + 1).createCell(5).setCellValue(rbsList.get(k).getReceptions());
-            runningBackSheet.getRow(k + 1).createCell(6).setCellValue(rbsList.get(k).getReceivingYards());
+            runningBackSheet.getRow(k + 1).createCell(6).setCellValue(rbsList.get(k).
+                    getReceivingYards());
             runningBackSheet.getRow(k + 1).createCell(9).setCellValue(rbsList.get(k).getTds());
             runningBackSheet.getRow(k + 1).createCell(10).setCellValue(rbsList.get(k).getoLine());
             runningBackSheet.getRow(k + 1).createCell(11).setCellValue(rbsList.get(k).getFfppg());
             runningBackSheet.getRow(k + 1).createCell(12).setCellValue(rbsList.get(k).getTotalFFP());
-            runningBackSheet.getRow(k + 1).createCell(13).setCellValue(rbsList.get(k).getRookie().toString());
+            runningBackSheet.getRow(k + 1).createCell(13).setCellValue(rbsList.get(k).getRookie().
+                    toString());
             runningBackSheet.getRow(k + 1).createCell(14).setCellValue(rbsList.get(k).getByeWeek());
         }
     }
@@ -234,7 +246,8 @@ public class ManageExcelSheets {
             defenseSheet.getRow(m + 1).createCell(3).setCellValue(defenseList.get(m).getOrder());
             defenseSheet.getRow(m + 1).createCell(4).setCellValue(defenseList.get(m).getSacks());
             defenseSheet.getRow(m + 1).createCell(5).setCellValue(defenseList.get(m).getSafeties());
-            defenseSheet.getRow(m + 1).createCell(6).setCellValue(defenseList.get(m).getFumbleRecoveries());
+            defenseSheet.getRow(m + 1).createCell(6).setCellValue(defenseList.get(m).
+                    getFumbleRecoveries());
             defenseSheet.getRow(m + 1).createCell(7).setCellValue(defenseList.get(m).getInts());
             defenseSheet.getRow(m + 1).createCell(8).setCellValue(defenseList.get(m).getTds());
             defenseSheet.getRow(m + 1).createCell(9).setCellValue(defenseList.get(m).getFfppg());
@@ -268,7 +281,8 @@ public class ManageExcelSheets {
         double[] numbersK = new double[kickerColumns];
         double[] numbersD = new double[defenseColumns];
         try {
-            FileInputStream file = new FileInputStream(new File("C:\\Users\\Jelle\\OneDrive\\Desktop\\Exceldaten\\Spielerbase.xlsx"));
+            FileInputStream file = new FileInputStream(new File
+                    ("C:\\Users\\Jelle\\Desktop\\Exceldaten\\Spielerbase.xlsx"));
             XSSFWorkbook wb = new XSSFWorkbook(file);
             Sheet quarterbackInputSheet = wb.getSheetAt(0);
             Sheet wideReceiverInputSheet = wb.getSheetAt(1);
@@ -291,10 +305,10 @@ public class ManageExcelSheets {
                         if (j == 1) j = 3;
                         numbersQB[j] = currentRow.getCell(j).getNumericCellValue();
                     }
-                    qbs.add(new Qbs(currentRow.getCell(1).getStringCellValue(), currentRow.getCell(2).getStringCellValue(),
-                            0, numbersQB[3], numbersQB[8], numbersQB[7], numbersQB[9], numbersQB[10], numbersQB[13], numbersQB[5],
-                            numbersQB[6], numbersQB[4], numbersQB[11], rookie(numbersQB[12]),
-                            0, 0, numbersQB[0]));
+                    qbs.add(new Qbs(currentRow.getCell(1).getStringCellValue(),
+                            currentRow.getCell(2).getStringCellValue(), 0, numbersQB[3], numbersQB[8],
+                            numbersQB[7], numbersQB[9], numbersQB[10], numbersQB[13], numbersQB[5], numbersQB[6],
+                            numbersQB[4], numbersQB[11], rookie(numbersQB[12]), 0, 0, numbersQB[0]));
                 }
             } else if(position == "wr" || position == "te") {
                 for (int i = 1; i < wrRows; i++) {
@@ -305,13 +319,15 @@ public class ManageExcelSheets {
                         numbersWR[j] = currentRowWR.getCell(j).getNumericCellValue();
                         if (i < teRows) numbersTE[j] = currentRowTE.getCell(j).getNumericCellValue();
                     }
-                    wrs.add(new Wrs(currentRowWR.getCell(1).getStringCellValue(), currentRowWR.getCell(2).getStringCellValue(),
-                            0, numbersWR[3], numbersWR[4], numbersWR[5], numbersWR[6], numbersWR[7], numbersWR[8],
-                            numbersWR[10], rookie(numbersWR[9]), 0, 0, numbersWR[0]));
+                    wrs.add(new Wrs(currentRowWR.getCell(1).getStringCellValue(),
+                            currentRowWR.getCell(2).getStringCellValue(), 0, numbersWR[3], numbersWR[4],
+                            numbersWR[5], numbersWR[6], numbersWR[7], numbersWR[8], numbersWR[10], rookie(numbersWR[9]),
+                            0, 0, numbersWR[0]));
                     if (i < teRows)
-                        tes.add(new Tes(currentRowTE.getCell(1).getStringCellValue(), currentRowTE.getCell(2).getStringCellValue(),
-                                0, numbersTE[3], numbersTE[4], numbersTE[5], numbersTE[6], numbersTE[7],
-                                numbersTE[8], numbersTE[10], rookie(numbersTE[9]), 0, 0, numbersTE[0]));
+                        tes.add(new Tes(currentRowTE.getCell(1).getStringCellValue(),
+                                currentRowTE.getCell(2).getStringCellValue(), 0, numbersTE[3], numbersTE[4],
+                                numbersTE[5], numbersTE[6], numbersTE[7], numbersTE[8], numbersTE[10],
+                                rookie(numbersTE[9]), 0, 0, numbersTE[0]));
                 }
             } else if(position == "rb") {
                 for (int i = 1; i < rbRows; i++) {
@@ -320,9 +336,10 @@ public class ManageExcelSheets {
                         if (j == 1) j = 3;
                         numbersRB[j] = currentRowRB.getCell(j).getNumericCellValue();
                     }
-                    rbs.add(new Rbs(currentRowRB.getCell(1).getStringCellValue(), currentRowRB.getCell(2).getStringCellValue(),
-                            0, numbersRB[5], numbersRB[6], numbersRB[4], numbersRB[3], numbersRB[7], numbersRB[8],
-                            numbersRB[9], numbersRB[10], numbersRB[12], rookie(numbersRB[11]), 0, 0, numbersRB[0]));
+                    rbs.add(new Rbs(currentRowRB.getCell(1).getStringCellValue(),
+                            currentRowRB.getCell(2).getStringCellValue(), 0, numbersRB[5], numbersRB[6],
+                            numbersRB[4], numbersRB[3], numbersRB[7], numbersRB[8], numbersRB[9], numbersRB[10],
+                            numbersRB[12], rookie(numbersRB[11]), 0, 0, numbersRB[0]));
                 }
             } else if(position == "kicker") {
                 for (int i = 1; i < kickerRows; i++) {
@@ -331,9 +348,10 @@ public class ManageExcelSheets {
                         if (j == 1) j = 3;
                         numbersK[j] = currentRowK.getCell(j).getNumericCellValue();
                     }
-                    kickers.add(new Kicker(currentRowK.getCell(1).getStringCellValue(), currentRowK.getCell(2).getStringCellValue(),
-                            0, numbersK[3], numbersK[4], numbersK[7], numbersK[5], numbersK[6], numbersK[8],
-                            numbersK[9], numbersK[10], 0, 0, numbersK[0]));
+                    kickers.add(new Kicker(currentRowK.getCell(1).getStringCellValue(),
+                            currentRowK.getCell(2).getStringCellValue(), 0, numbersK[3], numbersK[4],
+                            numbersK[7], numbersK[5], numbersK[6], numbersK[8], numbersK[9], numbersK[10], 0,
+                            0, numbersK[0]));
                 }
             } else if(position == "defense") {
                 for (int i = 1; i < defenseRows; i++) {
@@ -343,7 +361,8 @@ public class ManageExcelSheets {
                         numbersD[j] = currentRowD.getCell(j).getNumericCellValue();
                     }
                     defenses.add(new Defense(currentRowD.getCell(1).getStringCellValue(), 0, numbersD[2],
-                            numbersD[5], numbersD[4], numbersD[3], numbersD[6], numbersD[7], 0, 0, numbersD[0], numbersD[8], numbersD[9]));
+                            numbersD[5], numbersD[4], numbersD[3], numbersD[6], numbersD[7], 0, 0,
+                            numbersD[0], numbersD[8], numbersD[9]));
                 }
             }
         } catch(Exception ioe) {
@@ -367,7 +386,8 @@ public class ManageExcelSheets {
      */
     public static int amountRookies(int position) {
         try {
-            FileInputStream file = new FileInputStream(new File("C:\\Users\\Jelle\\OneDrive\\Desktop\\Exceldaten\\Spielerbase.xlsx"));
+            FileInputStream file = new FileInputStream(
+                    new File("C:\\Users\\Jelle\\OneDrive\\Desktop\\Exceldaten\\Spielerbase.xlsx"));
             XSSFWorkbook wb = new XSSFWorkbook(file);
             Sheet quarterbackInputSheet = wb.getSheetAt(0);
             Sheet wideReceiverInputSheet = wb.getSheetAt(1);
@@ -377,16 +397,20 @@ public class ManageExcelSheets {
             switch (position) {
                 // Case QB
                 case 0:
-                    return (int) quarterbackInputSheet.getRow(quarterbackInputSheet.getPhysicalNumberOfRows() - 1).getCell(12).getNumericCellValue();
+                    return (int) quarterbackInputSheet.getRow(
+                            quarterbackInputSheet.getPhysicalNumberOfRows() - 1).getCell(12).getNumericCellValue();
                 // Case WR
                 case 1:
-                    return (int) wideReceiverInputSheet.getRow(wideReceiverInputSheet.getPhysicalNumberOfRows() - 1).getCell(9).getNumericCellValue();
+                    return (int) wideReceiverInputSheet.getRow(
+                            wideReceiverInputSheet.getPhysicalNumberOfRows() - 1).getCell(9).getNumericCellValue();
                 // Case TE
                 case 2:
-                    return (int) tightEndInputSheet.getRow(tightEndInputSheet.getPhysicalNumberOfRows() - 1).getCell(9).getNumericCellValue();
+                    return (int) tightEndInputSheet.getRow(
+                            tightEndInputSheet.getPhysicalNumberOfRows() - 1).getCell(9).getNumericCellValue();
             }
             // Case RB
-            return (int) runningBackInputSheet.getRow(runningBackInputSheet.getPhysicalNumberOfRows() - 1).getCell(11).getNumericCellValue();
+            return (int) runningBackInputSheet.getRow(
+                    runningBackInputSheet.getPhysicalNumberOfRows() - 1).getCell(11).getNumericCellValue();
         } catch(Exception ioe) {
             ioe.printStackTrace();
         }

@@ -19,7 +19,9 @@ public class Rbs {
 
     private double id;
 
-    public Rbs(String name, String team, int position, double receptions, double  receivingYards, double rushingYards, double attempts, double tds, double ffppg, double totalFFP, double oLine, double draftorder, Boolean rookie, double value, int byeWeek, double id) {
+    public Rbs(String name, String team, int position, double receptions, double  receivingYards, double rushingYards,
+               double attempts, double tds, double ffppg, double totalFFP, double oLine, double draftorder,
+               Boolean rookie, double value, int byeWeek, double id) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -166,7 +168,8 @@ public class Rbs {
         this.id = id;
     }
 
-    public static ArrayList<Rbs> werteGewichten(ArrayList<Rbs> rb, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+    public static ArrayList<Rbs> werteGewichten(ArrayList<Rbs> rb, double tierS, double tierA, double tierB,
+                                                double tierC, double tierD, double tierE) {
         for (int i = 0; i < rb.size(); i++) {
             rb.get(i).setReceptions((42 - rb.get(i).getReceptions()) * tierC);
             rb.get(i).setReceivingYards((42 - rb.get(i).getReceivingYards()) * tierC);
@@ -181,7 +184,8 @@ public class Rbs {
         return rb;
     }
 
-    public static ArrayList<Rbs> reverseWerteGewichten(ArrayList<Rbs> rb, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+    public static ArrayList<Rbs> reverseWerteGewichten(ArrayList<Rbs> rb, double tierS, double tierA, double tierB,
+                                                       double tierC, double tierD, double tierE) {
         for (int i = 0; i < rb.size(); i++) {
             rb.get(i).setReceptions(42 - rb.get(i).getReceptions() / tierC);
             rb.get(i).setReceivingYards(42 - rb.get(i).getReceivingYards() / tierC);
@@ -198,13 +202,16 @@ public class Rbs {
 
     public static ArrayList<Rbs> valueBerechnen(ArrayList<Rbs> rb) {
         for(int i = 0; i < rb.size(); i++) {
-            rb.get(i).setValue(rb.get(i).getReceptions() + rb.get(i).getReceivingYards() + rb.get(i).getRushingYards() + rb.get(i).getAttempts() + rb.get(i).getTds() + rb.get(i).getFfppg() + rb.get(i).getTotalFFP() + rb.get(i).getoLine() + rb.get(i).getDraftorder());
+            rb.get(i).setValue(rb.get(i).getReceptions() + rb.get(i).getReceivingYards() + rb.get(i).getRushingYards()
+                    + rb.get(i).getAttempts() + rb.get(i).getTds() + rb.get(i).getFfppg() + rb.get(i).getTotalFFP()
+                    + rb.get(i).getoLine() + rb.get(i).getDraftorder());
         }
         return rb;
     }
 
     public static ArrayList<Rbs> sortAfterValue(ArrayList<Rbs> rb, int amountRookies) {
-        Rbs pivot = new Rbs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, 0, false, 0, 0, 0);
+        Rbs pivot = new Rbs("pivot", "", 0,0, 0, 0, 0, 0,
+                0, 0, 0, 0, false, 0, 0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Rbs> sortedRBs = new ArrayList<Rbs>();
@@ -213,7 +220,8 @@ public class Rbs {
             pivotNumber = rb.size() - 1;
             for(int j = 0; j < rb.size() - 1; j++) {
                 if(rb.get(j).getValue() >= pivot.getValue()) {
-                    if(rb.get(j).getValue() > pivot.getValue() || (rb.get(j).getValue() == pivot.getValue() && rb.get(j).getDraftorder() > pivot.getDraftorder())) {
+                    if(rb.get(j).getValue() > pivot.getValue() || (rb.get(j).getValue() == pivot.getValue()
+                            && rb.get(j).getDraftorder() > pivot.getDraftorder())) {
                         pivot = rb.get(j);
                         pivotNumber = j;
                     }
@@ -259,7 +267,9 @@ public class Rbs {
 
         for(int i = 0; i < rbsArrayList.size(); i++) {
             rb = rbsArrayList.get(i);
-            double[] rbsStats = {rb.getId(), rb.getDraftorder(), rb.getReceptions(), rb.getReceivingYards(), rb.getRushingYards(), rb.getAttempts(), rb.getTds(), rb.getoLine(), rb.getFfppg(), rb.getTotalFFP()};
+            double[] rbsStats = {rb.getId(), rb.getDraftorder(), rb.getReceptions(), rb.getReceivingYards(),
+                    rb.getRushingYards(), rb.getAttempts(), rb.getTds(), rb.getoLine(), rb.getFfppg(),
+                    rb.getTotalFFP()};
             ArrayList<Double> runningBack = new ArrayList<Double>();
             for(int j = 0; j < rbsStats.length; j++) {
                 runningBack.add(rbsStats[j]);
@@ -346,7 +356,8 @@ public class Rbs {
     public static void printRBs(ArrayList<Rbs> rb) {
         System.out.println("RB-List:");
         for(int i = 0; i < rb.size(); i++) {
-            System.out.println(rb.get(i).getPosition() + ", " + rb.get(i).getName() + " (" + rb.get(i).getTeam() + ")" + ", " + rb.get(i).getValue());
+            System.out.println(rb.get(i).getPosition() + ", " + rb.get(i).getName() + " (" +
+                    rb.get(i).getTeam() + ")" + ", " + rb.get(i).getValue());
         }
     }
 }

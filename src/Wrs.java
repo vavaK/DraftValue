@@ -16,7 +16,9 @@ public class Wrs {
     private int byeWeek;
     private double id;
 
-    public Wrs(String name, String team, int position, double receptions, double receivingYards, double tds, double ffppg, double totalFFP, double qbs, double draftOrder, Boolean rookie, double value, int byeWeek, double id) {
+    public Wrs(String name, String team, int position, double receptions, double receivingYards, double tds,
+               double ffppg, double totalFFP, double qbs, double draftOrder, Boolean rookie, double value,
+               int byeWeek, double id) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -145,7 +147,8 @@ public class Wrs {
         this.id = id;
     }
 
-    public static ArrayList<Wrs> werteGewichten(ArrayList<Wrs> wr, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+    public static ArrayList<Wrs> werteGewichten(ArrayList<Wrs> wr, double tierS, double tierA, double tierB,
+                                                double tierC, double tierD, double tierE) {
         for (int i = 0; i < wr.size(); i++) {
             wr.get(i).setReceptions((98 - wr.get(i).getReceptions()) * tierD);
             wr.get(i).setReceivingYards((98 - wr.get(i).getReceivingYards()) * tierC);
@@ -158,7 +161,8 @@ public class Wrs {
         return wr;
     }
 
-    public static ArrayList<Wrs> reverseWerteGewichten(ArrayList<Wrs> wr, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+    public static ArrayList<Wrs> reverseWerteGewichten(ArrayList<Wrs> wr, double tierS, double tierA, double tierB,
+                                                       double tierC, double tierD, double tierE) {
         for (int i = 0; i < wr.size(); i++) {
             wr.get(i).setReceptions(98 - wr.get(i).getReceptions() / tierD);
             wr.get(i).setReceivingYards(98 - wr.get(i).getReceivingYards() / tierC);
@@ -173,13 +177,15 @@ public class Wrs {
 
     public static ArrayList<Wrs> valueBerechnen(ArrayList<Wrs> wr) {
         for(int i = 0; i < wr.size(); i++) {
-            wr.get(i).setValue(wr.get(i).getReceptions() + wr.get(i).getReceivingYards() + wr.get(i).getTds() + wr.get(i).getFfppg() + wr.get(i).getTotalFFP() + wr.get(i).getQbs() + wr.get(i).getDraftorder());
+            wr.get(i).setValue(wr.get(i).getReceptions() + wr.get(i).getReceivingYards() + wr.get(i).getTds()
+                    + wr.get(i).getFfppg() + wr.get(i).getTotalFFP() + wr.get(i).getQbs() + wr.get(i).getDraftorder());
         }
         return wr;
     }
 
     public static ArrayList<Wrs> sortAfterValue(ArrayList<Wrs> wr, int amountRookies) {
-        Wrs pivot = new Wrs("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, false, 0, 0, 0);
+        Wrs pivot = new Wrs("pivot", "", 0,0, 0, 0, 0, 0,
+                0, 0, false, 0, 0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Wrs> sortedWRs = new ArrayList<Wrs>();
@@ -188,7 +194,8 @@ public class Wrs {
             pivotNumber = wr.size() - 1;
             for(int j = 0; j < wr.size() - 1; j++) {
                 if(wr.get(j).getValue() >= pivot.getValue()) {
-                    if(wr.get(j).getValue() > pivot.getValue() || (wr.get(j).getValue() == pivot.getValue() && wr.get(j).getDraftorder() > pivot.getDraftorder())) {
+                    if(wr.get(j).getValue() > pivot.getValue() || (wr.get(j).getValue() == pivot.getValue()
+                            && wr.get(j).getDraftorder() > pivot.getDraftorder())) {
                         pivot = wr.get(j);
                         pivotNumber = j;
                     }
@@ -234,7 +241,8 @@ public class Wrs {
 
         for(int i = 0; i < wrsArrayList.size(); i++) {
             wr = wrsArrayList.get(i);
-            double[] wrsStats = {wr.getId(), wr.getDraftorder(), wr.getReceptions(), wr.getReceivingYards(), wr.getTds(), wr.getFfppg(), wr.getTotalFFP(), wr.getQbs()};
+            double[] wrsStats = {wr.getId(), wr.getDraftorder(), wr.getReceptions(), wr.getReceivingYards(),
+                    wr.getTds(), wr.getFfppg(), wr.getTotalFFP(), wr.getQbs()};
             ArrayList<Double> wideReceiver = new ArrayList<Double>();
             for(int j = 0; j < wrsStats.length; j++) {
                 wideReceiver.add(wrsStats[j]);
@@ -318,7 +326,8 @@ public class Wrs {
     public static void printWrs(ArrayList<Wrs> wr) {
         System.out.println("WR-List:");
         for(int i = 0; i < wr.size(); i++) {
-            System.out.println(wr.get(i).getPosition() + ", " + wr.get(i).getName() + " (" + wr.get(i).getTeam() + ")" + ", " + wr.get(i).getValue());
+            System.out.println(wr.get(i).getPosition() + ", " + wr.get(i).getName() + " (" +
+                    wr.get(i).getTeam() + ")" + ", " + wr.get(i).getValue());
         }
     }
 }

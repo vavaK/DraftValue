@@ -18,7 +18,8 @@ public class Defense {
 
     private double totalffp;
 
-    public Defense(String name, int position, double sacks, double ints, double fumbleRecoveries, double safeties, double tds, double order, double value, int byeeWeek, double id, double ffppg, double totalffp) {
+    public Defense(String name, int position, double sacks, double ints, double fumbleRecoveries, double safeties,
+                   double tds, double order, double value, int byeeWeek, double id, double ffppg, double totalffp) {
         this.name = name;
         this.position = position;
         this.sacks = sacks;
@@ -138,7 +139,8 @@ public class Defense {
         this.totalffp = totalffp;
     }
 
-    public static ArrayList<Defense> werteGewichten(ArrayList<Defense> defense, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+    public static ArrayList<Defense> werteGewichten(ArrayList<Defense> defense, double tierS, double tierA,
+                                                    double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < defense.size(); i++) {
             defense.get(i).setSacks((33 - defense.get(i).getSacks()) * tierC);
             defense.get(i).setInts((33 - defense.get(i).getInts()) * tierB);
@@ -152,7 +154,8 @@ public class Defense {
         return defense;
     }
 
-    public static ArrayList<Defense> reverseWerteGewichten(ArrayList<Defense> defense, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+    public static ArrayList<Defense> reverseWerteGewichten(ArrayList<Defense> defense, double tierS, double tierA,
+                                                           double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < defense.size(); i++) {
             defense.get(i).setSacks(33 - defense.get(i).getSacks() / tierC);
             defense.get(i).setInts(33 - defense.get(i).getInts() / tierB);
@@ -168,13 +171,16 @@ public class Defense {
 
     public static ArrayList<Defense> valueBerechnen(ArrayList<Defense> defense) {
         for(int i = 0; i < defense.size(); i++) {
-            defense.get(i).setValue(defense.get(i).getSacks() + defense.get(i).getInts() + defense.get(i).getFumbleRecoveries() + defense.get(i).getSafeties() + defense.get(i).getTds() + defense.get(i).getOrder() + defense.get(i).getFfppg() + defense.get(i).getTotalffp());
+            defense.get(i).setValue(defense.get(i).getSacks() + defense.get(i).getInts() +
+                    defense.get(i).getFumbleRecoveries() + defense.get(i).getSafeties() + defense.get(i).getTds() +
+                    defense.get(i).getOrder() + defense.get(i).getFfppg() + defense.get(i).getTotalffp());
         }
         return defense;
     }
 
     public static ArrayList<Defense> sortAfterValue(ArrayList<Defense> defense) {
-        Defense pivot = new Defense("pivot", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        Defense pivot = new Defense("pivot", 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0);
         int pivotNumber;
         ArrayList<Defense> sortedDefense = new ArrayList<Defense>();
         while(!defense.isEmpty()) {
@@ -182,7 +188,8 @@ public class Defense {
             pivotNumber = defense.size() - 1;
             for(int j = 0; j < defense.size() - 1; j++) {
                 if(defense.get(j).getValue() >= pivot.getValue()) {
-                    if(defense.get(j).getValue() > pivot.getValue() || (defense.get(j).getValue() == pivot.getValue() && defense.get(j).getOrder() > pivot.getOrder())) {
+                    if(defense.get(j).getValue() > pivot.getValue() || (defense.get(j).getValue() == pivot.getValue()
+                            && defense.get(j).getOrder() > pivot.getOrder())) {
                         pivot = defense.get(j);
                         pivotNumber = j;
                     }
@@ -215,7 +222,8 @@ public class Defense {
 
         for(int i = 0; i < defenseArrayList.size(); i++) {
             def = defenseArrayList.get(i);
-            double[] defenseStats = {def.getId(), def.getOrder(), def.getSacks(), def.getSafeties(), def.getFumbleRecoveries(), def.getInts(), def.getTds(), def.getFfppg(), def.getTotalffp()};
+            double[] defenseStats = {def.getId(), def.getOrder(), def.getSacks(), def.getSafeties(),
+                    def.getFumbleRecoveries(), def.getInts(), def.getTds(), def.getFfppg(), def.getTotalffp()};
             ArrayList<Double> defense = new ArrayList<Double>();
             for(int j = 0; j < defenseStats.length; j++) {
                 defense.add(defenseStats[j]);
@@ -300,7 +308,8 @@ public class Defense {
     public static void printDefense(ArrayList<Defense> defense) {
         System.out.println("Defense List:");
         for(int i = 0; i < defense.size(); i++) {
-            System.out.println(defense.get(i).getPosition() + ", " + defense.get(i).getName() + ", " + defense.get(i).getValue() + ", Sacks: " + defense.get(i).getSacks());
+            System.out.println(defense.get(i).getPosition() + ", " + defense.get(i).getName() + ", " +
+                    defense.get(i).getValue() + ", Sacks: " + defense.get(i).getSacks());
         }
     }
 }

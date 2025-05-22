@@ -17,7 +17,9 @@ public class Tes {
 
     private double id;
 
-    public Tes(String name, String team, int position, double receptions, double receivingYards, double tds, double ffppg, double totalFFP, double qbs, double draftOrder, Boolean rookie, double value, int byeWeek, double id) {
+    public Tes(String name, String team, int position, double receptions, double receivingYards, double tds,
+               double ffppg, double totalFFP, double qbs, double draftOrder, Boolean rookie, double value,
+               int byeWeek, double id) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -146,7 +148,8 @@ public class Tes {
         this.id = id;
     }
 
-    public static ArrayList<Tes> werteGewichten(ArrayList<Tes> te, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+    public static ArrayList<Tes> werteGewichten(ArrayList<Tes> te, double tierS, double tierA, double tierB,
+                                                double tierC, double tierD, double tierE) {
         for (int i = 0; i < te.size(); i++) {
             te.get(i).setReceptions((36 - te.get(i).getReceptions()) * tierC);
             te.get(i).setReceivingYards((36 - te.get(i).getReceivingYards()) * tierB);
@@ -159,7 +162,8 @@ public class Tes {
         return te;
     }
 
-    public static ArrayList<Tes> reverseWerteGewichten(ArrayList<Tes> te, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+    public static ArrayList<Tes> reverseWerteGewichten(ArrayList<Tes> te, double tierS, double tierA, double tierB,
+                                                       double tierC, double tierD, double tierE) {
         for (int i = 0; i < te.size(); i++) {
             te.get(i).setReceptions(36 - te.get(i).getReceptions() / tierC);
             te.get(i).setReceivingYards(36 - te.get(i).getReceivingYards() / tierB);
@@ -174,13 +178,15 @@ public class Tes {
 
     public static ArrayList<Tes> valueBerechnen(ArrayList<Tes> te) {
         for(int i = 0; i < te.size(); i++) {
-            te.get(i).setValue(te.get(i).getReceptions() + te.get(i).getReceivingYards() + te.get(i).getTds() + te.get(i).getFfppg() + te.get(i).getTotalFFP() + te.get(i).getQbs() + te.get(i).getDraftorder());
+            te.get(i).setValue(te.get(i).getReceptions() + te.get(i).getReceivingYards() + te.get(i).getTds() +
+                    te.get(i).getFfppg() + te.get(i).getTotalFFP() + te.get(i).getQbs() + te.get(i).getDraftorder());
         }
         return te;
     }
 
     public static ArrayList<Tes> sortAfterValue(ArrayList<Tes> te, int amountRookies) {
-        Tes pivot = new Tes("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, false, 0, 0, 0);
+        Tes pivot = new Tes("pivot", "", 0,0, 0, 0, 0, 0,
+                0, 0, false, 0, 0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Tes> sortedTEs = new ArrayList<Tes>();
@@ -189,7 +195,8 @@ public class Tes {
             pivotNumber = te.size() - 1;
             for(int j = 0; j < te.size() - 1; j++) {
                 if(te.get(j).getValue() >= pivot.getValue()) {
-                    if(te.get(j).getValue() > pivot.getValue() || (te.get(j).getValue() == pivot.getValue() && te.get(j).getDraftorder() > pivot.getDraftorder())) {
+                    if(te.get(j).getValue() > pivot.getValue() || (te.get(j).getValue() == pivot.getValue()
+                            && te.get(j).getDraftorder() > pivot.getDraftorder())) {
                         pivot = te.get(j);
                         pivotNumber = j;
                     }
@@ -235,7 +242,8 @@ public class Tes {
 
         for(int i = 0; i < tesArrayList.size(); i++) {
             te = tesArrayList.get(i);
-            double[] tesStats = {te.getId(), te.getDraftorder(), te.getReceptions(), te.getReceivingYards(), te.getTds(), te.getFfppg(), te.getTotalFFP(), te.getQbs()};
+            double[] tesStats = {te.getId(), te.getDraftorder(), te.getReceptions(), te.getReceivingYards(),
+                    te.getTds(), te.getFfppg(), te.getTotalFFP(), te.getQbs()};
             ArrayList<Double> tightEnd = new ArrayList<Double>();
             for(int j = 0; j < tesStats.length; j++) {
                 tightEnd.add(tesStats[j]);
@@ -320,7 +328,8 @@ public class Tes {
     public static void printTes(ArrayList<Tes> te) {
         System.out.println("TE-List:");
         for(int i = 0; i < te.size(); i++) {
-            System.out.println(te.get(i).getPosition() + ", " + te.get(i).getName() + " (" + te.get(i).getTeam() + ")" + ", " + te.get(i).getValue());
+            System.out.println(te.get(i).getPosition() + ", " + te.get(i).getName() + " (" +
+                    te.get(i).getTeam() + ")" + ", " + te.get(i).getValue());
         }
     }
 }

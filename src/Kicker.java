@@ -16,7 +16,8 @@ public class Kicker{
     private int byeWeek;
     private double id;
 
-    public Kicker(String name, String team, int position, double attempts, double made, double fiftyPlus, double pct, double xp, double ffppg, double totalFFP, double draftOrder, double value, int byeWeek, double id) {
+    public Kicker(String name, String team, int position, double attempts, double made, double fiftyPlus, double pct,
+                  double xp, double ffppg, double totalFFP, double draftOrder, double value, int byeWeek, double id) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -145,7 +146,8 @@ public class Kicker{
         this.id = id;
     }
 
-    public static ArrayList<Kicker> werteGewichten(ArrayList<Kicker> kicker, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+    public static ArrayList<Kicker> werteGewichten(ArrayList<Kicker> kicker, double tierS, double tierA, double tierB,
+                                                   double tierC, double tierD, double tierE) {
         for (int i = 0; i < kicker.size(); i++) {
             kicker.get(i).setAttempts((33 - kicker.get(i).getAttempts()) * tierD);
             kicker.get(i).setMade((33 - kicker.get(i).getMade()) * tierB);
@@ -159,7 +161,8 @@ public class Kicker{
         return kicker;
     }
 
-    public static ArrayList<Kicker> reverseWerteGewichten(ArrayList<Kicker> kicker, double tierS, double tierA, double tierB, double tierC, double tierD, double tierE) {
+    public static ArrayList<Kicker> reverseWerteGewichten(ArrayList<Kicker> kicker, double tierS, double tierA,
+                                                          double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < kicker.size(); i++) {
             kicker.get(i).setAttempts(33 - kicker.get(i).getAttempts() / tierD);
             kicker.get(i).setMade(33 - kicker.get(i).getMade() / tierB);
@@ -175,13 +178,16 @@ public class Kicker{
 
     public static ArrayList<Kicker> valueBerechnen(ArrayList<Kicker> kicker) {
         for(int i = 0; i < kicker.size(); i++) {
-            kicker.get(i).setValue(kicker.get(i).getAttempts() + kicker.get(i).getMade() + kicker.get(i).getFiftyPlus() + kicker.get(i).getPct() + kicker.get(i).getXp() + kicker.get(i).getFfppg() + kicker.get(i).getFfppg() + kicker.get(i).getDraftOrder());
+            kicker.get(i).setValue(kicker.get(i).getAttempts() + kicker.get(i).getMade() + kicker.get(i).getFiftyPlus()
+                    + kicker.get(i).getPct() + kicker.get(i).getXp() + kicker.get(i).getFfppg() +
+                    kicker.get(i).getFfppg() + kicker.get(i).getDraftOrder());
         }
         return kicker;
     }
 
     public static ArrayList<Kicker> sortAfterValue(ArrayList<Kicker> kicker) {
-        Kicker pivot = new Kicker("pivot", "", 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        Kicker pivot = new Kicker("pivot", "", 0,0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0);
         int pivotNumber;
         ArrayList<Kicker> sortedKickers = new ArrayList<Kicker>();
         while(!kicker.isEmpty()) {
@@ -189,7 +195,8 @@ public class Kicker{
             pivotNumber = kicker.size() - 1;
             for(int j = 0; j < kicker.size() - 1; j++) {
                 if(kicker.get(j).getValue() >= pivot.getValue()) {
-                    if(kicker.get(j).getValue() > pivot.getValue() || (kicker.get(j).getValue() == pivot.getValue() && kicker.get(j).getDraftOrder() > pivot.getDraftOrder())) {
+                    if(kicker.get(j).getValue() > pivot.getValue() || (kicker.get(j).getValue() == pivot.getValue()
+                            && kicker.get(j).getDraftOrder() > pivot.getDraftOrder())) {
                         pivot = kicker.get(j);
                         pivotNumber = j;
                     }
@@ -223,7 +230,8 @@ public class Kicker{
 
         for(int i = 0; i < kickerArrayList.size(); i++) {
             kick = kickerArrayList.get(i);
-            double[] kickerStats = {kick.getId(), kick.getDraftOrder(), kick.getAttempts(), kick.getMade(), kick.getPct(), kick.getXp(), kick.getFiftyPlus(), kick.getFfppg(), kick.getTotalFFP()};
+            double[] kickerStats = {kick.getId(), kick.getDraftOrder(), kick.getAttempts(), kick.getMade(),
+                    kick.getPct(), kick.getXp(), kick.getFiftyPlus(), kick.getFfppg(), kick.getTotalFFP()};
             ArrayList<Double> kicker = new ArrayList<Double>();
             for(int j = 0; j < kickerStats.length; j++) {
                 kicker.add(kickerStats[j]);
@@ -308,7 +316,8 @@ public class Kicker{
     public static void printKickers(ArrayList<Kicker> kicker) {
         System.out.println("Kicker-List:");
         for(int i = 0; i < kicker.size(); i++) {
-            System.out.println(kicker.get(i).getPosition() + ", " + kicker.get(i).getName() + " (" + kicker.get(i).getTeam() + ")" + ", " + kicker.get(i).getValue());
+            System.out.println(kicker.get(i).getPosition() + ", " + kicker.get(i).getName() + " (" +
+                    kicker.get(i).getTeam() + ")" + ", " + kicker.get(i).getValue());
         }
     }
 }

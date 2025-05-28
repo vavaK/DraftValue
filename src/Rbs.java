@@ -19,9 +19,11 @@ public class Rbs {
 
     private double id;
 
+    private int vibe;
+
     public Rbs(String name, String team, int position, double receptions, double  receivingYards, double rushingYards,
                double attempts, double tds, double ffppg, double totalFFP, double oLine, double draftorder,
-               Boolean rookie, double value, int byeWeek, double id) {
+               Boolean rookie, double value, int byeWeek, double id, int vibe) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -38,6 +40,7 @@ public class Rbs {
         this.value = value;
         this.byeWeek = byeWeek;
         this.id = id;
+        this.vibe = vibe;
     }
 
     public String getName() {
@@ -168,6 +171,14 @@ public class Rbs {
         this.id = id;
     }
 
+    public int getVibe() {
+        return vibe;
+    }
+
+    public void setVibe(int vibe) {
+        this.vibe = vibe;
+    }
+
     public static ArrayList<Rbs> werteGewichten(ArrayList<Rbs> rb, double tierS, double tierA, double tierB,
                                                 double tierC, double tierD, double tierE) {
         for (int i = 0; i < rb.size(); i++) {
@@ -204,14 +215,14 @@ public class Rbs {
         for(int i = 0; i < rb.size(); i++) {
             rb.get(i).setValue(rb.get(i).getReceptions() + rb.get(i).getReceivingYards() + rb.get(i).getRushingYards()
                     + rb.get(i).getAttempts() + rb.get(i).getTds() + rb.get(i).getFfppg() + rb.get(i).getTotalFFP()
-                    + rb.get(i).getoLine() + rb.get(i).getDraftorder());
+                    + rb.get(i).getoLine() + rb.get(i).getDraftorder() + rb.get(i).getVibe() * 10);
         }
         return rb;
     }
 
     public static ArrayList<Rbs> sortAfterValue(ArrayList<Rbs> rb, int amountRookies) {
-        Rbs pivot = new Rbs("pivot", "", 0,0, 0, 0, 0, 0,
-                0, 0, 0, 0, false, 0, 0, 0);
+        Rbs pivot = new Rbs("pivot", "", 0,0, 0, 0, 0,
+                0, 0, 0, 0, 0, false, 0, 0, 0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Rbs> sortedRBs = new ArrayList<Rbs>();

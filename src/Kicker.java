@@ -16,8 +16,11 @@ public class Kicker{
     private int byeWeek;
     private double id;
 
+    private int vibe;
+
     public Kicker(String name, String team, int position, double attempts, double made, double fiftyPlus, double pct,
-                  double xp, double ffppg, double totalFFP, double draftOrder, double value, int byeWeek, double id) {
+                  double xp, double ffppg, double totalFFP, double draftOrder, double value, int byeWeek, double id,
+                  int vibe) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -32,6 +35,7 @@ public class Kicker{
         this.value = value;
         this.byeWeek = byeWeek;
         this.id = id;
+        this.vibe = vibe;
     }
 
     public String getName() {
@@ -146,6 +150,14 @@ public class Kicker{
         this.id = id;
     }
 
+    public int getVibe() {
+        return vibe;
+    }
+
+    public void setVibe(int vibe) {
+        this.vibe = vibe;
+    }
+
     public static ArrayList<Kicker> werteGewichten(ArrayList<Kicker> kicker, double tierS, double tierA, double tierB,
                                                    double tierC, double tierD, double tierE) {
         for (int i = 0; i < kicker.size(); i++) {
@@ -180,14 +192,14 @@ public class Kicker{
         for(int i = 0; i < kicker.size(); i++) {
             kicker.get(i).setValue(kicker.get(i).getAttempts() + kicker.get(i).getMade() + kicker.get(i).getFiftyPlus()
                     + kicker.get(i).getPct() + kicker.get(i).getXp() + kicker.get(i).getFfppg() +
-                    kicker.get(i).getFfppg() + kicker.get(i).getDraftOrder());
+                    kicker.get(i).getFfppg() + kicker.get(i).getDraftOrder() + kicker.get(i).getVibe());
         }
         return kicker;
     }
 
     public static ArrayList<Kicker> sortAfterValue(ArrayList<Kicker> kicker) {
         Kicker pivot = new Kicker("pivot", "", 0,0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0);
+                0, 0, 0, 0, 0, 0);
         int pivotNumber;
         ArrayList<Kicker> sortedKickers = new ArrayList<Kicker>();
         while(!kicker.isEmpty()) {

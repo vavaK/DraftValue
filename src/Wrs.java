@@ -16,9 +16,11 @@ public class Wrs {
     private int byeWeek;
     private double id;
 
+    private int vibe;
+
     public Wrs(String name, String team, int position, double receptions, double receivingYards, double tds,
                double ffppg, double totalFFP, double qbs, double draftOrder, Boolean rookie, double value,
-               int byeWeek, double id) {
+               int byeWeek, double id, int vibe) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -33,6 +35,7 @@ public class Wrs {
         this.value = value;
         this.byeWeek = byeWeek;
         this.id = id;
+        this.vibe = vibe;
     }
 
     public String getName() {
@@ -147,6 +150,14 @@ public class Wrs {
         this.id = id;
     }
 
+    public int getVibe() {
+        return vibe;
+    }
+
+    public void setVibe(int vibe) {
+        this.vibe = vibe;
+    }
+
     public static ArrayList<Wrs> werteGewichten(ArrayList<Wrs> wr, double tierS, double tierA, double tierB,
                                                 double tierC, double tierD, double tierE) {
         for (int i = 0; i < wr.size(); i++) {
@@ -178,14 +189,15 @@ public class Wrs {
     public static ArrayList<Wrs> valueBerechnen(ArrayList<Wrs> wr) {
         for(int i = 0; i < wr.size(); i++) {
             wr.get(i).setValue(wr.get(i).getReceptions() + wr.get(i).getReceivingYards() + wr.get(i).getTds()
-                    + wr.get(i).getFfppg() + wr.get(i).getTotalFFP() + wr.get(i).getQbs() + wr.get(i).getDraftorder());
+                    + wr.get(i).getFfppg() + wr.get(i).getTotalFFP() + wr.get(i).getQbs() + wr.get(i).getDraftorder()
+            + wr.get(i).getVibe() * 10);
         }
         return wr;
     }
 
     public static ArrayList<Wrs> sortAfterValue(ArrayList<Wrs> wr, int amountRookies) {
         Wrs pivot = new Wrs("pivot", "", 0,0, 0, 0, 0, 0,
-                0, 0, false, 0, 0, 0);
+                0, 0, false, 0, 0, 0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Wrs> sortedWRs = new ArrayList<Wrs>();

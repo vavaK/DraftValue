@@ -18,8 +18,11 @@ public class Defense {
 
     private double totalffp;
 
+    private int vibe;
+
     public Defense(String name, int position, double sacks, double ints, double fumbleRecoveries, double safeties,
-                   double tds, double order, double value, int byeeWeek, double id, double ffppg, double totalffp) {
+                   double tds, double order, double value, int byeeWeek, double id, double ffppg, double totalffp,
+                   int vibe) {
         this.name = name;
         this.position = position;
         this.sacks = sacks;
@@ -33,6 +36,7 @@ public class Defense {
         this.id = id;
         this.ffppg = ffppg;
         this.totalffp = totalffp;
+        this.vibe = vibe;
     }
 
     public String getName() {
@@ -139,6 +143,14 @@ public class Defense {
         this.totalffp = totalffp;
     }
 
+    public int getVibe() {
+        return vibe;
+    }
+
+    public void setVibe(int vibe) {
+        this.vibe = vibe;
+    }
+
     public static ArrayList<Defense> werteGewichten(ArrayList<Defense> defense, double tierS, double tierA,
                                                     double tierB, double tierC, double tierD, double tierE) {
         for (int i = 0; i < defense.size(); i++) {
@@ -173,14 +185,15 @@ public class Defense {
         for(int i = 0; i < defense.size(); i++) {
             defense.get(i).setValue(defense.get(i).getSacks() + defense.get(i).getInts() +
                     defense.get(i).getFumbleRecoveries() + defense.get(i).getSafeties() + defense.get(i).getTds() +
-                    defense.get(i).getOrder() + defense.get(i).getFfppg() + defense.get(i).getTotalffp());
+                    defense.get(i).getOrder() + defense.get(i).getFfppg() + defense.get(i).getTotalffp() +
+                    defense.get(i).getVibe());
         }
         return defense;
     }
 
     public static ArrayList<Defense> sortAfterValue(ArrayList<Defense> defense) {
-        Defense pivot = new Defense("pivot", 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0);
+        Defense pivot = new Defense("pivot", 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0);
         int pivotNumber;
         ArrayList<Defense> sortedDefense = new ArrayList<Defense>();
         while(!defense.isEmpty()) {

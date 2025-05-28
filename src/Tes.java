@@ -17,9 +17,11 @@ public class Tes {
 
     private double id;
 
+    private int vibe;
+
     public Tes(String name, String team, int position, double receptions, double receivingYards, double tds,
                double ffppg, double totalFFP, double qbs, double draftOrder, Boolean rookie, double value,
-               int byeWeek, double id) {
+               int byeWeek, double id, int vibe) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -34,6 +36,7 @@ public class Tes {
         this.value = value;
         this.byeWeek = byeWeek;
         this.id = id;
+        this.vibe = vibe;
     }
 
     public String getName() {
@@ -148,6 +151,14 @@ public class Tes {
         this.id = id;
     }
 
+    public int getVibe() {
+        return vibe;
+    }
+
+    public void setVibe(int vibe) {
+        this.vibe = vibe;
+    }
+
     public static ArrayList<Tes> werteGewichten(ArrayList<Tes> te, double tierS, double tierA, double tierB,
                                                 double tierC, double tierD, double tierE) {
         for (int i = 0; i < te.size(); i++) {
@@ -179,14 +190,15 @@ public class Tes {
     public static ArrayList<Tes> valueBerechnen(ArrayList<Tes> te) {
         for(int i = 0; i < te.size(); i++) {
             te.get(i).setValue(te.get(i).getReceptions() + te.get(i).getReceivingYards() + te.get(i).getTds() +
-                    te.get(i).getFfppg() + te.get(i).getTotalFFP() + te.get(i).getQbs() + te.get(i).getDraftorder());
+                    te.get(i).getFfppg() + te.get(i).getTotalFFP() + te.get(i).getQbs() + te.get(i).getDraftorder()
+            + te.get(i).getVibe() * 10);
         }
         return te;
     }
 
     public static ArrayList<Tes> sortAfterValue(ArrayList<Tes> te, int amountRookies) {
         Tes pivot = new Tes("pivot", "", 0,0, 0, 0, 0, 0,
-                0, 0, false, 0, 0, 0);
+                0, 0, false, 0, 0, 0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Tes> sortedTEs = new ArrayList<Tes>();

@@ -21,9 +21,11 @@ public class Qbs {
     private int byeWeek;
     private double id;
 
+    private int vibe;
+
     public Qbs(String name, String team, int position, double passingYards, double rushingYards, double fumbles,
                double ffppg, double totalFFP, double draftOrder, double td, double interception, double cmpPct,
-               double wrRoom, boolean rookie, double value, int byeWeek, double id) {
+               double wrRoom, boolean rookie, double value, int byeWeek, double id, int vibe) {
         this.name = name;
         this.team = team;
         this.position = position;
@@ -41,6 +43,7 @@ public class Qbs {
         this.value = value;
         this.byeWeek = byeWeek;
         this.id = id;
+        this.vibe = vibe;
     }
 
     public void setName(String name) {
@@ -109,6 +112,10 @@ public class Qbs {
         this.id = id;
     }
 
+    public void setVibe(int vibe) {
+        this.vibe = vibe;
+    }
+
     public String getName() {
         return name;
     }
@@ -173,6 +180,10 @@ public class Qbs {
 
     public double getId() {
         return id;
+    }
+
+    public int getVibe() {
+        return vibe;
     }
 
     /**
@@ -243,7 +254,8 @@ public class Qbs {
         for(int i = 0; i < qb.size(); i++) {
             qb.get(i).setValue(qb.get(i).getPassingYards() + qb.get(i).getRushingYards() + qb.get(i).getFfppg() +
                     qb.get(i).getTotalFFP() + qb.get(i).getDraftOrder() + qb.get(i).getTd() + qb.get(i).getCmpPct() +
-                    qb.get(i).getWrRoom() - qb.get(i).getFumbles() - qb.get(i).getInterception());
+                    qb.get(i).getWrRoom() - qb.get(i).getFumbles() - qb.get(i).getInterception() +
+                    qb.get(i).getVibe() * 10);
         }
         return qb;
     }
@@ -257,7 +269,8 @@ public class Qbs {
      */
     public static ArrayList<Qbs> sortAfterValue(ArrayList<Qbs> qb, int amountRookies) {
         Qbs pivot = new Qbs("pivot", "", 0,0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, false, 0, 0, 0);
+                0, 0, 0, 0, 0, false, 0, 0,
+                0, 0);
         int rookiesSorted = 0;
         int pivotNumber;
         ArrayList<Qbs> sortedQBs = new ArrayList<Qbs>();

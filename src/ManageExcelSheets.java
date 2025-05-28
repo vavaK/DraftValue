@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 public class ManageExcelSheets {
 
-    private static final String[] draftOrderPositions = {"Position", "Wide Receiver", "Wide Receiver", "Wide Receiver",
-            "Running Back", "Tight End", "Flex Spot", "Quarterback", "Wide Receiver", "Kicker",
-            "Defense", "Wide Receiver", "Running Back", "Tight End", "Quarterback",
-            "Wide Receiver", "Kicker"};
+    private static final String[] draftOrderPositions = {"Position", "Wide Receiver", "Quarterback", "Running Back",
+            "Tight End", "Wide Receiver", "Wide Receiver", "Flex Spot", "Wide Receiver",
+            "Running Back", "Kicker", "Defense", "Tight End", "Quarterback",
+            "Wide Receiver", "Best Player", "Best Player"};
     private static final String[] captions = {"Rank", "Value", "Name", "Team", "Draft Order", "Passing Yards",
             "Cmp Pct", "TD", "FFPpG", "Total FFP", "WR-Room", "Rookie", "Bye Week", "Receptions", "Receiving Yards",
             "QB", "Rushing Attempts", "Rushing Yards", "O-Line", "Attempts", "Made", "Pct", "XP", "50+", "Order",
@@ -291,7 +291,7 @@ public class ManageExcelSheets {
             Sheet kickerInputSheet = wb.getSheetAt(4);
             Sheet defenseInputSheet = wb.getSheetAt(5);
 
-            int qbRows = quarterbackInputSheet.getPhysicalNumberOfRows() - 2;
+            int qbRows = quarterbackInputSheet.getPhysicalNumberOfRows() - 4;
             int wrRows = wideReceiverInputSheet.getPhysicalNumberOfRows() - 2;
             int teRows = tightEndInputSheet.getPhysicalNumberOfRows() - 2;
             int rbRows = runningBackInputSheet.getPhysicalNumberOfRows() - 2;
@@ -398,7 +398,7 @@ public class ManageExcelSheets {
                 // Case QB
                 case 0:
                     return (int) quarterbackInputSheet.getRow(
-                            quarterbackInputSheet.getPhysicalNumberOfRows() - 2).getCell(12).getNumericCellValue();
+                            quarterbackInputSheet.getPhysicalNumberOfRows() - 4).getCell(12).getNumericCellValue();
                 // Case WR
                 case 1:
                     return (int) wideReceiverInputSheet.getRow(

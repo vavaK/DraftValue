@@ -118,70 +118,70 @@ public class CreateLists {
      */
     private static int determineByeWeek(String team) {
         switch (team) {
-            case "Cleveland Browns":
-                return 10;
-            case "Los Angeles Chargers":
-                return 5;
-            case "Seattle Seahawks":
-                return 10;
-            case "Tampa Bay Buccaneers":
-                return 11;
-            case "Green Bay Packers":
-                return 10;
-            case "Pittsburgh Steelers":
-                return 9;
-            case "Carolina Panthers":
-                return 11;
-            case "Cincinnati Bengals":
-                return 12;
-            case "Dallas Cowboys":
-                return 7;
-            case "Houston Texans":
-                return 14;
-            case "New York Jets":
-                return 12;
-            case "Tennessee Titans":
-                return 5;
-            case "Denver Broncos":
-                return 14;
-            case "Detroit Lions":
-                return 5;
-            case "Jacksonville Jaguars":
-                return 12;
-            case "San Francisco 49ers":
-                return 9;
-            case "Kansas City Chiefs":
-                return 6;
-            case "Los Angeles Rams":
-                return 6;
-            case "Miami Dolphins":
-                return 6;
-            case "Philadelphia Eagles":
-                return 5;
+            case "Arizona Cardinals":
+                return 8;
             case "Atlanta Falcons":
-                return 12;
-            case "Indianapolis Colts":
+                return 5;
+            case "Baltimore Ravens":
+                return 7;
+            case "Buffalo Bills":
+                return 7;
+            case "Carolina Panthers":
                 return 14;
+            case "Chicago Bears":
+                return 5;
+            case "Cincinnati Bengals":
+                return 10;
+            case "Cleveland Browns":
+                return 9;
+            case "Dallas Cowboys":
+                return 10;
+            case "Denver Broncos":
+                return 12;
+            case "Detroit Lions":
+                return 8;
+            case "Green Bay Packers":
+                return 5;
+            case "Houston Texans":
+                return 6;
+            case "Indianapolis Colts":
+                return 11;
+            case "Jacksonville Jaguars":
+                return 8;
+            case "Kansas City Chiefs":
+                return 10;
+            case "Las Vegas Raiders":
+                return 8;
+            case "Los Angeles Chargers":
+                return 12;
+            case "Los Angeles Rams":
+                return 8;
+            case "Miami Dolphins":
+                return 12;
+            case "Minnesota Vikings":
+                return 6;
             case "New England Patriots":
                 return 14;
             case "New Orleans Saints":
-                return 12;
-            case "Baltimore Ravens":
-                return 14;
-            case "Buffalo Bills":
-                return 12;
-            case "Chicago Bears":
-                return 7;
-            case "Las Vegas Raiders":
-                return 10;
-            case "Minnesota Vikings":
-                return 6;
+                return 11;
             case "New York Giants":
-                return 11;
-            case "Arizona Cardinals":
-                return 11;
-            case "Washington Commanders":
                 return 14;
+            case "New York Jets":
+                return 9;
+            case "Philadelphia Eagles":
+                return 9;
+            case "Pittsburgh Steelers":
+                return 5;
+            case "San Francisco 49ers":
+                return 14;
+            case "Seattle Seahawks":
+                return 8;
+            case "Tampa Bay Buccaneers":
+                return 9;
+            case "Tennessee Titans":
+                return 10;
+            case "Washington Commanders":
+                return 12;
         }
         return 0;
     }

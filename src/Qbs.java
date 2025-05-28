@@ -220,7 +220,7 @@ public class Qbs {
                                                        double tierC, double tierD, double tierE) {
         for (int i = 0; i < qb.size(); i++) {
             qb.get(i).setPassingYards(qb.size() + 1 - qb.get(i).getPassingYards() / tierB);
-            qb.get(i).setRushingYards(qb.size() + 1 - qb.get(i).getRushingYards() / tierB);
+            qb.get(i).setRushingYards(qb.size() + 1 - qb.get(i).getRushingYards() / tierA);
             qb.get(i).setFumbles(qb.size() + 1 - qb.get(i).getFumbles() / tierC);
             qb.get(i).setFfppg(qb.size() + 1 - qb.get(i).getFfppg() / tierA);
             qb.get(i).setTotalFFP(qb.size() + 1 - qb.get(i).getTotalFFP() / tierB);
@@ -385,7 +385,7 @@ public class Qbs {
     public static ArrayList<Qbs> rewriteQBValues(ArrayList<Qbs> qbsArrayList) {
         ArrayList<ArrayList<Double>> listOfQBs = sortQBList(qbsArrayList);
         for (Qbs qb:qbsArrayList) {
-            qb.setDraftOrder(listOfQBs.get((int)qb.getId() - 1).get(1));
+            //qb.setDraftOrder(listOfQBs.get((int)qb.getId() - 1).get(1));
             qb.setPassingYards(listOfQBs.get((int)qb.getId() - 1).get(2));
             qb.setRushingYards(listOfQBs.get((int)qb.getId() - 1).get(3));
             qb.setFumbles(listOfQBs.get((int)qb.getId() - 1).get(4));
@@ -394,7 +394,7 @@ public class Qbs {
             qb.setInterception(listOfQBs.get((int)qb.getId() - 1).get(7));
             qb.setFfppg(listOfQBs.get((int)qb.getId() - 1).get(8));
             qb.setTotalFFP(listOfQBs.get((int)qb.getId() - 1).get(9));
-            qb.setWrRoom(listOfQBs.get((int)qb.getId() - 1).get(10));
+            //qb.setWrRoom(listOfQBs.get((int)qb.getId() - 1).get(10));
         }
         return qbsArrayList;
     }

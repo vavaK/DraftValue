@@ -339,13 +339,13 @@ public class Rbs {
     public static ArrayList<Rbs> rewriteRBValues(ArrayList<Rbs> rbsArrayList) {
         ArrayList<ArrayList<Double>> listOfRBs = sortRBList(rbsArrayList);
         for (Rbs rb:rbsArrayList) {
-            rb.setDraftorder(listOfRBs.get((int)rb.getId() - 1).get(1));
+            //rb.setDraftorder(listOfRBs.get((int)rb.getId() - 1).get(1));
             rb.setReceptions(listOfRBs.get((int)rb.getId() - 1).get(2));
             rb.setReceivingYards(listOfRBs.get((int)rb.getId() - 1).get(3));
             rb.setRushingYards(listOfRBs.get((int)rb.getId() - 1).get(4));
             rb.setAttempts(listOfRBs.get((int)rb.getId() - 1).get(5));
             rb.setTds(listOfRBs.get((int)rb.getId() - 1).get(6));
-            rb.setoLine(listOfRBs.get((int)rb.getId() - 1).get(7));
+            //rb.setoLine(listOfRBs.get((int)rb.getId() - 1).get(7));
             rb.setFfppg(listOfRBs.get((int)rb.getId() - 1).get(8));
             rb.setTotalFFP(listOfRBs.get((int)rb.getId() - 1).get(9));
         }

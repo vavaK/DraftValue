@@ -293,7 +293,7 @@ public class Defense {
     public static ArrayList<Defense> rewriteDefenseValues(ArrayList<Defense> defenseArrayList) {
         ArrayList<ArrayList<Double>> listOfDefense = sortDefenseList(defenseArrayList);
         for (Defense defense:defenseArrayList) {
-            defense.setOrder(listOfDefense.get((int)defense.getId() - 1).get(1));
+            //defense.setOrder(listOfDefense.get((int)defense.getId() - 1).get(1));
             defense.setSacks(listOfDefense.get((int)defense.getId() - 1).get(2));
             defense.setSafeties(listOfDefense.get((int)defense.getId() - 1).get(3));
             defense.setFumbleRecoveries(listOfDefense.get((int)defense.getId() - 1).get(4));

@@ -313,13 +313,13 @@ public class Tes {
     public static ArrayList<Tes> rewriteTEValues(ArrayList<Tes> tesArrayList) {
         ArrayList<ArrayList<Double>> listOfWRs = sortTEList(tesArrayList);
         for (Tes te:tesArrayList) {
-            te.setDraftorder(listOfWRs.get((int)te.getId() - 1).get(1));
+            //te.setDraftorder(listOfWRs.get((int)te.getId() - 1).get(1));
             te.setReceptions(listOfWRs.get((int)te.getId() - 1).get(2));
             te.setReceivingYards(listOfWRs.get((int)te.getId() - 1).get(3));
             te.setTds(listOfWRs.get((int)te.getId() - 1).get(4));
             te.setFfppg(listOfWRs.get((int)te.getId() - 1).get(5));
             te.setTotalFFP(listOfWRs.get((int)te.getId() - 1).get(6));
-            te.setQbs(listOfWRs.get((int)te.getId() - 1).get(7));
+            //te.setQbs(listOfWRs.get((int)te.getId() - 1).get(7));
         }
         return tesArrayList;
     }

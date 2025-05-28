@@ -312,13 +312,13 @@ public class Wrs {
     public static ArrayList<Wrs> rewriteWRValues(ArrayList<Wrs> wrsArrayList) {
         ArrayList<ArrayList<Double>> listOfWRs = sortWRList(wrsArrayList);
         for (Wrs wr:wrsArrayList) {
-            wr.setDraftorder(listOfWRs.get((int)wr.getId() - 1).get(1));
+            //wr.setDraftorder(listOfWRs.get((int)wr.getId() - 1).get(1));
             wr.setReceptions(listOfWRs.get((int)wr.getId() - 1).get(2));
             wr.setReceivingYards(listOfWRs.get((int)wr.getId() - 1).get(3));
             wr.setTds(listOfWRs.get((int)wr.getId() - 1).get(4));
             wr.setFfppg(listOfWRs.get((int)wr.getId() - 1).get(5));
             wr.setTotalFFP(listOfWRs.get((int)wr.getId() - 1).get(6));
-            wr.setQbs(listOfWRs.get((int)wr.getId() - 1).get(7));
+            //wr.setQbs(listOfWRs.get((int)wr.getId() - 1).get(7));
         }
         return wrsArrayList;
     }

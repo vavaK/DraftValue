@@ -9,10 +9,9 @@ import java.util.ArrayList;
 
 public class ManageExcelSheets {
 
-    private static final String[] draftOrderPositions = {"Position", "Wide Receiver", "Quarterback", "Running Back",
-            "Tight End", "Wide Receiver", "Wide Receiver", "Flex Spot", "Wide Receiver",
-            "Running Back", "Kicker", "Defense", "Tight End", "Quarterback",
-            "Wide Receiver", "Best Player", "Best Player"};
+    private static final String[] draftOrderPositions = {"Position", "Wide Receiver", "Quarterback", "Wide Receiver",
+            "Running Back", "Wide Receiver", "Tight End", "Running Back", "Running Back", "Wide Receiver",
+            "Wide Receiver", "Kicker", "Defense", "Quarterback", "Tight End", "Best Player", "Best Player"};
     private static final String[] captions = {"Rank", "Value", "Name", "Team", "Draft Order", "Passing Yards",
             "Cmp Pct", "TD", "FFPpG", "Total FFP", "WR-Room", "Rookie", "Bye Week", "Receptions", "Receiving Yards",
             "QB", "Rushing Attempts", "Rushing Yards", "O-Line", "Attempts", "Made", "Pct", "XP", "50+", "Order",
